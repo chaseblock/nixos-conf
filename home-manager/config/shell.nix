@@ -171,9 +171,4 @@
   programs.fish = {
     enable = true;
   };
-
-  # home.file.".config/fish" = {
-  #   source = ../../fish;
-  #   recursive = true;
-  # };
 }

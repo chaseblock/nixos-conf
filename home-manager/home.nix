@@ -3,10 +3,14 @@
   #nixpkgs.config.allowUnfree = true;
 
   imports = [
+    # Config written in pure Nix
     ./config/fzf-fd-rg.nix
     ./config/shell.nix
-    #./config/neovim.nix
-    #./config/lf.nix
+
+    # symlinks
+    ./config/nvim.nix
+    ./config/lf.nix
+
     ./config/aerospace.nix
   ];
   # ++ lib.optionals pkgs.stdenv.isLinux [

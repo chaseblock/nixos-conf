@@ -1,0 +1,1016 @@
+*theovim.txt*             Theo's Neovim Configuration
+*theovim*
+
+                                \/       \/          ~
+                                /\_______/\          ~
+                               /   o   o   \         ~
+                              (  ==  ^  ==  )        ~
+                               )  [Ollie]  (         ~
+                              (             )        ~
+                              ( (  )   (  ) )        ~
+                             (__(__)___(__)__)       ~
+                            ___                      ~
+                             | |_  _  _     o __     ~
+                             | | |(/_(_)\_/ | |||    ~
+
+==============================================================================
+
+Welcome back Theo, what did you forget this time?
+
+- Type |gO| to see the table of content
+- Use |K| (or |CTRL-]|) to jump to the tag under cursor, |CTRL-T| to comeback
+- If you see a path to another file, use |gf| to open the file
+- If you see a hyperlink, use |gx| to open it in your default browser
+  - Try this out with Vim Cheat Sheet website:
+    https://vim.rtorr.com/
+- If you forgot a keymap,
+  use `<leader>?` to toggle |which-key.nvim-which-key-hydra-mode|
+
+==============================================================================
+Housekeeping                                            *theovim-housekeeping*
+
+- |:checkhealth| to see if you are missing any runtime files
+- |:messages| to check previous error messages and notifications
+- Run `:Lazy sync` to update plugins
+  - This runs `:TSUpdate` at the same time
+- Run `:MasonUpdate` to update LSP servers
+
+See also:
+- |pi_health.txt|: About Neovim's healthcheck framework
+
+==============================================================================
+Options                                                      *theovim-options*
+
+To view the currently set options (or any Lua object), use: >
+  := vim.o.listchars
+  # or Vimscript
+  :set listchars?
+
+  # Followings are all equivalent
+  :lua = vim.o.listchars
+  :lua vim.print(vim.o.listchars)
+  :lua print(vim.inspect(vim.o.listchars))
+>
+
+See also:
+- |:=| and |:lua|
+- |vim.print()| and |vim.inspect()|
+
+Tab/Indentation:
+By default,
+- |'tabstop'| (how many char Vim renders <Tab> as) = 4
+- |'softtabstop'| (how many char the cursor moves with <Tab> and <BS>) = 0
+  - 0 disables 'softtabstop'
+- |'extandtab'| (uses spaces instead of <Tab> when on) = true
+  - To insert <Tab> with with 'expandtab' on, use |i_CTRL-v| followed by <Tab>
+  - To change the type of indentations in an existing file, use |:retab|
+- |'shiftwidth'| (number of spaces used for indentation) = 2
+- Read the below section for how <Tab> and indentation spaces are rendered
+
+For certain filetypes, indentation settings are handled by |ftplugin|.
+See |theovim-ftplugins| for more information.
+
+See also:
+- |'tabstop'| documentation outlines four main ways to configure tab in Vim.
+  Theovim uses the number 2. Tab lovers will like number 1.
+- |i_CTRL-V|: to insert `<TAB>` even when |expandtab| is set
+
+
+Character rendering:
+>
+  function example()
+  ┊ ┊ str = "A line indented with four spaces"
+  ⇥   str = "A line followed by <Tab> ('tabstop=4')"
+
+  ┊ str = "A line followed by two trailing whitespaces"␣␣
+
+  ┊ str = "Pretend that this line is really really really long and is wrap
+    ↪ ped. Notice how a wrapped line is also indented (`:h showbreak`)"
+
+  ┊ str = "If you don't have 'showbreak' enabled, wrapped lines would look
+  ↪ like this"
+  end
+<
+Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
+change dynamically based on |'shiftwidth'| value.
+See |theovim-autocmds| for more information.
+
+See also:
+- |ga|: prints the hex value of the character under the cursor
+- |\/%u|: useful when replacing non-breaking spaces (`:%s/\%u00a0/\ /g`)
+
+
+Fold:
+Set to |fold-marker| by default.
+When treesitter is available, fold is set to |fold-expr|.
+See |theovim-treesitter| for more information.
+
+char            action
+----------------------------------------------------------------------
+
+|za|            Toggle one fold
+|zA|            Toggle all folds under the cursor recursively
+|zo|            Open one fold
+|zO|            Open all folds under the cursor recursively
+|zc|            Close one fold
+|zC|            Close all folds under the cursor recursively
+
+|zM|            Close all folds
+|zR|            Open all folds
+
+|zx|            Update fold. Given the nature of fold as an experimental
+              treesitter feature, fold might work unexpectedly. Use this
+              keybinding to fix any issue
+
+See also:
+- |folding|
+
+==============================================================================
+Spell Check                                                    *theovim-spell*
+
+Spell check is enabled for some buffers using |theovim-ftplugins|.
+`:set spell!` toggles spell check manually.
+
+char            action
+----------------------------------------------------------------------
+
+|]s|            Move to the next misspelled words
+|[s|            Move to the previous misspelled words
+
+|zg|            Add the current word to the first file in |spellfile|
+
+|z=|            Find the suggestions for the word under the cursor
+
+There also is a custom keybinding `<C-s>` that fixes the nearest spelling
+error in insert mode.
+
+When you use |zg| to add a word, the word is appended to `spell/en.utf-8.add`,
+and the corresponding `.spl` binary is compiled.
+`.spl` file is in `.gitignore` for my Dotfiles, so if you would like to
+compile it manually, use: >
+  :mkspell ~/.config/nvim/spell/en.utf-8.add
+<
+
+See also:
+- |spell|
+- |spellfile|
+- |spellfile-cleanup|
+- |:mkspell|
+- |internal-wordlist|
+
+==============================================================================
+Commenting                                                *theovim-commenting*
+
+Neovim offers built-int |commenting| plugin in 0.10.
+The value is controlled by |'commentstring'|, which often treesitter sets.
+See |gc-default| for more information.
+
+==============================================================================
+Keymaps                                                      *theovim-keymaps*
+
+Default overrides:
+
+char            action
+----------------------------------------------------------------------
+
+<ESC>           [Normal] Clears search highlight (|nohlsearch|).
+
+<ESC><ESC>      [Terminal] Exits the terminal insert mode.
+                See |CTRL-\_CTRL-N|.
+
+j               If the line at the cursor is not wrapped, perform |j|.
+                If the line is wrapped, perform |gj|.
+k               If the line at the cursor is not wrapped, perform |k|.
+                If the line is wrapped, perform |gk|.
+
+n               Highlight the next search result (|n|) and center the
+                screen (|zz|).
+N               Highlight the prev search result (|N|) and center the
+                screen (|zz|).
+
+These keybindings are dropped as if |'wrap'| is set and if a wrapped line
+occupies the entire screen, then you might not be able to scroll down.
+
+char            action
+----------------------------------------------------------------------
+
+<C-u>           Scroll up by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+<C-d>           Scroll down by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+
+Custom keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+jk              [Insert] ESC.
+<C-s>           [Insert] Fix the nearest spelling error and put
+                the cursor back.
+
+<C-a>           [Insert] Move to the beginning of the lines
+<C-b>           [Insert] `<LEFT>`; one of the things I miss from Emacs
+<C-f>           [Insert] `<RIGHT>`; I have sinned, I apologize
+
+<leader>a       Select all.
+<leader>y       [Visual] Copy to the system clipboard (|quoteplus|)
+<leader>p       [Visual] Paste the current selection without
+                overriding the register.
+                For example, if you have TODO: Finish the example
+
+[b              Navigate to the previous buffer (|bprev|).
+]b              Navigate to the next buffer (|bnext|).
+<leader>k       List open buffers (|ls|) and fill the command line
+                with |:bdelete| followed by `<Space>`.
+                From there, you can type a buffer number to create
+                to a buffer.
+                For example, `<leader>k` followed by `69<CR>` will
+                kill buffer 69.
+                Type `<CR>` without a number to kill the curr buf.
+
+<leader>tt      Toggle a floating terminal (the terminal state persists)
+<leader>tb      Launch a terminal in the bottom
+<leader>tr      Launch a terminal to the right
+                See |:terminal| to learn more about Neovim terminal.
+                See |:lefta|, |:rightb|, |:topleft|, and |:bo| to
+                learn more about opening a window.
+
+<C-h>           If there is a window to the left: navigate to the window
+                Else: Create a window to the left and navigate to it
+<C-j>           If there is a window below: navigate to the window
+                Else: Create a window below and navigate to it
+<C-k>           If there is a window above: navigate to the window
+                Else: Create a window above and navigate to it
+<C-k>           If there is a window to the right: navigate to the window
+                Else: Create a window to the right and navigate to it
+
+==============================================================================
+Commands                                                    *theovim-commands*
+                                                 *:TrimWhitespace* *:CD* *:RO*
+
+- `:TrimWhitespace`: Trim trailing whitespaces. It will prompts you with
+  confirmations for each whitespace.
+- `:CD`: Change the local directory to the parent directory of the current
+  file. For example, when the current directory is `nvim` and you open
+  `doc/theovim.txt`, invoke the command to change the directory to `doc`.
+  This is useful when narrowing down the scope of a Telescope search.
+- `:RO`: Set |'readonly'| and |'nomodifiable'| to the buffer using |:setlocal|
+
+==============================================================================
+autocmds                                                    *theovim-autocmds*
+
+Organized based on |autocmd-groups|.
+- `YankHighlight`: Highlight the yanked text. See |TextYankPost|
+- `SpellCheck`: Spell check is turned on in Markdown, TeX, and text filetypes
+- `Terminal`: When you open or navigate to a terminal buffer, automatically
+  starts the insert mode
+- `UpdateLeadmultispace`: Update |lcs-leadmultispace| value (i.e., indentation
+  guide) based on the |'shiftwidth'| value. It is triggered when you manually
+  change the |'shiftwidth'| value or enter the buffer for the first time.
+
+>
+    ... A buffer with shiftwidth set to 2
+    ┊ ┊ str = "A line indented with 4 spaces"
+    ...
+    ... `:set shiftwidth 4`
+    ...
+    ┊   str = "A line indented with 4 spaces"
+<
+  |autocmd-once| is used to make sure that the indentation guide is consistent
+  with indentation settings set by |ftplugin|.
+
+In 0.10, "the swapfile "ATTENTION" |E325| dialog is skipped
+if the swapfile is owned by a running Nvim process" (|news-0.10|).
+The rational behind the change is that Neovim reads any change
+made outside of the editor since |'autoread'| is set by default.
+However, I do not see any point of having two separate two Neovim instances
+with the same file opened (I would rather see a warning).
+So I disabled it with >
+    !au nvim.swapfile
+<
+The 0.10 news says the name of the |autocmd-groups| is `nvim_swapfile`, but
+they sneakly changed it in |news-0.11|.
+Augroup for all |default-autocmds| is in the form `nvim.*`, btw.
+
+==============================================================================
+ftplugins                                                  *theovim-ftplugins*
+
+Built-in Neovim ftplugins are located in `$VIMRUNTIME/ftplugin/`.
+To copy your |$VIMRUNTIME| to your system clipboard (|quoteplus|), use
+|:redir| command: `:redir @+> | echo $VIMRUNTIME | redir END`
+
+Alternatively, Neovim supports |editorconfig| out of the box. These are
+projet-specific coding style files.
+They will override `ftplugin` or other Vim settings.
+
+See also:
+- |write-filetype-plugin|
+
+==============================================================================
+UI Components                                                     *theovim-ui*
+                       *theovim-statusline* *theovim-tabline* *theovim-winbar*
+
+Config for UI components, such as statusline, tabline, and winbar are
+located in the `lua/ui` directory.
+
+Here is a breif overview of setting \*line components.
+
+1. \*line components
+For every \*line update events, Neovim translates the \*line string,
+containing "printf style '%' items."
+The list of these items are available in |'statusline'|.
+If your \*line string only contains these items, you can pass it as a
+literal string, such as >
+  vim.go.statusline = "FILE %t MODIFIED %m %= FT %Y LOC %l:%v"
+<
+
+2. Evaluation
+If you want to pass a dynamic element, such as Git or LSP status of the
+buffer/window, you need to pass a function and evaluate.
+There are two '%' items you can use to evaluate functions:
+
+- |stl-%!|: evaluates based on the currently focused window and buffer
+- |stl-%{|: evaluates based on the window the statusline belongs to
+
+For example, >
+  vim.go.winbar = "Buffer #: %{bufnr('%')}"
+  vim.go.tabline = "%!bufnr('%')"  --> %! has to be the only element
+<
+Winbar will display the buffer number for the respective windows, and
+tabline will display the buffer number of currently focused window.
+
+`%{%...%}` is almost the same as |stl-%{|, except it expands any '%' items.
+For example, >
+  vim.cmd[[
+    func! Stl_filename() abort
+      return "%t"
+    endfunc
+  ]]
+  vim.go.statusline = "Filename: %{Stl_filename()}"    --> %t
+  vim.go.statusline = "Filename: %{%Stl_filename()%}"  --> init.lua, etc.
+<
+Overall, I recommend using `%{%...%}` in most cases, because:
+1. it is essentially a better version of |stl-%{|
+2. it can be placed within a string, unlike |stl-%!|
+3. you typically want information such as LSP and Git to be window-specific
+
+3. Lua function evaluation
+
+To pass Lua function to be evaluated in \*line components, you have the
+following two options.
+
+- |luaeval()| (|lua-eval|): converts Lua values to Vimscript counterparts.
+- |v:lua| (|v:lua-call|): used to access Lua functions in Vimscript.
+
+Both requires the Lua function to be global.
+
+Either works fine, |v:lua| seems to be the go-to way for \*line, but I cannot
+figure out how to use |v:lua| call with arguments.
+Following example is configuring winbar with Devicons and LSP information. >
+  Winbar = {}
+
+  Winbar.fileinfo = function()
+    local has_devicons, devicons = pcall(require, "nvim-web-devicons")
+    if not has_devicons then return "%t%m%r" end
+
+    local bufname = vim.fn.bufname()
+    local ext = vim.fn.fnamemodify(bufname, ":e")
+    local icon = devicons.get_icon(bufname, ext, { default = true })
+    return icon .. " %t%m%r"
+  end
+
+  Winbar.lsp_server = function()
+    local clients = vim.lsp.get_clients({
+      bufnr = vim.api.nvim_get_current_buf()
+    })
+    if rawequal(next(clients), nil) then return "" end
+
+    local format = "LSP:"
+    for _, client in ipairs(clients) do
+      format = string.format("%s [%s]", format, client.name)
+    end
+    return format
+  end
+
+  Winbar.build = function()
+    return table.concat({
+      Winbar.fileinfo(),
+      "%=",  --> spacer
+      Winbar.lsp_server(),
+    })
+  end
+
+  Winbar.setup = function()
+    -- Use one of the following
+    --vim.go.winbar = "%{%luaeval('Winbar.build()')%}"
+    vim.go.winbar = "%{%v:lua.Winbar.build()%}"
+  end
+
+  Winbar.setup()
+<
+
+5. Updating dynamic components
+
+With the above example in your `init.lua`, open a buffer with LSP server(s)
+attached to it and stop the LSP clients with >
+    :lua vim.lsp.stop_client(vim.lsp.get_clients())
+<
+You might find that the information in your winbar does not automatically
+update until you take an action (e.g., |CursorMoved|).
+If you want to force an update in certain events, you need to create an
+autocmd that triggers |:redrawstatus| or |:redrawtabline|. >
+  vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach", "DiagnosticChanged" },
+    {
+      group = vim.api.nvim_create_augroup("StatuslineUpdate", { clear = true }),
+      pattern = "*",
+      callback = vim.schedule_wrap(function()
+        vim.cmd("redrawstatus")
+      end),
+      desc = "Update statusline/winbar"
+    })
+<
+
+6. Making separate \*line for active and inactive windows
+
+This section is heavily inspired by Mini.Statusline (commit 83209bf).
+When evaluating |stl-%{|, Neovim sets the current buffer/window to the window
+whose statusline/winbar is currently being drawn.
+It also offers |g:actual_curbuf| and |g:actual_curwin| variables containing
+buffer/window number of the actual current buffer/window.
+We can utilize these variables to check if the current window is active or
+inactive and draw separate statusline/winbar.
+>
+  Winbar = {}
+
+  Winbar.build = function(isActive)
+    return isActive and "active window" or "inactive window"
+  end
+
+  vim.go.winbar =
+  "%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('Winbar.build(true)') : luaeval('Winbar.build(false)')%}"
+<
+
+See also:
+- |setting-tabline|: a guide on configuring tabline with Vimscript
+
+==============================================================================
+Pomodoro                                                    *theovim-pomodoro*
+
+`ui/pomodoro.lua` is a simple timer I wrote.
+
+:PomodoroStartNew {minutes}                                *:PomodoroStartNew*
+                                Starts the timer for {minutes} * 60 seconds.
+                                {minutes} must be a positive number.
+:PomodoroPause                                                *:PomodoroPause*
+                                Pauses the timer
+:PomodoroResume                                              *:PomodoroResume*
+                                Resumes the timer
+:PomodoroGetTime                                            *:PomodoroGetTime*
+                                Prints the formatted string with either
+                                - current remaining time
+                                - timestamp when the last timer ended
+                                in the HH:MM:SS format.
+
+The timer logic heavily relies on |uv_timer_t| object.
+It was a fun, educational experience writing it,
+you (future me) should check it out.
+
+The result of |:PomodoroGetTime| is displayed in my |theovim-tabline|.
+Tabline update triggers are very limited, even limited than Statusline,
+not even with |CursorMoved|.
+Plugins like lualine forces update using the |uv_timer_t| object.
+Anyway, I force Tabline update in the `callback` of the |uv.timer_start()|,
+using |nvim__redraw()| or |:redrawtabline|.
+But calling API functions in face event throws |E5560|, so it is wrapped in
+|vim.defer_fn()| to be called every 900ms.
+
+See also:
+- |vim.schedule()| and |vim.schedule_wrap()|
+
+==============================================================================
+yanky.nvim                                                     *theovim-yanky*
+
+char            action
+----------------------------------------------------------------------
+
+<leader>p       Open yank history
+p               Put yanked text after cursor
+P               Put yanked text before cursor
+gp              Put yanked text after selection
+gP              Put yanked text before selection
+<C-p>           Select previous entry through yank history
+<C-n>           Select next entry through yank history
+
+To clear history, use `:YankyClearHistory`.
+You need to use Yanky feature at least once (e.g., `<leader>p`) to lazy load
+the plugin first before executing the clear history command.
+
+Yanky highlight timer is set to 150ms, where as the timeout value of
+|vim.hl.on_yank()| in |TextYankPost| autocmd is set to 300ms (which Yanky
+disables when it is loaded).
+
+See also:
+- |yanky.txt|
+- |quote_number|: Explanations on the numbered registers that yanky uses
+- |shada|: The "shared data" file that yanky uses to save yanked content
+
+==============================================================================
+oil.nvim                                                         *theovim-oil*
+
+char            action
+----------------------------------------------------------------------
+
+<leader>n       Call |oil.open_float| with the preview window option
+                (|oil.open_preview|)
+
+-               Navigate to the parent directory
+<CR>            `cd` into the directory
+<C-p>           Preview files
+g.              Toggle hidden files
+g?              Open keymap help
+
+- Rename, delete, or create files by modifying the buffer texts
+- To create a directory, append "/" in the end of the name (e.g: "new_dir/")
+- You can also copy or move files with |yy| and |dd|
+  - Creating split windows can be helpful
+- `:w` prompts for your confirmation of the changes you made
+
+Oil.nvim uses prefixed identifiers to internally keep track of files.
+If you delete these during the renaming process, it will not be able to
+process the renames. Set |'conceallevel'| to 0 to view literal characters
+containing the identifiers and |visual-block| mode when renaming.
+
+==============================================================================
+gitsigns.nvim                                               *theovim-gitsigns*
+
+|gitsigns.nvim| provides Git signs in the gutter (+, -, ~, etc.) as well as
+other useful Git functionalities.
+The following keybinding is enabled for Git buffers:
+
+char            action
+----------------------------------------------------------------------
+
+[c              Navigate to previous hunk
+]c              Navigate to next hunk
+
+<leader>hs      [Normal] Stage/unstage the hunk under the cursor
+                [Visual] Stage/unstage the selected area
+<leader>hr      [Normal] Reset the hunk under the cursor
+                [Visual] Reset the selected area
+<leader>hS      [H]it [S]tage current buffer
+
+<leader>hp      [H]unk [P]review
+
+<leader>hb      [H]unk [Blame] the hunk under the cursor.
+                Calls |gitsigns.blame_line()|
+                with full commit message option.
+
+<leader>hd      [H]unk [D]iff current buffer
+
+==============================================================================
+Vimtex                                                        *theovim-vimtex*
+
+- You need to install and configure PDF viewer first.
+  - In Linux, use Zathura (https://pwmt.org/projects/zathura/)
+  - In macOS, use Skim (https://skim-app.sourceforge.io/)
+  - Change the `vim.g.vimtex_view_method` in `vimtex.lua`
+- `:VimtexInfo` (`<leader>lo`): shows the system and project information
+                            (like `:checkhealth`)
+- `:VimtexCompile` (`<leader>ll`): toggles the real-time compilation process
+- `:VimtexCompileOutput` (`<leader>lo`): opens the compilation output
+- `:VimtexTocToggle` (`<leader>lT`): toggles TOC
+
+Commonly used keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+[[ ]]           Move between section boundaries
+[m ]m           Move between environment boundaries
+%               Move between matching delimiters
+
+csc             [C]hange [S]urrounding [C]ommand
+cse             [C]hange [S]urrounding [E]nvironment
+
+tsd             Toggle between `( )` and `\left( \right)`
+tsb             Toggle line break (`\\`)
+]]              [Insert] Close current environment
+
+
+Minted package uses an external command (`pygmentize`) and requires
+`--shell-escape` flag to let external tool modify the source.
+This comes with a security risk, so add the flag only when necessary. >
+    vim.g.vimtex_compiler_latexmk = {
+      options = {
+        "-shell-escape",
+        "-verbose",
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode"
+      },
+    }
+<
+
+See also:
+- |g:vimtex_compiler_latexmk|
+
+==============================================================================
+nvim-org-mode                                          *theovim-nvim-org-mode*
+
+char            action
+----------------------------------------------------------------------
+
+g?              Opens the built-in keymap help pop-up
+
+<leader>oa      Opens Org-agenda menu
+r               Refreshes Org-agenda
+]               Moves to the later week
+[               Moves to the earlier week
+<S-RIGHT>       Cycles the TODO keywords forward.
+                The default `t` keybinding is disabled.
+
+<leader>oc      Opens Org-capture
+<C-c><C-c>      Finalizes the capture
+<C-c><C-k>      Aborts the capture
+
+<C-c>,          Sets the priority of the headline
+<S-RIGHT>       Cycles the TODO keywords forward
+<S-LEFT>        Cycles the TODO keywords backward
+<C-CR>          Inserts a new TODO headline, respecting the previous content
+<C-c><C-d>      Inserts a deadline
+<C-c><C-s>      Inserts a schedule date
+
+I made custom Org-capture templates (`<leader>oc i` for task ideas,
+`<leader>oc t` for tasks + scheduled dates), which inserts
+`:IDEA:` tags in the end of the heading. >
+  In `capture.org`:
+  * TODO Spend extra 3 hours to fix this tiny annoyance in Neovim :IDEA:
+<
+Use my custom Org-agenda (`<leader>oa c`) to view headings tagged `:IDEA:`.
+
+Use `:CdOrg` to |:lcd| to Org-agenda directory (variable set in the config).
+
+See also:
+- |orgmode.txt|
+
+==============================================================================
+LSP                                                              *theovim-lsp*
+
+Step 1: Installing the language server
+
+You need to have a language server available in your `$PATH`.
+You can use a package manager of your operating system or |mason.nvim|.
+Mason installs the the LSP server in data directory (`:echo stdpath("data")`)
+and makes it available to Neovim's `PATH`.
+- |:Mason| to launch the graphical Mason UI
+- |:MasonInstall| {server} to install packages
+
+
+Step 2: Adding configuration for the language server
+
+Neovim configures LSP servers with configuration tables from:
+1. Parameters of |vim.lsp.config()|
+2. Merged tables returned from `lsp/<name>.lua`
+For more information, see |lsp-config|.
+
+After you installed the language server, create a new config file.
+Besides the example comments in `lua/theovim/lsp.lua`, all my config files are
+located in `lsp/`.
+Good references can be found in nvim-lspconfig repository:
+https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+
+In `lua/theovim/lsp.lua`, add the name of the config file you created to the
+`servers` table to be passed to |vim.lsp.enable()|
+The config file could be named to anything as long as you match the name in
+this table.
+
+Now, open a buffer of the filetype you specified in the config and run: >vim
+    :checkhealth vim.lsp
+<
+to see if it is attached to the buffer.
+
+To temporarily detatch LSP client from the buffer, pass the client id >
+    assuming server clinet ID is 1 (0 is the current buffer):
+    :lua vim.lsp.buf_detatch_client(0, 1)
+    :lua vim.lsp.buf_attach_client(0, 1)
+<
+
+To stop the server altogether >
+    :lua vim.lsp.stop_client(vim.lsp.get_clients())
+<
+
+See also:
+- |lsp-quickstart|: Guide on configuring LSP servers
+
+
+Step 3: Using LSP
+
+Starting in 0.10 and 0,11, Neovim ships with a lot of default keybindings
+for the built-in diagnostic and LSP framework.
+
+Diagnostics:
+- |]d-default|
+- |[d-default|
+- |CTRL-W_d-default|
+- |default-mappings| for more default diagnostic mappings
+
+LSP:
+- |K-lsp-default|
+- `grn`: |vim.lsp.buf.rename()|
+- `gra`: |vim.lsp.buf.code_action()|
+- `grr`: |vim.lsp.buf.references()|
+- `gO`: |vim.lsp.buf.document_symbols()|
+- |gr-defaults| for more `gr` bindings for LSP
+- |lsp-defaults| for more default LSP mappings and settings
+
+These keybindings are overriden if conditions are met.
+
+char            action
+----------------------------------------------------------------------
+
+K               Calls |vim.lsp.buf.hover()| with rounded borders.
+gra             Calls |fzf-lua-opts-lsp_code_actions|.
+grr             Calls |fzf-lua-opts-lsp_references|.
+gri             Calls |fzf-lua-opts-lsp_implementations|.
+gO              Calls |fzf-lua-opts-lsp_document_symbols|.
+
+
+Other keymaps and commands are controlled with |lsp-attach| autocmd.
+
+Autocmd & User Commands:
+- Symbol under the cursor (i.e., variables, functions, etc.) are highlighted.
+- `:LspInfo` is an abbreviation to `:checkhealth vim.lsp`
+
+Keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>q       Opens diagnostic list in |location-list|.
+                Calls |vim.diagnostic.setloclist()|.
+
+<leader>f       Calls |vim.lsp.buf.format()|
+
+<leader>sd      Calls |fzf-lua-opts-diagnostics_document|
+
+==============================================================================
+Completion                                                *theovim-completion*
+
+char            action
+----------------------------------------------------------------------
+
+<C-x><C-l>      Completes a whole line
+
+<C-x><C-n>      Completes a keyword in the current file
+
+<C-x><C-k>      Completes a word in |'dictionary'|.
+                If |'spell'| is set, the word list is used.
+
+<C-x><C-f>      Completes a file path
+                If available, fzf-lua picker
+                (|fzf-lua-opts-complete_file|) is called.
+
+<C-x><C-o>      Triggers Omni-completion
+
+When a LSP buffer is attached, Omni-completion is set to
+|vim.lsp.omnifunc()|, and |vim.lsp.completion.enable()| is called.
+This enables
+1. accepting a snippet using `<C-y>` automatically expands the snippet
+2. triggering auto-completion with the insertion of certain characters,
+   such as `.`, `<`, etc. (handled by `triggerCharacters` from the LSP)
+
+These keybindings are available when completion window is open
+
+char            action
+----------------------------------------------------------------------
+
+<C-y>           [Y]es to the completion
+<C-e>           [E]nd the completion
+<C-n>           [N]ext completion item
+<C-p>           [P]revious completion item
+
+<TAB>           If a completion window is open, <C-n>.
+                If a snippet is expandable, move to the next item.
+                If there is a character at the cursor, trigger a
+                completion (word completion or Omni-completion, based
+                on the availability).
+                Else, insert <TAB>
+<S-TAB>         If a completion window is open, <C-p>
+                If a snippet is expandable, move to the previous item.
+                ELse, insert <S-TAB>
+
+When a snippet is expanded, you enter the |Select-mode|, which you can
+move around with <TAB> and <S-TAB>.
+
+See also:
+- |ins-completion|: native completion engine
+- |i_CTRL-X| (|insert_expand|): CTRL-X keybinding
+- |vim.snippet|: built-in snippet module
+- |lsp-completion|: overview of LSP auto-completion
+  - |compl-autocomplete|: Example of a simple implementation of trigger char
+
+==============================================================================
+nvim-cmp                                                    *theovim-nvim-cmp*
+
+While the native ins-completion is workable, nvim-cmp and other plug-ins
+offers functionalities like grouping different completion sources, sourcing
+snippets, and more performance.
+
+char            action
+----------------------------------------------------------------------
+
+<C-y>           Same as <C-y> in ins-completion
+<RET>           Same as <C-y> in ins-completion
+
+<C-e>           Same as <C-e> in ins-completion
+<C-n>           Same as <C-n> in ins-completion
+<C-p>           Same as <C-p> in ins-completion
+
+<C-b>           Scroll the documentation [b]ackward (down)
+<C-f>           Scroll the documentation [f]orward (up)
+
+<C-SPC>         Manually trigger the completion
+
+<TAB>           Same as <TAB> in ins-completion
+<S-TAB>         Same as <S-TAB> in ins-completion
+
+See also:
+- |nvim-cmp|
+- |cmp-mapping|: creating keymaps and examples of `fallback()`
+- |cmp-config.sources[n].group_index|: grouping completion sources
+
+==============================================================================
+fzf-lua                                                      *theovim-fzf-lua*
+
+fzf-lua works out of the box, but for faster search and live grep features,
+the following dependencies are needed:
+- fzf
+- fd
+- ripgrep
+
+char            action
+----------------------------------------------------------------------
+
+<leader>.       Searches oldfiles
+
+<leader><leader>Searches open buffers
+
+<leader>/       Searches a word in the buffer
+
+<leader>sg      Uses Ripgrep on the current directory (`live_grep`).
+
+                In `setup()`, Ripgrep flags are overriden to add
+                `--hidden` on the top of the default flags
+                (reference `rg_opts` in |fzf-lua-customization|).
+
+                `<C-a>` toggles `--smart-case` flag.
+
+                `<C-g>` toggles between `grep` and `live_grep`.
+                Difference from `:FzfLua grep` is that `grep` prompts
+                the user for a word and merely lets you fuzzy find
+                from the grep result, where as `live_grep` runs
+                Ripgrep on the fly.
+
+<leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
+
+<leader>d-      Selects a parent directory and launch
+                |fzf-lua-opts-files| with the selected directory.
+
+<leader>di      Enters a directory and launch
+                |fzf-lua-opts-files| with the selected directory.
+
+<leader>gc      [G]it [C]ommits.
+
+<leader>gs      [G]it [S]tatus.
+
+There are more custom keymaps are prefixed with one of:
+- `[S]earch`
+- `[D]irectory`
+- `[G]it`
+
+Read `plugins/fzf-lua.lua` for more information.
+
+Within the fzf window, the following keybindings are available:
+
+char            action
+----------------------------------------------------------------------
+
+<C-j>           Selects the next item
+<C-n>           Selects the next item
+
+<C-k>           Selects the prev item
+<C-p>           Selects the prev item
+
+<C-c>           Closes the window
+
+<CR>            Opens the selection in the current window
+<C-v>           Opens the selection in a vertical split
+<C-s>           Opens the selection in a horizontal split
+<C-t>           Opens the selection in a new tab
+
+<C-b>           Scrolls preview page down
+<C-f>           Scrolls preview page up
+
+
+fzf-lua also replaces the following |ins-completion| with its own picker:
+
+- |compl-filename| (|i_CTRL-X_CTRL-F|) -> |fzf-lua-opts-complet_file|
+
+==============================================================================
+Treesitter                                                *theovim-treesitter*
+
+The parsers to be enabled is defined in the `language` table in the config.
+
+- :TSInstall {language} ...
+  - A list of available modules can be found with: >
+    := require("nvim-treesitter").get_available()
+<
+- :TSUpdate {language} ...
+
+- Manually start the parser that is not mentioned in the `language` table >
+  :lua vim.treesitter.start()
+<
+- Stop the parser with >
+  :lua vim.treesitter.stop()
+<
+
+When treesitter is on, |foldmethod| is set to |fold-expr| and |foldexpr| is
+set to |vim.treesitter.foldexpr()|.
+
+See also:
+- |nvim-treesitter|: parser installer
+- |treesitter|: Neovim built-in treesitter library
+
+==============================================================================
+Colorscheme                                              *theovim-colorscheme*
+                                                            *theovim-nightfox*
+
+My favorite colorschemes:
+- tokyonight-night
+- kanagawa-wave
+- kanagawa-lotus (favorite light colorscheme)
+- nordfox
+
+To get the palettes used by each Nightfox colorscheme: >
+    := require("nightfox.palette").load("nordfox")
+<
+
+Transparency is controlled with `vim.g.have_transparent_bg` variable defined
+in `init.lua`, which is passed as an argument to `transparent` option of each
+colorschemes' `setup()` functions, where most colorschemes invoke >
+    :hi Normal guibg=NONE ctermbg=NONE
+<
+Thus, it is not "transparency" in true sense, it will simply use the
+background of the terminal emulator.
+For using transparency with Neovide, see |theovim-neovide|.
+
+See also:
+- `g:var`: global-variable
+- `:hi`: manually setting highlights
+
+==============================================================================
+Neovide                                                      *theovim-neovide*
+
+Configure application options in `$XDG_CONFIG_HOME/neovide/config.toml`: >
+  # These options are ones you can pass as command line arguments
+  # e.g., $ neovide --frame transparent --title-hidden
+  frame = "transparent"  # full or none, transparent or buttonless for macOS
+  title-hidden = true
+
+  # These are runtime options
+  [font]
+  # Will use the bundled Fira Code Nerd Font by default
+  normal = ["UbuntuMono Nerd Font"]
+  size = 16.0
+
+<
+You can also configure font using |'guifont'| option: >
+  if vim.g.neovide then
+    vim.o.guifont = "UbuntuMono Nerd Font:h16"
+  end
+<
+
+As explained in the |theovim-colorscheme| section, most colorschemes set
+background highlight group to `NONE` in order to inherit the transparent
+background from the terminal emulator.
+Since Neovide does not have the default terminal background, configuring
+transparency through this way will result in black background.
+Instead, turn the colorscheme's transparency option off and set >
+  if vim.g.neovide then
+    local opacity = 0.8  --> floating point value in the range [0, 1]
+    vim.g.neovide_opacity = opacity
+    vim.g.neovide_normal_opacity = opacity
+  end
+<
+
+==============================================================================
+Documentation                                          *theovim-documentation*
+
+This file (|theovim.txt|) contains the complete list of all Theovim features.
+
+See also:
+- |help-writing|: Guide on Vim help syntax
+- |:helptags|: Generating help tags files
+
+
+ vim:tw=78:ts=8:ft=help:norl:
