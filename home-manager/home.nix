@@ -38,6 +38,7 @@
     ./config/lf.nix
 
     # GUI tools
+    ./config/kitty.nix
     ./config/wezterm.nix
     ./config/zathura.nix
 

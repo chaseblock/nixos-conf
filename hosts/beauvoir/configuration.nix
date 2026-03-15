@@ -33,7 +33,6 @@ in
       # args = { appdir = externalAppDir };
       #}
       #"intellij-idea"
-      "kitty"
       "macvim-app"
       #"rstudio"
       "wezterm"
