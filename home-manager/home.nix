@@ -3,7 +3,6 @@
   #nixpkgs.config.allowUnfree = true;
 
   imports = [
-    # Config written in pure Nix
     ./config/git.nix
     ./config/fzf.nix
     ./config/fd.nix
@@ -13,11 +12,14 @@
     ./config/neovide.nix
     ./config/bat.nix
     ./config/btop.nix
-
-    # symlinks
+    # needs to be migrated to Nix
     ./config/nvim.nix
     ./config/lf.nix
 
+    # GUI tools
+    ./config/wezterm.nix
+
+    # macOS specific
     ./config/aerospace.nix
   ];
   # ++ lib.optionals pkgs.stdenv.isLinux [

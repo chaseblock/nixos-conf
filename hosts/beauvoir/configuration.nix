@@ -33,7 +33,6 @@
       "kitty"
       "mactex-no-gui"
       "macvim-app"
-      "neovide-app"
       #"rstudio"
       "wezterm"
 
