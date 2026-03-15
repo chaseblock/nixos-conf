@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   #nixpkgs.config.allowUnfree = true;
 
@@ -16,7 +16,6 @@
   home.sessionPath = [
     "${config.home.homeDirectory}/.local/bin"
   ];
-
 
   imports = [
     # Tools
