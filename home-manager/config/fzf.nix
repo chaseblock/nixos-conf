@@ -1,22 +1,5 @@
 { ... }:
 {
-  programs.fd = {
-    enable = true;
-    hidden = true;
-    ignores = [
-      ".git/"
-        "node_modules/"
-    ];
-  };
-
-  programs.ripgrep = {
-    enable = true;
-    arguments = [
-      "--hidden"
-        "--glob=!.git/"
-    ];
-  };
-
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;

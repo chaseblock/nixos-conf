@@ -5,7 +5,9 @@
   imports = [
     # Config written in pure Nix
     ./config/git.nix
-    ./config/fzf-fd-rg.nix
+    ./config/fzf.nix
+    ./config/fd.nix
+    ./config/ripgrep.nix
     ./config/shell.nix
     ./config/fastfetch.nix
     ./config/neovide.nix
