@@ -1,66 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 {
-  xdg.enable = true;
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    MANPAGER = "nvim +Man!";
-    LESSHISTFILE = "-";
-    DOT_DIR = "${config.home.homeDirectory}/dotfiles";
-    THEOSHELL_TRASH_DIR = "${config.xdg.dataHome}/theoshell/trash";
-    THEOSHELL_CDF_DIR = "${config.xdg.dataHome}/theoshell/cd-fav.txt";
-  };
-
-  home.sessionPath = [
-    "${config.home.homeDirectory}/.local/bin"
-  ];
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-
-    settings = {
-      format = "$character$directory([ $git_branch$git_status ](bg:grey fg:black)) ❱ ";
-      add_newline = false;
-      follow_symlinks = true;
-      palette = "nordfox";
-      palettes."nordfox" = {
-        black   = "#232831";  # bg0
-        white   = "#ABB1BB";  # fg2
-        grey    = "#7E8188";  # fg3
-        cyan    = "#88C0D0";
-        green   = "#A3BE8C";
-        purple  = "#B48EAD";
-        red     = "#BF616A";
-        blue    = "#81A1C1";
-        yellow  = "#ebcb8b";
-      };
-
-      character = {
-        success_symbol = "[ I ](bg:blue fg:bold black)";
-        error_symbol = "[ I ](bg:red fg:bold black)";
-        vimcmd_symbol = "[ N ](bg:green fg:bold black)";
-        vimcmd_replace_symbol = "[ R ](bg:purple fg:bold black)";
-        vimcmd_replace_one_symbol = "[ R ](bg:purple fg:bold black)";
-        vimcmd_visual_symbol = "[ V ](bg:yellow fg:bold black)";
-      };
-      directory = {
-        format = "[ $path$read_only ]($style)";
-        style = "bg:black fg:bold white";
-        truncation_length = 5;
-        truncation_symbol = ".../";
-      };
-      git_branch = {
-        format = "$symbol$branch";
-        symbol = "";
-      };
-      git_status = {
-        format = "$all_status";
-      };
-    };
-  };
-
   programs.zsh = {
     enable = true;
 
@@ -166,9 +105,5 @@
 
       zsh_greeting
     '';
-  };
-
-  programs.fish = {
-    enable = true;
   };
 }

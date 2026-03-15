@@ -6,6 +6,6 @@
   #   enableZshIntegration = true;
   # };
 
-  home.file.".config/wezterm/wezterm.lua".source = ../../wezterm/wezterm.lua;
+  home.file.".config/wezterm/wezterm.lua".source = ./wezterm/wezterm.lua;
 }
 

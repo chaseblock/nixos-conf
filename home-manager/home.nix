@@ -2,16 +2,38 @@
 {
   #nixpkgs.config.allowUnfree = true;
 
+  xdg.enable = true;
+
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
+    LESSHISTFILE = "-";
+    DOT_DIR = "${config.home.homeDirectory}/dotfiles";
+    THEOSHELL_TRASH_DIR = "${config.xdg.dataHome}/theoshell/trash";
+    THEOSHELL_CDF_DIR = "${config.xdg.dataHome}/theoshell/cd-fav.txt";
+  };
+
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.local/bin"
+  ];
+
+
   imports = [
+    # Tools
     ./config/git.nix
     ./config/fzf.nix
     ./config/fd.nix
     ./config/ripgrep.nix
-    ./config/shell.nix
-    ./config/fastfetch.nix
-    ./config/neovide.nix
     ./config/bat.nix
     ./config/btop.nix
+
+    # Shell related
+    ./config/starship.nix
+    ./config/zsh.nix
+    ./config/fish.nix
+    ./config/fastfetch.nix
+    ./config/neovide.nix
+
     # needs to be migrated to Nix
     ./config/nvim.nix
     ./config/lf.nix

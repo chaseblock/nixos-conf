@@ -1,4 +1,7 @@
 { pkgs, ... }:
+let
+  externalAppDir = "/Volumes/theo-crucial-p310/Applications";
+in
 {
 
   environment.systemPackages = [
@@ -27,21 +30,16 @@
       "docker-desktop"
       #{
       # name = "docker-desktop";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       #"intellij-idea"
       "kitty"
-      "mactex-no-gui"
       "macvim-app"
       #"rstudio"
       "wezterm"
 
       # Fun
       "discord"
-      #{
-      # name = "discord";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
-      #}
       #"minecraft"
       "spotify"
 
@@ -54,12 +52,12 @@
       "filen"
       #{
       # name = "filen";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "syncthing-app"
       #{
       # name = "syncthing-app";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
 
       # System
@@ -71,35 +69,35 @@
       "bitwarden"
       #{
       # name = "bitwarden";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       #"cemu"
       "gimp"
       #{
       # name = "gimp";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "keycastr"
       #{
       # name = "keycastr";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "kicad"
       "obs"
       #{
       # name = "obs";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "skim"
       "vlc"
       #{
       # name = "vlc";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "zotero"
       #{
       # name = "zotero";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
 
       # Web
@@ -108,7 +106,7 @@
       "thunderbird"
       #{
       # name = "ungoogled-chromium";
-      # args = { appdir = "/Volumes/theo-crucial-p310/Applications" };
+      # args = { appdir = externalAppDir };
       #}
       "ungoogled-chromium"
     ];
