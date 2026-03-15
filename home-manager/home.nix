@@ -8,6 +8,7 @@
     ./config/fzf-fd-rg.nix
     ./config/shell.nix
     ./config/fastfetch.nix
+    ./config/neovide.nix
 
     # symlinks
     ./config/nvim.nix
