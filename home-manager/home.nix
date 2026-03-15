@@ -9,6 +9,8 @@
     ./config/shell.nix
     ./config/fastfetch.nix
     ./config/neovide.nix
+    ./config/bat.nix
+    ./config/btop.nix
 
     # symlinks
     ./config/nvim.nix
