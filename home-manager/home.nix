@@ -25,9 +25,11 @@
     ./config/ripgrep.nix
     ./config/bat.nix
     ./config/btop.nix
+    ./config/zathura.nix
     ./config/misc-pkgs.nix
 
-    # Shell related
+    # Terminal & Shell
+    ./config/kitty.nix
     ./config/starship.nix
     ./config/zsh.nix
     ./config/fish.nix
@@ -37,14 +39,6 @@
     # needs to be migrated to Nix
     ./config/nvim.nix
     ./config/lf.nix
-
-    # GUI tools
-    ./config/kitty.nix
-    ./config/wezterm.nix
-    ./config/zathura.nix
-
-    # macOS specific
-    ./config/aerospace.nix
   ];
   # ++ lib.optionals pkgs.stdenv.isLinux [
   # ]

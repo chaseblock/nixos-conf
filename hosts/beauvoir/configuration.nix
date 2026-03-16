@@ -4,13 +4,8 @@ let
 in
 {
 
-  environment.systemPackages = [
-    pkgs.bat
-    pkgs.btop
-    pkgs.fastfetch
-    pkgs.lf
-    pkgs.neovim
-    pkgs.fish
+  imports = [
+    ./aerospace.nix
   ];
 
   users.users.theopn = {
