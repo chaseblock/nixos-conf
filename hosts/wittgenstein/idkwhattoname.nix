@@ -1,6 +1,7 @@
 # Stuff
 { config, pkgs, ... }:
 let
+  # Fetch relatively new brightnessctl since the old one doesn't support -get flag
   # https://github.com/hummer12007/brightnessctl/issues/90
   newBrightnessctl = pkgs.brightnessctl.overrideAttrs (old: {
     version = "git";
@@ -27,9 +28,9 @@ in
   ];
 
   programs.firefox.enable = true;
+  programs.thunderbird.enable = true;
 
   services.tailscale.enable = true;
-
   services.syncthing = {
     enable = true;
     user = "theopn";
@@ -48,8 +49,6 @@ in
     # Propritery apps
     chromium discord slack spotify zoom-us
 
-    kicad
-
     # Niri related
     xwayland-satellite
     dunst rofi swaybg swaylock swayidle waybar
@@ -61,7 +60,30 @@ in
     # order matters since both provides `clangd` command
     clang-tools clang
 
+    gnomeExtensions.paperwm
+
+    kicad
     vim
     alacritty
   ];
+
+  xdg.mime.defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/xhtm+xml" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+
+      "application/pdf" = "org.pwmt.zathura.desktop";
+
+      "text/*" = "neovide.desktop";
+
+      "inode/directory" = "lf.desktop";
+
+      "image/*" = [
+        "sxiv.desktop"
+        "gimp.desktop"
+      ];
+    };
 }
