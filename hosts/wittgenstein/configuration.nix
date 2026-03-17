@@ -19,11 +19,17 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
   environment.gnome.excludePackages = with pkgs; [
-    cheese epiphany evince geary totem
-    tali iagno hitori atomix yelp
-    gnome-tour gnome-maps gnome-logs gnome-usage
-    gnome-music gnome-console gnome-terminal gnome-contacts
-    gnome-calendar gnome-weather gnome-text-editor
+    gnome-calculator gnome-clocks simple-scan snapshot gnome-characters
+    # Totem = video, loupe = image
+    totem gnome-music evince gnome-font-viewer loupe
+    # baobab = disk usage
+    baobab gnome-disk-utility gnome-system-monitor gnome-logs gnome-connections
+    # geary = email
+    geary gnome-contacts gnome-calendar gnome-weather gnome-maps
+    # yelp = help
+    gnome-text-editor yelp gnome-tour gnome-usage gnome-terminal gnome-console
+    # cheese = camera, epiphany = browser
+    cheese epiphany
   ];
   programs.niri.enable = true;
 
