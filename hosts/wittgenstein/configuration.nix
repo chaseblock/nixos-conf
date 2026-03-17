@@ -48,6 +48,7 @@
   # Minimal GNOME
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   environment.gnome.excludePackages = with pkgs; [
     gnome-calculator gnome-clocks simple-scan snapshot gnome-characters
     # Totem = video, loupe = image, evince = PDF
@@ -61,7 +62,6 @@
     # cheese = camera, epiphany = browser
     cheese epiphany
   ];
-  programs.niri.enable = true;
 
 
   # Me

@@ -22,8 +22,8 @@ let
   });
 in
 {
-  # Packages and services
 
+  # Packages and services
   fonts.packages = with pkgs; [
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
@@ -63,17 +63,21 @@ in
     # order matters since both provides `clangd` command
     clang-tools clang
 
-    gnomeExtensions.paperwm
-
     vlc gimp
     kicad
     vim
     alacritty
   ];
 
+  # Niri & Portal
+  programs.niri.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    config.common.default = [ "gnome" "gtk" ];
+  };
 
   # default applications
-
   xdg.mime.defaultApplications = {
       "text/html" = "firefox.desktop";
       "application/xhtm+xml" = "firefox.desktop";
@@ -97,7 +101,6 @@ in
   };
 
   # fcitx5
-
   i18n.inputMethod = {
     enable = true;
     type = "fcitx5";
