@@ -22,9 +22,12 @@ let
   });
 in
 {
+  # Packages and services
+
   fonts.packages = with pkgs; [
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
+    noto-fonts-cjk-sans  # for Korean input
   ];
 
   programs.firefox.enable = true;
@@ -68,6 +71,9 @@ in
     alacritty
   ];
 
+
+  # default applications
+
   xdg.mime.defaultApplications = {
       "text/html" = "firefox.desktop";
       "application/xhtm+xml" = "firefox.desktop";
@@ -88,5 +94,31 @@ in
       ];
 
       "inode/directory" = "lf.desktop";
+  };
+
+  # fcitx5
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "fcitx5";
+    fcitx5 = {
+      waylandFrontend = true;
+      ignoreUserConfig = true;
+      addons = with pkgs; [ fcitx5-hangul ];
+      settings = {
+        inputMethod = {
+          GroupOrder."0" = "Default";
+          "Groups/0" = {
+            Name = "Default";
+            "Default Layout" = "us";
+            DefaultIM = "keyboard-us";
+          };
+          "Groups/0/Items/0".Name = "keyboard-us";
+          "Groups/0/Items/1".Name = "hangul";
+        };
+      };
     };
+  };
+
+
 }
