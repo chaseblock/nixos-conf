@@ -7,12 +7,18 @@
     exiftool
     openconnect
     stow
+    #figlet
     ffmpeg
     imagemagick
     #tmux
     hugo
     figlet
     wget
+
+    #nodejs_24
+    #r
+    #cargo
+    #rustc
     qemu
 
     zathuraPkgs.zathura_pdf_poppler

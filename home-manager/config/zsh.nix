@@ -41,6 +41,30 @@
       }
       tarmake() { tar -czvf ''${1}.tar.gz $1 }
       tarunmake() { tar -zxvf $1 }
+
+      cdf() {
+        if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
+          echo "You must provide THEOSHELL_CDF_DIR"
+          return 1
+        fi
+
+        dir=$(fzf --header="Favorite Directories" < $THEOSHELL_CDF_DIR)
+        [[ ! -z "$dir" ]] && cd "$dir"
+      }
+
+      cdf_add() {
+        if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
+          echo "You must provide THEOSHELL_CDF_DIR"
+          return 1
+        fi
+
+        if [[ ! -e $THEOSHELL_CDF_DIR ]]; then
+          mkdir -p $(dirname $THEOSHELL_CDF_DIR)
+          touch $THEOSHELL_CDF_DIR
+        fi
+
+        pwd >> $THEOSHELL_CDF_DIR
+      }
     '';
   };
 }
