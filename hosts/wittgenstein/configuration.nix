@@ -2,6 +2,7 @@
 {
   imports = [
       ./hardware-configuration.nix
+      ./idkwhattoname.nix
     ];
 
   # Boot settings
@@ -65,20 +66,10 @@
     shell = pkgs.zsh;
   };
 
-  # System packages
-  programs.firefox.enable = true;
-  environment.systemPackages = with pkgs; [
-    curl wget gcc gdb git killall
-    gnumake zip unzip file jq
-    vim
-    alacritty
-  ];
-
   # Nix settings
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
-
 }
 
