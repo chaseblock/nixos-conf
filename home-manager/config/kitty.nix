@@ -1,11 +1,4 @@
 { config, pkgs, lib, ... }:
-let
-  # I am so not proud of this
-  kitty-fish = pkgs.writeShellScriptBin "kitty-fish" ''
-    export PATH="${config.home.profileDirectory}/bin:/run/current-system/sw/bin:/nix/var/nix/profiles/default/bin:$PATH"
-    exec ${lib.getExe pkgs.fish} "$@"
-  '';
-in
 {
   programs.kitty = {
     enable = true;
@@ -50,7 +43,7 @@ in
       dynamic_background_opacity = "yes";
       background_image_layout = "tiled";
 
-      shell = lib.getExe kitty-fish;
+      #shell = "${lib.getExe pkgs.fish}/bin/fish --login";
       shell_integration = "no-cursor";
       term = "xterm-kitty";
 
