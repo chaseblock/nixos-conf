@@ -1,4 +1,5 @@
 { pkgs, lib, config, ... }:
+
 {
   xdg.enable = true;
 
@@ -10,12 +11,13 @@
 
   imports = [
     # Tools
-    ./config/git.nix
-    ./config/fzf.nix
-    ./config/fd.nix
-    ./config/ripgrep.nix
     ./config/bat.nix
     ./config/btop.nix
+    ./config/fd.nix
+    ./config/fzf.nix
+    ./config/git.nix
+    ./config/lf.nix
+    ./config/ripgrep.nix
     ./config/zathura.nix
     ./config/misc-pkgs.nix
 
@@ -29,18 +31,6 @@
 
     # needs to be migrated to Nix
     ./config/nvim.nix
-    ./config/lf.nix
-
-    ## Linux only
-    ./config/copyq.nix
-    ./config/dunst.nix
-    ./config/gammastep.nix
-    ./config/keychain.nix
-    #./config/niri.nix
-    ./config/rofi.nix
-    ./config/swayidle.nix
-    ./config/swaylock.nix
-    ./config/waybar.nix
   ];
 
   programs.man.generateCaches = lib.mkIf pkgs.stdenv.isDarwin false;
