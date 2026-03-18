@@ -1,5 +1,6 @@
-{ config, pkgs, lib, ... }:
-lib.mkIf pkgs.stdenv.isLinux {
+{ pkgs, ... }:
+
+{
   services.dunst = {
     enable = true;
 

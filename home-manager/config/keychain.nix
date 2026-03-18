@@ -1,6 +1,7 @@
-{ pkgs, lib, ... }:
-lib.mkIf pkgs.stdenv.isLinux {
-  programs.keychain = lib.mkIf pkgs.stdenv.isLinux {
+{ ... }:
+
+{
+  programs.keychain = {
     enable = true;
     enableZshIntegration = true;
     enableFishIntegration = true;

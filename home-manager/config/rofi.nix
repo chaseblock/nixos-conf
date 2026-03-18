@@ -1,8 +1,9 @@
 { config, pkgs, lib, ... }:
+
 let
   inherit (config.lib.formats.rasi) mkLiteral;
 in
-lib.mkIf pkgs.stdenv.isLinux {
+{
   programs.rofi = {
     enable = true;
 
