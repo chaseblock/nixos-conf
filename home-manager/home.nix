@@ -38,6 +38,7 @@
     ./config/dunst.nix
     ./config/gammastep.nix
     ./config/rofi.nix
+    ./config/swayidle.nix
     ./config/waybar.nix
   ];
 
