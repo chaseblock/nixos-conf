@@ -1,58 +1,62 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
-  # All scripts in https://github.com/theopn/haunted-tiles/tree/niri
-  rofi-niri-workspace-rename = pkgs.writeShellScriptBin "rofi-niri-workspace-rename.sh" ''
-    rename='󰑕 rename'
-    reset='󰬟 reset'
-    cancel='󰜺 cancel'
-    function run_rofi_selection() {
-      echo -e "$rename\n$reset\n$cancel" | rofi -dmenu -p ">" -mesg "Changing Current Workspace Name"
-    }
-    function get_name() {
-      echo "" | rofi -dmenu -p "Enter Workspace Name:" -l 0
-    }
-    function main() {
-      chosen="$(run_rofi_selection)"
-      case $chosen in
-        $rename)
-          niri msg action set-workspace-name $(get_name)
-        ;;
-        $reset)
-          niri msg action unset-workspace-name
-        ;;
-      esac
-    }
-    main
-  '';
+  # scripts in https://github.com/theopn/haunted-tiles/tree/niri
+  theo-rofi-niri-workspace-rename = pkgs.writeShellApplication {
+    name = "theo-rofi-niri-workspace-rename";
+    runtimeInputs = with pkgs; [ rofi ];
+    text = ''
+      rename='󰑕 rename'
+      reset='󰬟 reset'
+      cancel='󰜺 cancel'
+      function run_rofi_selection() {
+        echo -e "$rename\n$reset\n$cancel" | rofi -dmenu -p ">" -mesg "Changing Current Workspace Name"
+      }
+      function get_name() {
+        echo "" | rofi -dmenu -p "Enter Workspace Name:" -l 0
+      }
+      function main() {
+        chosen="$(run_rofi_selection)"
+        case $chosen in
+          "$rename") niri msg action set-workspace-name "$(get_name)" ;;
+          "$reset")  niri msg action unset-workspace-name ;;
+        esac
+      }
+      main
+    '';
+  };
 
-  rofi-dnd = pkgs.writeShellScriptBin "rofi-dnd.sh" ''
-    on_action=' Pause Notification'
-    off_action=' Resume Notification'
+  theo-rofi-dnd = pkgs.writeShellApplication {
+    name = "theo-rofi-dnd";
+    runtimeInputs = with pkgs; [ rofi dunst ];
+    text = ''
+      on_action=' Pause Notification'
+      off_action=' Resume Notification'
 
-    current=' You are being disturbed'
-    toggle="$on_action"
-    if [[ $(dunstctl is-paused) == 'true' ]]; then
-      current=" You are missing out on $(dunstctl count waiting) notifications"
-      toggle="$off_action"
-    fi
+      current=' You are being disturbed'
+      toggle="$on_action"
+      if [[ $(dunstctl is-paused) == 'true' ]]; then
+        current=" You are missing out on $(dunstctl count waiting) notifications"
+        toggle="$off_action"
+      fi
 
-    action=$(echo -e "$toggle" | rofi -dmenu \
-      -theme-str 'window {height: 150px; width: 400px;}' \
-      -theme-str 'mainbox {children: [ "message", "listview" ];}' \
-      -theme-str 'listview {columns: 1;}' \
-      -theme-str 'element-text {horizontal-align: 0.5;}' \
-      -theme-str 'textbox {horizontal-align: 0.5;}' \
-      -mesg "$current")
+      action=$(echo -e "$toggle" | rofi -dmenu \
+        -theme-str 'window {height: 150px; width: 400px;}' \
+        -theme-str 'mainbox {children: [ "message", "listview" ];}' \
+        -theme-str 'listview {columns: 1;}' \
+        -theme-str 'element-text {horizontal-align: 0.5;}' \
+        -theme-str 'textbox {horizontal-align: 0.5;}' \
+        -mesg "$current")
 
-    if [[ "$action" == "$on_action" ]]; then
-      dunstctl set-paused true
-    elif [[ "$action" == "$off_action" ]]; then
-      dunstctl set-paused false
-    fi
-  '';
+      if [[ "$action" == "$on_action" ]]; then
+        dunstctl set-paused true
+      elif [[ "$action" == "$off_action" ]]; then
+        dunstctl set-paused false
+      fi
+    '';
+  };
 
-  rofi-dunst-manager = pkgs.writeShellScriptBin "rofi-dunst-manager.sh" ''
+  theo-rofi-dunst-manager = pkgs.writeShellScriptBin "theo-rofi-dunst-manager" ''
     function replace_special_char() {
       # replace & < > since Rofi throws Pango error with them
       echo "$1" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'
@@ -188,7 +192,7 @@ in
           format = "󰑕 ";
           tooltip = true;
           tooltip-format = "Rename Current Workspace";
-          on-click = "${rofi-niri-workspace-rename}/bin/rofi-niri-workspace-rename.sh";
+          on-click = "${lib.getExe theo-rofi-niri-workspace-rename}";
         };
 
         "niri/window" = {
@@ -203,8 +207,8 @@ in
           format = "󰵛";
           tooltip = true;
           tooltip-format = "L: DND Manager / R: History Manager";
-          on-click = "${rofi-dnd}/bin/rofi-dnd.sh";
-          on-click-right = "${rofi-dunst-manager}/bin/rofi-dunst-manager.sh";
+          on-click = "${lib.getExe theo-rofi-dnd}";
+          on-click-right = "${lib.getExe theo-rofi-dunst-manager}";
         };
 
         clock = {
