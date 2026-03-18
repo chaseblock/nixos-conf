@@ -1,5 +1,9 @@
 # Theo's Nix Flakes
 
+| ![niri-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/niri-sc.png) |
+| :--:                                                                                                  |
+| Niri in Wittgenstein (Framework 13)                                                                   |
+
 I got peer-pressured to using Nix, so here is my attempt at migrating my [other dotfiles repository](https://github.com/theopn/dotfiles) to Nix.
 
 ## Wittgenstein (Framework 13 w/ AMD Ryzen ~AI~ 5 340)
