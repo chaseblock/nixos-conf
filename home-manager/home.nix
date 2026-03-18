@@ -36,6 +36,7 @@
     ## Linux only
     ./config/keychain.nix
     ./config/dunst.nix
+    ./config/waybar.nix
   ];
 
   programs.man.generateCaches = lib.mkIf pkgs.stdenv.isDarwin false;
