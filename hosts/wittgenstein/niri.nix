@@ -78,7 +78,7 @@ let
     '';
   };
 
-  theo-rofi-powermenu= pkgs.writeShellApplication {
+  theo-rofi-powermenu = pkgs.writeShellApplication {
     name = "theo-rofi-powermenu";
     runtimeInputs = with pkgs; [ rofi ];
     text = ''
@@ -142,6 +142,64 @@ let
       main
     '';
   };
+
+  theo-rofi-screenshot = pkgs.writeShellApplication {
+    name = "theo-rofi-screenshot";
+    runtimeInputs = with pkgs; [ rofi grim sway-contrib.grimshot ];
+    text = ''
+      area_cp=' area (clipboard)'
+      area='󰩭 area'
+      screen='󰹑 screen'
+
+      function run_rofi_selection() {
+        echo -e "$area_cp\n$area\n$screen\n" | rofi -dmenu -p "Screenshot Type>" -mesg "Path: ~/Pictures"
+      }
+
+      # window does not work in Niri, I do not know which package provides ppm in NixOS
+      function main() {
+        chosen="$(run_rofi_selection)"
+        case $chosen in
+          "$area_cp") grimshot --notify copy area ;;
+          "$area")    grimshot --notify save area ;;
+          #"$window")  grimshot --notify save window ;;
+          "$screen")  grimshot --notify save screen ;;
+          #"$color")   notify-send "$(grim -g "$(slurp -p)" -t ppm - | magick - -format '%[pixel:p{0,0}]' txt:-)" ;;
+        esac
+      }
+      main
+    '';
+  };
+
+  theo-rofi-screenrecord = pkgs.writeShellApplication {
+    name = "theo-rofi-screenrecord";
+    runtimeInputs = with pkgs; [ rofi wf-recorder killall ];
+    text = ''
+      #!/usr/bin/env bash
+
+      # Options
+      stop='     stop recording'
+      area='󰩭 +  area (no audio)'
+      screen='󰹑 +  screen (no audio)'
+      screen_audio='󰹑 +  screen with audio'
+
+      function run_rofi_selection() {
+        echo -e "$stop\n$area\n$screen\n$screen_audio" | rofi -dmenu -p "Screen Recording Action>"
+      }
+
+      function main() {
+        chosen="$(run_rofi_selection)"
+        out="$HOME/Pictures/record-$(date +'%Y-%m-%d--%H-%M-%S.mp4')"
+        case "$chosen" in
+          "$stop")          killall -s SIGINT wf-recorder && dunstify '[Screenrecorder] SIGINT sent!' ;;
+          "$area")          wf-recorder -f "$out" -g "$(slurp)" ;;
+          "$screen")        wf-recorder -f "$out" ;;
+          "$screen_audio")  wf-recorder --audio -f "$out" ;;
+        esac
+      }
+
+      main
+    '';
+  };
 in
 {
   programs.niri.enable = true;
@@ -155,6 +213,7 @@ in
 
   environment.systemPackages = with pkgs; [
     theo-brightness-ctrl theo-volume-ctrl theo-rofi-powermenu
+    theo-rofi-screenshot theo-rofi-screenrecord
     brightnessctl pavucontrol playerctl
     grim slurp sway-contrib.grimshot wf-recorder wl-clipboard-rs
     networkmanagerapplet
