@@ -152,7 +152,7 @@ let
       screen='󰹑 screen'
 
       function run_rofi_selection() {
-        echo -e "$area_cp\n$area\n$screen\n" | rofi -dmenu -p "Screenshot Type>" -mesg "Path: ~/Pictures"
+        echo -e "$area_cp\n$area\n$screen" | rofi -dmenu -p "Screenshot Type>" -mesg "Path: ~/Pictures"
       }
 
       # window does not work in Niri, I do not know which package provides ppm in NixOS
@@ -207,7 +207,10 @@ in
   services.gnome.gnome-keyring.enable = true;
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
     config.common.default = [ "gnome" "gtk" ];
   };
 
