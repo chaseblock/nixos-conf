@@ -53,8 +53,7 @@ in
 
     # Niri related
     xwayland-satellite
-    dunst rofi swaybg swaylock swayidle waybar
-    copyq pavucontrol playerctl gammastep networkmanagerapplet
+    pavucontrol playerctl networkmanagerapplet
     grim slurp sway-contrib.grimshot wf-recorder wl-clipboard-rs
     newBrightnessctl #brightnessctl
 
@@ -64,7 +63,7 @@ in
     clang-tools clang
 
     vlc gimp
-    kicad
+    kicad zotero
     vim
     alacritty
   ];

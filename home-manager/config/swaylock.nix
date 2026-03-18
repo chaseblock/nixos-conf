@@ -35,7 +35,7 @@ let
   '';
 in
 {
-  home.packages = [ set-wallpaper ];
+  home.packages = [ set-wallpaper pkgs.swaybg ];
 
   programs.swaylock = {
     enable = true;

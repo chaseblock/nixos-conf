@@ -4,9 +4,11 @@
 {
   imports = [
     ./config/copyq.nix
+    ./config/keychain.nix
+
+    # Niri
     ./config/dunst.nix
     ./config/gammastep.nix
-    ./config/keychain.nix
     #./config/niri.nix
     ./config/rofi.nix
     ./config/swayidle.nix
