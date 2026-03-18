@@ -34,7 +34,7 @@ let
     ${pkgs.dunst}/bin/dunstify -a "System" -i "$WALLPAPER" "Wallpaper & lockscreen updated"
   '';
 in
-lib.mkIf pkgs.stdenv.isLinux {
+{
   home.packages = [ set-wallpaper ];
 
   programs.swaylock = {

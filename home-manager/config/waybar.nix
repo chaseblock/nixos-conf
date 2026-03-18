@@ -1,4 +1,5 @@
 { config, pkgs, lib, ... }:
+
 let
   # All scripts in https://github.com/theopn/haunted-tiles/tree/niri
   rofi-niri-workspace-rename = pkgs.writeShellScriptBin "rofi-niri-workspace-rename.sh" ''
@@ -133,7 +134,7 @@ let
     done
   '';
 in
-lib.mkIf pkgs.stdenv.isLinux {
+{
   programs.waybar = {
     enable = true;
     # In Gnome, it silently fails due to not having layer protocol
