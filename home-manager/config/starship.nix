@@ -6,7 +6,7 @@
     enableFishIntegration = true;
 
     settings = {
-      format = "$character$directory([ $git_branch$git_status ](bg:grey fg:black)) ❱ ";
+      format = "$character$directory([ $git_branch$git_status ](bg:grey fg:black))$python$nix_shell$nodejs ❱ ";
       add_newline = false;
       follow_symlinks = true;
       palette = "nordfox";
@@ -42,6 +42,25 @@
       };
       git_status = {
         format = "$all_status";
+      };
+
+      python = {
+        # ($virtualenv) means conditional
+        format = " [ $symbol$version(:$virtualenv) ]($style)";
+        style = "bg:blue fg:black";
+        symbol = " ";
+      };
+
+      nix_shell = {
+        format = " [ $symbol$state ]($style)";
+        style = "bg:purple fg:black";
+        symbol = " ";
+      };
+
+      nodejs = {
+        format = " [ $symbol$version ]($style)";
+        style = "bg:green fg:black";
+        symbol = " ";
       };
     };
   };
