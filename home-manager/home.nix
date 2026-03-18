@@ -37,6 +37,7 @@
     ./config/keychain.nix
     ./config/dunst.nix
     ./config/gammastep.nix
+    ./config/rofi.nix
     ./config/waybar.nix
   ];
 
