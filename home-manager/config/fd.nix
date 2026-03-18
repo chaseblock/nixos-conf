@@ -5,7 +5,7 @@
     hidden = true;
     ignores = [
       ".git/"
-        "node_modules/"
+      "node_modules/"
     ];
   };
 }

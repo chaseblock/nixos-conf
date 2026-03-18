@@ -4,7 +4,7 @@
     enable = true;
     arguments = [
       "--hidden"
-        "--glob=!.git/"
+      "--glob=!.git/"
     ];
   };
 }
