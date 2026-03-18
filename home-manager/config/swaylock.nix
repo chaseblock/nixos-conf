@@ -24,12 +24,12 @@ let
     # Generate lockscreen image with imagemagick and Nerdfont lock icon
     ${pkgs.imagemagick}/bin/magick "$WALLPAPER"         \
     -blur 0x8 -fill black -colorize 40%               \
-    -font "ProggyClean-Nerd-Font" -pointsize 150 -fill white -gravity center -annotate +0+0 "" \
+    -font "ProggyClean-Nerd-Font" -pointsize 180 -fill white -gravity center -annotate +0+0 "" \
     "$LOCKSCREEN"
 
     # Respawn swaybg
     pkill swaybg
-    ${pkgs.swaybg}/bin/swaybg --mode fill --image "$WALLPAPER" & disown
+    ${pkgs.swaybg}/bin/swaybg --mode fill --image "$WALLPAPER" > /dev/null 2>&1 & disown
 
     ${pkgs.dunst}/bin/dunstify -a "System" -i "$WALLPAPER" "Wallpaper & lockscreen updated"
   '';
