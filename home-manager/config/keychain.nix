@@ -1,5 +1,5 @@
 { pkgs, lib, ... }:
-{
+lib.mkIf pkgs.stdenv.isLinux {
   programs.keychain = lib.mkIf pkgs.stdenv.isLinux {
     enable = true;
     enableZshIntegration = true;
