@@ -32,6 +32,7 @@
     ./plugins/oil.nix
 
     # language-specific
+    ./plugins/orgmode.nix
     ./plugins/render-markdown.nix
     ./plugins/vimtex.nix
   ];
