@@ -24,8 +24,9 @@
     ./plugins/todo-comments.nix
 
     # editing
-    ./plugins/yanky.nix
+    ./plugins/treesitter.nix
     ./plugins/gitsigns.nix
+    ./plugins/yanky.nix
 
     # files
     ./plugins/fzf-lua.nix
