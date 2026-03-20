@@ -16,8 +16,37 @@
         clangd.enable = true;
         lua_ls.enable = true;
         nixd.enable = true;
-        pylsp.enable = true;
         texlab.enable = true;
+
+        pylsp = {
+          enable = true;
+          settings.plugins = {
+              # all jedi modules are enabled by default
+
+              # Linting (mccabe, pyflakes are default, but flake8 does everything)
+              flake8.enabled = true;
+              mccabe.enabled = false;
+              pyflakes.enabled = false;
+              pycodestyle.enabled = false;
+
+              # Formatting (default pycodestyle)
+              black.enabled = true;
+              pylint.enabled = false;
+              pydocstyle.enabled = false;
+              yapf.enabled = false;
+              autopep8.enabled = false;
+
+              # type check
+              pylsp_mypy.enabled = true;
+
+              # sorting import
+              isort.enabled = false;
+              # deprecated function check
+              memestra.enabled = false;
+              # complex refactoring (renaming across modules, etc.)
+              rope.enabled = false;
+            };
+        };
       };
 
       keymaps = {
