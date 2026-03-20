@@ -25,5 +25,6 @@
 
     # language-specific
     ./plugins/render-markdown.nix
+    ./plugins/vimtex.nix
   ];
 }
