@@ -48,12 +48,12 @@
   # default applications
   # ls -l /run/current-system/sw/share/applications/ /etc/profiles/per-user/${USER}/share/applications/
   xdg.mime.defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "application/xhtm+xml" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
+      "text/html"                       = [ "librewolf.desktop" "firefox.desktop" ];
+      "application/xhtm+xml"            = [ "librewolf.desktop" "firefox.desktop" ];
+      "x-scheme-handler/http"           = [ "librewolf.desktop" "firefox.desktop" ];
+      "x-scheme-handler/https"          = [ "librewolf.desktop" "firefox.desktop" ];
+      "x-scheme-handler/about"          = [ "librewolf.desktop" "firefox.desktop" ];
+      "x-scheme-handler/unknown"        = [ "librewolf.desktop" "firefox.desktop" ];
 
       "application/pdf" = "org.pwmt.zathura.desktop";
 
