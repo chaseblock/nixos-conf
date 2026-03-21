@@ -30,6 +30,7 @@
 
     ./config/misc-pkgs.nix
 
+    # nixvim
     ./nixvim/default.nix
   ];
 
