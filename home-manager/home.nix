@@ -18,7 +18,6 @@
     ./config/git.nix
     ./config/lf.nix
     ./config/ripgrep.nix
-    ./config/zathura.nix
 
     # Terminal & Shell
     ./config/kitty.nix
@@ -26,7 +25,11 @@
     ./config/zsh.nix
     ./config/fish.nix
     ./config/fastfetch.nix
+
+    # GUI tools
+    ./config/librewolf.nix
     ./config/neovide.nix
+    ./config/zathura.nix
 
     ./config/misc-pkgs.nix
 
