@@ -40,6 +40,22 @@
     alacritty vim
   ];
 
+
+  # Niri related
+  # Actual config is deployed with home-manager
+  programs.niri.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config.common.default = [ "gnome" "gtk" ];
+  };
+
+
   # default applications
   # ls -l /run/current-system/sw/share/applications/ /etc/profiles/per-user/${USER}/share/applications/
   xdg.mime.defaultApplications = {
@@ -87,5 +103,16 @@
     };
   };
 
+  # https://wiki.nixos.org/wiki/Tailscale
+  services.tailscale.enable = true;
+  networking.nftables.enable = true;
+  networking.firewall = {
+    enable = true;
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ config.services.tailscale.port ];
+  };
+    systemd.services.tailscaled.serviceConfig.Environment = [
+    "TS_DEBUG_FIREWALL_MODE=nftables"
+  ];
 
 }
