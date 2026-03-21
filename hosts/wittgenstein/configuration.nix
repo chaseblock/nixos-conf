@@ -45,22 +45,9 @@
   services.openssh.enable = true;
 
 
-  # Minimal GNOME
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-calculator gnome-clocks simple-scan snapshot gnome-characters
-    # Totem = video, loupe = image, evince = PDF
-    gnome-music evince gnome-font-viewer totem loupe
-    # baobab = disk usage
-    baobab gnome-disk-utility gnome-system-monitor gnome-logs gnome-connections
-    # geary = email
-    geary gnome-contacts gnome-calendar gnome-weather gnome-maps
-    # yelp = help
-    gnome-text-editor yelp gnome-tour gnome-usage gnome-terminal gnome-console
-    # cheese = camera, epiphany = browser
-    cheese epiphany
-  ];
+  # Actual config is deployed with home-manager
+  programs.niri.enable = true;
+  programs.dconf.enable = true;
 
 
   # Me

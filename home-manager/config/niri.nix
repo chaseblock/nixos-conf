@@ -207,7 +207,7 @@ in
     theo-brightness-ctrl theo-volume-ctrl theo-rofi-powermenu theo-rofi-screenshot theo-rofi-screenrecord
     brightnessctl pavucontrol playerctl
     grim slurp sway-contrib.grimshot wf-recorder wl-clipboard-rs
-    networkmanagerapplet
+    nautilus networkmanagerapplet pantheon.pantheon-agent-polkit
     xwayland-satellite
   ];
 
@@ -215,4 +215,40 @@ in
   # Since there is no home-manager module for Niri yet,
   # programs.niri.enable is in configuration.nix
   xdg.configFile."niri/config.kdl".source = ./niri/config.kdl;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+    config.common.default = [ "gnome" "gtk" ];
+  };
+
+  services.gnome-keyring.enable = true;
+
+gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+    };
+  };
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+    style.name = "adwaita-dark";
+  };
+
 }
