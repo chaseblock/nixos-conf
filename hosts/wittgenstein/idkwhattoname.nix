@@ -28,18 +28,13 @@
     curl wget gcc gdb git killall
     gnumake zip unzip file jq
 
-    # Propritery apps
-    chromium discord slack spotify zoom-us
-
-    # Nvim LSP
-    tree-sitter bash-language-server
-    # order matters since both provides `clangd` command
-    clang-tools clang
-
     # Media tools
     gimp vimiv-qt mpv
     # uhh open source GUI tools
     libreoffice kicad zotero
+
+    # Propritery apps
+    chromium discord slack spotify zoom-us
 
     # Keeping them in case of emergency
     alacritty vim
@@ -49,7 +44,7 @@
   # ls -l /run/current-system/sw/share/applications/ /etc/profiles/per-user/${USER}/share/applications/
   xdg.mime.defaultApplications = {
       "text/html"                       = [ "librewolf.desktop" "firefox.desktop" ];
-      "application/xhtm+xml"            = [ "librewolf.desktop" "firefox.desktop" ];
+      "application/xhtml+xml"           = [ "librewolf.desktop" "firefox.desktop" ];
       "x-scheme-handler/http"           = [ "librewolf.desktop" "firefox.desktop" ];
       "x-scheme-handler/https"          = [ "librewolf.desktop" "firefox.desktop" ];
       "x-scheme-handler/about"          = [ "librewolf.desktop" "firefox.desktop" ];
