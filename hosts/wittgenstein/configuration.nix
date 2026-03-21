@@ -46,7 +46,10 @@
 
 
   # Actual config is deployed with home-manager
-  programs.niri.enable = true;
+  programs.niri = {
+    enable = true;
+    useNautilus = true;
+  };
   programs.dconf.enable = true;
 
 
