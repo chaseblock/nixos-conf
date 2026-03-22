@@ -225,6 +225,10 @@ in
     config.common.default = [ "gnome" "gtk" ];
   };
 
-  services.gnome-keyring.enable = true;
+  services.gnome-keyring = {
+    enable = true;
+    # SSH key managed with keychain in my system
+    components = [ "secrets" ];
+  };
 
 }
