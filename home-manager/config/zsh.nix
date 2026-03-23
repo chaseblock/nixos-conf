@@ -23,7 +23,10 @@
       nv = "neovide --fork";
       v = "nvim";
       manf = "compgen -c | fzf | xargs man";
+
       cdf_edit = "$EDITOR $THEOSHELL_CDF_DIR";
+
+      keychain_load = "eval $(keychain --eval id_ed25519 id_rsa)";
     };
 
     initContent = ''

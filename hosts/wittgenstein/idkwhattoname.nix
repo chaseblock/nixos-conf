@@ -7,10 +7,10 @@
   fonts.packages = with pkgs; [
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
+    cantarell-fonts
     noto-fonts-cjk-sans  # for Korean input
   ];
 
-  programs.firefox.enable = true;
   programs.thunderbird.enable = true;
 
   services.syncthing = {
@@ -35,25 +35,7 @@
 
     # Propritery apps
     chromium discord slack spotify zoom-us
-
-    # Keeping them in case of emergency
-    alacritty vim
   ];
-
-
-  # Niri related
-  # Actual config is deployed with home-manager
-  programs.niri.enable = true;
-
-  services.gnome.gnome-keyring.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
-    ];
-    config.common.default = [ "gnome" "gtk" ];
-  };
 
 
   # default applications

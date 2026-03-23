@@ -25,42 +25,35 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = false;
   services.blueman.enable = true;
-  # https://knowledgebase.frame.work/optimizing-fedora-battery-life-r1baXZh
-  services.tuned.enable = true;
-  services.tlp.enable = false;
-  services.upower.enable = true;
-  services.printing.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
   services.libinput = {
     enable = true;
     touchpad.tapping = true;
     touchpad.naturalScrolling = true;
   };
+  # https://knowledgebase.frame.work/optimizing-fedora-battery-life-r1baXZh
+  services.tuned.enable = true;
+  services.tlp.enable = false;
+  services.upower.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
+  services.printing.enable = true;
+  services.udisks2.enable = true;
 
 
   # Other services
   services.openssh.enable = true;
 
 
-  # Minimal GNOME
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs; [
-    gnome-calculator gnome-clocks simple-scan snapshot gnome-characters
-    # Totem = video, loupe = image, evince = PDF
-    gnome-music evince gnome-font-viewer totem loupe
-    # baobab = disk usage
-    baobab gnome-disk-utility gnome-system-monitor gnome-logs gnome-connections
-    # geary = email
-    geary gnome-contacts gnome-calendar gnome-weather gnome-maps
-    # yelp = help
-    gnome-text-editor yelp gnome-tour gnome-usage gnome-terminal gnome-console
-    # cheese = camera, epiphany = browser
-    cheese epiphany
-  ];
+  # Actual config is deployed with home-manager
+  programs.niri = {
+    enable = true;
+    useNautilus = true;
+  };
+  programs.dconf.enable = true;
+  # register swaylock to /etc/pam.d/
+  security.pam.services.swaylock = {};
 
 
   # Me
@@ -79,6 +72,13 @@
     MANPAGER = "nvim +Man!";
     LESSHISTFILE = "-";
   };
+
+
+  # for an emergency
+  programs.firefox.enable = true;
+  environment.systemPackages = with pkgs; [
+    alacritty vim
+  ];
 
 
   # Nix settings
