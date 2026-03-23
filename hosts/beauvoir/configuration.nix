@@ -1,16 +1,17 @@
 { pkgs, ... }:
-let
-  externalAppDir = "/Volumes/theo-crucial-p310/Applications";
-in
 {
 
   imports = [
     ./aerospace.nix
+    ./homebrew.nix
   ];
 
-  users.users.theopn = {
-    name = "theopn";
-    home = "/Users/theopn";
+  # fish as an interactive shell
+  programs.fish.enable = true;
+
+  users.users.parktheo0 = {
+    name = "parktheo0";
+    home = "/Users/parktheo0";
   };
 
   environment.variables = {
