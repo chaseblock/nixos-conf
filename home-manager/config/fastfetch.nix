@@ -1,4 +1,5 @@
 { ... }:
+
 {
   programs.fastfetch = {
     enable = true;
@@ -12,7 +13,7 @@
           "type" = "title";
           "format" = "{host-name-colored}";
         }
-      "separator"
+        "separator"
 
         "os"
         "packages"
