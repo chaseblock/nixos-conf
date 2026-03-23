@@ -30,6 +30,7 @@
             echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
           '';
       };
+
       mkcd = ''
         command mkdir $argv
         if [ $status = 0 ]
@@ -42,10 +43,30 @@
           end
         end
       '';
+
       numfiles = ''
         set -l num $(ls -A $argv | wc -l)
         [ -n $num ]; and echo "$num files in $argv"
       '';
+
+      ln_resolve = {
+        description = "Create a symlink using absolute path";
+        body = ''
+          if test (count $argv) -ne 2
+            echo "Usage: ln_resolve <source> <target>"
+            return 1
+          end
+          set -l source (realpath $argv[1])
+          set -l target (realpath $argv[2])
+
+          ln -s "$source" "$target"
+
+          if test $status -eq 0
+            echo "Symlink created: $target -> $source"
+          end
+          '';
+      };
+
       tarmake = "tar -czvf $argv[1].tar.gz $argv[1]";
       tarunmake = "tar -zxvf $argv[1]";
 
