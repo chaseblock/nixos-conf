@@ -54,7 +54,7 @@
       dynamic_background_opacity = "yes";
       background_image_layout = "tiled";
 
-      #shell = "${lib.getExe pkgs.fish}/bin/fish --login";
+      shell = "${pkgs.fish}/bin/fish --login --interactive";
       shell_integration = "no-cursor";
       term = "xterm-kitty";
 
