@@ -1,11 +1,47 @@
+BOLD  := $(shell tput bold)
+RED   := $(shell tput setaf 1)
+GREEN := $(shell tput setaf 2)
+BLUE  := $(shell tput setaf 4)
+RESET := $(shell tput sgr0)
+
+.PHONY: update clean history beauvoir wittgenstein wittgenstein-switch wittgenstein-boot
+.DEFAULT_GOAL := $(shell hostname -s)
+
+# Utility commands
 update:
+	@echo "$(BOLD)$(GREEN)===== Updating flake lock =====$(RESET)"
 	nix flake update
 
-wittgenstein:
-	sudo nixos-rebuild switch --flake .#wittgenstein
+clean:
+	@echo "$(BOLD)$(GREEN)===== Running nix-collect-garbage =====$(RESET)"
+	sudo nix-collect-garbage -d
 
+history:
+	@echo "$(BOLD)$(GREEN)===== Showing system generation history =====$(RESET)"
+	nix profile history --profile /nix/var/nix/profiles/system
+
+# hosts
 beauvoir:
+	@if [ "$$(uname)" != "Darwin" ]; then \
+		echo "$(BOLD)$(RED)===== BEEP WRONG COMPUTER THEO =====$(RESET)"; \
+		exit 1; \
+	fi
+	@echo "$(BOLD)$(BLUE)=====> Building beauvoir (M4 Mac Mini, nix-darwin) <=====$(RESET)"
 	sudo darwin-rebuild switch --flake .#beauvoir
 
-clean:
-	sudo nix-collect-garbage -d
+wittgenstein: wittgenstein-switch
+wittgenstein-switch:
+	@if [ "$$(uname)" != "Linux" ]; then \
+		echo "$(BOLD)$(RED)===== i mean come on =====$(RESET)"; \
+		exit 1; \
+	fi
+	@echo "$(BOLD)$(BLUE)=====> Building wittgenstein (Framework 13 AMD 300 Series, NixOS) <=====$(RESET)"
+	sudo nixos-rebuild switch --flake .#wittgenstein
+
+wittgenstein-boot:
+	@if [ "$$(uname)" != "Linux" ]; then \
+		echo "$(BOLD)$(RED)===== okay no way i would make this mistake =====$(RESET)"; \
+		exit 1; \
+	fi
+	@echo "$(BOLD)$(BLUE)=====> Building and Staging wittgenstein <=====$(RESET)"
+	sudo nixos-rebuild boot --flake .#wittgenstein
