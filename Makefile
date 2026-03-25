@@ -14,7 +14,7 @@ update:
 
 clean:
 	@echo "$(BOLD)$(GREEN)===== Running nix-collect-garbage =====$(RESET)"
-	sudo nix-collect-garbage -d
+	sudo nix-collect-garbage --delete-older-than 7d
 
 history:
 	@echo "$(BOLD)$(GREEN)===== Showing system generation history =====$(RESET)"
