@@ -20,7 +20,8 @@
       gcm = "git commit -m";
       gss = "git status";
 
-      l = "eza --color=auto --icons=auto  --long --all --header --time-style=long-iso --total-size";
+      # --git and --total-size are also useful, but omitted for performance
+      l = "eza --color=auto --icons=auto  --long --all --header --time-style=long-iso";
 
       nv = "neovide --fork";
       v = "nvim";

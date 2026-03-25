@@ -24,7 +24,8 @@
     # Non-expanding aliases like traditional shell.
     # long command can go here to declutter the terminal.
     shellAliases = {
-      l = "eza --color=auto --icons=auto  --long --all --header --time-style=long-iso --total-size";
+      # --git and --total-size are also useful, but omitted for performance
+      l = "eza --color=auto --icons=auto  --long --all --header --time-style=long-iso";
     };
 
     functions = {
