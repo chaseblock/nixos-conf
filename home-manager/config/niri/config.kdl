@@ -20,7 +20,7 @@ input {
             options "ctrl:swapcaps"
         }
         repeat-delay 300
-        repeat-rate 22
+        repeat-rate 33
         numlock
     }
 
