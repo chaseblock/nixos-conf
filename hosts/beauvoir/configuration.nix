@@ -1,18 +1,13 @@
 { pkgs, ... }:
-{
 
+let
+  saymyname = "theopn";  # you are goddamn right
+in
+{
   imports = [
     ./aerospace.nix
     ./homebrew.nix
   ];
-
-  # fish as an interactive shell
-  programs.fish.enable = true;
-
-  users.users.parktheo0 = {
-    name = "parktheo0";
-    home = "/Users/parktheo0";
-  };
 
   environment.variables = {
     EDITOR = "nvim";
@@ -20,103 +15,21 @@
     LESSHISTFILE = "-";
   };
 
+  # enable Fish in system level.
+  # ensures $PATH is set correctly,
+  # even when you launch app through Spotlight.
+  programs.fish.enable = true;
+  users.users.${saymyname} = {
+    name = saymyname;
+    home = "/Users/${saymyname}";
+  };
+
   fonts.packages = with pkgs; [
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
   ];
 
-  homebrew = {
-    enable = true;
-    casks = [
-      # Dev tools
-      "docker-desktop"
-      #{
-      # name = "docker-desktop";
-      # args = { appdir = externalAppDir };
-      #}
-      #"intellij-idea"
-      "macvim-app"
-      #"rstudio"
-      #"wezterm"
-
-      # Fun
-      "discord"
-      #"minecraft"
-      "spotify"
-
-      # Productivity
-      "itsycal"
-      "notion"
-
-      # Sync
-      "cryptomator"
-      "filen"
-      #{
-      # name = "filen";
-      # args = { appdir = externalAppDir };
-      #}
-      "syncthing-app"
-      #{
-      # name = "syncthing-app";
-      # args = { appdir = externalAppDir };
-      #}
-
-      # System
-      "jordanbaird-ice"
-      "maccy"
-      "stats"
-
-      # Tools
-      "bitwarden"
-      #{
-      # name = "bitwarden";
-      # args = { appdir = externalAppDir };
-      #}
-      #"cemu"
-      "gimp"
-      #{
-      # name = "gimp";
-      # args = { appdir = externalAppDir };
-      #}
-      "keycastr"
-      #{
-      # name = "keycastr";
-      # args = { appdir = externalAppDir };
-      #}
-      "kicad"
-      "obs"
-      #{
-      # name = "obs";
-      # args = { appdir = externalAppDir };
-      #}
-      "skim"
-      "vlc"
-      #{
-      # name = "vlc";
-      # args = { appdir = externalAppDir };
-      #}
-      "zotero"
-      #{
-      # name = "zotero";
-      # args = { appdir = externalAppDir };
-      #}
-
-      # Web
-      "firefox"
-      "tailscale-app"
-      "thunderbird"
-      #{
-      # name = "ungoogled-chromium";
-      # args = { appdir = externalAppDir };
-      #}
-      "ungoogled-chromium"
-    ];
-
-    # Delete unspecified Homebrew formulae
-    onActivation.cleanup = "zap";
-  };
-
-  system.primaryUser = "theopn";
+  system.primaryUser = saymyname;
   system.defaults = {
     NSGlobalDomain = {
       AppleShowAllExtensions = true;
@@ -135,7 +48,7 @@
       }
       ];
       persistent-others = [
-          { folder = "/Users/@username@/Downloads"; }
+          { folder = "/Users/${saymyname}/Downloads"; }
       ];
       showhidden = true;
     };
@@ -149,7 +62,6 @@
       _FXSortFoldersFirst = true;
     };
     screencapture = {
-      #location = "${HOME}/Downloads";
       type = "png";
     };
   };
@@ -161,9 +73,9 @@
 
   security.pam.services.sudo_local.touchIdAuth = true;
 
-  nix.settings.experimental-features = "nix-command flakes";
-  # Turn nix-darwin from managing the installed version of nix,
-  # since Determinate already does.
+  # Let Determinate Nix win
   nix.enable = false;
+
+  nix.settings.experimental-features = "nix-command flakes";
   system.stateVersion = 6;
 }
