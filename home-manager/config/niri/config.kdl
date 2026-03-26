@@ -9,7 +9,7 @@
 //  ████ █████ █████ █████     █████
 // ▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒ ▒▒▒▒▒     ▒▒▒▒▒
 //
-// Pretty different from the default,
+// Quite different from the default,
 //      use Super+Shift+/ for important keymap cheatsheet.
 
 
@@ -19,6 +19,8 @@ input {
         xkb {
             options "ctrl:swapcaps"
         }
+        repeat-delay 300
+        repeat-rate 22
         numlock
     }
 
