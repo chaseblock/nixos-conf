@@ -8,91 +8,73 @@ in
   homebrew = {
     enable = true;
     casks = [
-      # Dev tools
+      # Dev
       "docker-desktop"
       #{
       # name = "docker-desktop";
       # args = { appdir = externalAppDir };
       #}
-      #"intellij-idea"
-      "macvim-app"
-      #"rstudio"
-      #"wezterm"
+      "kicad"
 
-      # Fun
-      "discord"
-      #"minecraft"
-      "spotify"
-
-      # Productivity
-      "itsycal"
-      "notion"
-
-      # Sync
-      "cryptomator"
-      "filen"
-      #{
-      # name = "filen";
-      # args = { appdir = externalAppDir };
-      #}
-      "syncthing-app"
-      #{
-      # name = "syncthing-app";
-      # args = { appdir = externalAppDir };
-      #}
-
-      # System
-      "jordanbaird-ice"
-      "maccy"
-      "stats"
-
-      # Tools
-      "bitwarden"
-      #{
-      # name = "bitwarden";
-      # args = { appdir = externalAppDir };
-      #}
-      #"cemu"
+      # Fun & Media
       "gimp"
       #{
       # name = "gimp";
       # args = { appdir = externalAppDir };
       #}
-      "keycastr"
-      #{
-      # name = "keycastr";
-      # args = { appdir = externalAppDir };
-      #}
-      "kicad"
+      #"minecraft"
       "obs"
       #{
       # name = "obs";
       # args = { appdir = externalAppDir };
       #}
-      "skim"
-      "vlc"
-      #{
-      # name = "vlc";
-      # args = { appdir = externalAppDir };
-      #}
+      "spotify"
+
+      # Productivity
+      "itsycal"
+      "notion"
       "zotero"
       #{
       # name = "zotero";
       # args = { appdir = externalAppDir };
       #}
 
+      # Sync
+      "filen"
+      #{
+      # name = "filen";
+      # args = { appdir = externalAppDir };
+      #}
+
+      # System
+      "jordanbaird-ice"
+      "stats"
+
+      # Tools
+      "keycastr"
+      #{
+      # name = "keycastr";
+      # args = { appdir = externalAppDir };
+      #}
+      "skim"
+
       # Web
+      "brave-browser"
+      #{
+      # name = "brave-browser";
+      # args = { appdir = externalAppDir };
+      #}
+      "discord"
       "firefox"
       "tailscale-app"
       "thunderbird"
-      #{
-      # name = "ungoogled-chromium";
-      # args = { appdir = externalAppDir };
-      #}
-      "ungoogled-chromium"
     ];
 
     # Delete unspecified Homebrew formulae
-    onActivation.cleanup = "zap";
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+      cleanup = "zap";
+    };
   };
 }
