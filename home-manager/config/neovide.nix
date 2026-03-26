@@ -6,9 +6,8 @@
       frame = if pkgs.stdenv.isDarwin then "transparent" else "full";
       title-hidden = true;
       font = {
-        normal = [ "ProggyClean Nerd Font" "FantasqueSansM Nerd Font" "ComicCodeLigatures Nerd Font" ];
-        size = 18.0;
-        #size = 14.0;
+        normal = [ "FantasqueSansM Nerd Font" "ProggyClean Nerd Font" "ComicCodeLigatures Nerd Font" ];
+        size = 16.0;
       };
     };
   };

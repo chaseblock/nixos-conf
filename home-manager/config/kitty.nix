@@ -18,9 +18,13 @@
     #   size = 12;
     # };
     font = {
-      name = "ProggyClean Nerd Font";
-      size = 18;
+      name = "FantasqueSansM Nerd Font";
+      size = 16;
     };
+    # font = {
+    #   name = "ProggyClean Nerd Font";
+    #   size = 20;
+    # };
     settings = {
       bold_font = "auto";
       italic_font = "auto";
