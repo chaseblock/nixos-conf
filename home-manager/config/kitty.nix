@@ -42,7 +42,7 @@
 
       enable_audio_bell = "no";
       visual_bell_duration = "0.0";
-      bell_on_tab = ''"[BELL]"''; 
+      bell_on_tab = ''"[BELL]"'';
 
       enabled_layouts = "tall,vertical,horizontal,stack";
       window_border_width = "1.0pt";
@@ -61,12 +61,9 @@
       active_tab_title_template = "";
 
       background_opacity = "0.90";
-      background_blur = 30;
       dynamic_background_opacity = "yes";
-      background_image_layout = "tiled";
 
       shell = "${pkgs.fish}/bin/fish --login --interactive";
-      shell_integration = "no-cursor";
       term = "xterm-kitty";
 
       macos_option_as_alt = "yes";
