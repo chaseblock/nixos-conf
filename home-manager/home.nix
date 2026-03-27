@@ -19,7 +19,9 @@
     ./config/fzf.nix
     ./config/git.nix
     ./config/lf.nix
+    ./config/neovide.nix
     ./config/ripgrep.nix
+    ./config/syncthing.nix
     ./config/vim.nix
     ./config/zoxide.nix
 
@@ -30,10 +32,8 @@
     ./config/starship.nix
     ./config/zsh.nix
 
-    # GUI tools
-    ./config/librewolf.nix
-    ./config/neovide.nix
-    ./config/syncthing.nix
+    # someone couldn't handle true privacy
+    #./config/librewolf.nix
 
     # nixvim
     ./nixvim/default.nix
@@ -41,21 +41,20 @@
 
   home.packages = with pkgs; [
     # tools
-    tree
-    openconnect
-    #stow
-    #tmux
     hugo
+    openconnect
+    qemu
+    #tmux
+    tree
     wget
 
     # media
     exiftool
-    figlet
     ffmpeg
+    figlet
     imagemagick
 
     # dev
-    qemu
     nodejs_24
     python3
     #r
