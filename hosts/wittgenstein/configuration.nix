@@ -13,7 +13,7 @@
 
 
   # networking & time
-  networking.hostName = "wittgenstein";
+  networking.hostName = "frame";
   networking.networkmanager.enable = true;
   time.timeZone = "America/New_York";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -66,7 +66,7 @@
 
   # Me
   programs.zsh.enable = true;
-  users.users.theopn = {
+  users.users.chase = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "input" ];
     shell = pkgs.zsh;
