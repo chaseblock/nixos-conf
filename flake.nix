@@ -19,16 +19,17 @@
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, nixvim, ... }:
   {
-    nixosConfigurations.wittgenstein = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.frame = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        nixos-hardware.nixosModules.framework-amd-ai-300-series
-        ./hosts/wittgenstein/configuration.nix
+        #nixos-hardware.nixosModules.framework-amd-ai-300-series
+        nixos-hardware.nixosModules.framework-11th-gen-intel
+        ./hosts/frame/configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "hm-bak";
-          home-manager.users.theopn = {
+          home-manager.users.chase = {
             imports =[
               nixvim.homeModules.nixvim
               ./home-manager/home.nix

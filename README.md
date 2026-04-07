@@ -4,7 +4,7 @@ Based on Theo's Nix Flake (and others)
 
 | ![niri-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/niri-sc.png) |
 | :--:                                                                                                  |
-| NixOS + Niri in Wittgenstein (Framework 13)                                                           |
+| NixOS + Niri in frame (Framework 13)                                                           |
 
 I was peer-pressured into using Nix.
 And I am glad I was; it turned out to be perfect for a control freak like me.
@@ -29,7 +29,7 @@ Rather than a 1:1 port, I've used the Nix migration as an excuse to cut out unus
 
 and produces 1 outputs
 
-- `wittgenstein`: a NixOS module for my Framework 13.
+- `frame`: a NixOS module for my Framework 13.
 
 ## Update Workflow
 
@@ -38,7 +38,7 @@ Then I iron out any breaking changes and implement new features associated with 
 Once the system becomes stable, `flake-update-testing` is merged into `main`, and the cycle repeats.
 
 
-## `wittgenstein`
+## `frame`
 
 ### Prerequisites
 
@@ -59,11 +59,11 @@ Since I have no display manager, you will be dropped into a TTY upon boot.
 
 ### Structure
 
-- `hosts/wittgenstein/configuration.nix`: core system definition.
+- `hosts/frame/configuration.nix`: core system definition.
     Handles hardware services (e.g., pipewire), user settings, and global environment variables.
     I offload as much as possible to home-manager.
-- `hosts/wittgenstein/idkwhattoname.nix`: other system-level services and programs that require little to no configurations.
-- `hosts/wittgenstein/hardware-configuration.nix`: (almost) auto-generated hardware configuration for Framework 13.
+- `hosts/frame/idkwhattoname.nix`: other system-level services and programs that require little to no configurations.
+- `hosts/frame/hardware-configuration.nix`: (almost) auto-generated hardware configuration for Framework 13.
     Manually patched for LUKS compatibility and hibernation.
 
 

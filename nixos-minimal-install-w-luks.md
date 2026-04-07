@@ -168,14 +168,14 @@ In `/mnt/etc/nixos/hardware-configuration.nix`:
 git clone https://github.com/theopn/nix-conf ~/nix-conf
 cd ~/nix-conf
 
-cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/wittgenstein/hardware-configuration-2.nix
+cp /mnt/etc/nixos/hardware-configuration.nix ./hosts/frame/hardware-configuration-2.nix
 # ! IMPORTANT: Use Vim's diff tool to make sure LUKS device is set up the same way as the reference before replacing it
 # LUKS setup is crucial otherwise it will not boot.
-mv ./hosts/wittgenstein/hardware-configuration-2.nix ./hosts/wittgenstein/hardware-configuration.nix
+mv ./hosts/frame/hardware-configuration-2.nix ./hosts/frame/hardware-configuration.nix
 # also change name of the hardware module in `flake.nix`
 
 # install NixOS
-nixos-install --flake .#wittgenstein
+nixos-install --flake .#frame
 # set root password
 reboot
 

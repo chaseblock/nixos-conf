@@ -4,7 +4,7 @@ RED   := $(shell tput setaf 1)
 GREEN := $(shell tput setaf 2)
 BLUE  := $(shell tput setaf 4)
 
-.PHONY: update clean history wittgenstein wittgenstein-switch wittgenstein-test wittgenstein-boot
+.PHONY: update clean history frame frame-switch frame-test frame-boot
 .DEFAULT_GOAL := $(shell hostname -s)
 
 # Utility commands
@@ -20,27 +20,27 @@ history:
 	@echo "$(BOLD)$(GREEN)===== Showing system generation history =====$(RESET)"
 	nix profile history --profile /nix/var/nix/profiles/system
 
-wittgenstein: wittgenstein-switch
-wittgenstein-switch:
+frame: frame-switch
+frame-switch:
 	@if [ "$$(uname)" != "Linux" ]; then \
 		echo "$(BOLD)$(RED)===== okay an honest mistake =====$(RESET)"; \
 		exit 1; \
 	fi
-	@echo "$(BOLD)$(BLUE)=====> Building wittgenstein (Framework 13 AMD 300 Series, NixOS) <=====$(RESET)"
-	sudo nixos-rebuild switch --flake .#wittgenstein
+	@echo "$(BOLD)$(BLUE)=====> Building frame (Framework 13 AMD 300 Series, NixOS) <=====$(RESET)"
+	sudo nixos-rebuild switch --flake .#frame
 
-wittgenstein-test:
+frame-test:
 	@if [ "$$(uname)" != "Linux" ]; then \
 		echo "$(BOLD)$(RED)===== come on theo =====$(RESET)"; \
 		exit 1; \
 	fi
-	@echo "$(BOLD)$(BLUE)=====> Testing wittgenstein <=====$(RESET)"
-	sudo nixos-rebuild test --flake .#wittgenstein
+	@echo "$(BOLD)$(BLUE)=====> Testing frame <=====$(RESET)"
+	sudo nixos-rebuild test --flake .#frame
 
-wittgenstein-boot:
+frame-boot:
 	@if [ "$$(uname)" != "Linux" ]; then \
 		echo "$(BOLD)$(RED)===== okay no way i would make this mistake =====$(RESET)"; \
 		exit 1; \
 	fi
-	@echo "$(BOLD)$(BLUE)=====> Staging (next boot) wittgenstein <=====$(RESET)"
-	sudo nixos-rebuild boot --flake .#wittgenstein
+	@echo "$(BOLD)$(BLUE)=====> Staging (next boot) frame <=====$(RESET)"
+	sudo nixos-rebuild boot --flake .#frame

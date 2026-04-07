@@ -70,6 +70,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "input" ];
     shell = pkgs.zsh;
+    initialPassword = "changeMe";
   };
 
 
