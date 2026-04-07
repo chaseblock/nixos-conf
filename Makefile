@@ -4,7 +4,7 @@ RED   := $(shell tput setaf 1)
 GREEN := $(shell tput setaf 2)
 BLUE  := $(shell tput setaf 4)
 
-.PHONY: update clean history beauvoir wittgenstein wittgenstein-switch wittgenstein-test wittgenstein-boot
+.PHONY: update clean history wittgenstein wittgenstein-switch wittgenstein-test wittgenstein-boot
 .DEFAULT_GOAL := $(shell hostname -s)
 
 # Utility commands
@@ -19,15 +19,6 @@ clean:
 history:
 	@echo "$(BOLD)$(GREEN)===== Showing system generation history =====$(RESET)"
 	nix profile history --profile /nix/var/nix/profiles/system
-
-# hosts
-beauvoir:
-	@if [ "$$(uname)" != "Darwin" ]; then \
-		echo "$(BOLD)$(RED)===== BEEP WRONG COMPUTER THEO =====$(RESET)"; \
-		exit 1; \
-	fi
-	@echo "$(BOLD)$(BLUE)=====> Building beauvoir (M4 Mac Mini, nix-darwin) <=====$(RESET)"
-	sudo darwin-rebuild switch --flake .#beauvoir
 
 wittgenstein: wittgenstein-switch
 wittgenstein-switch:

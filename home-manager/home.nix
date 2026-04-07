@@ -63,7 +63,7 @@
     sqlite
   ];
 
-  programs.man.generateCaches = lib.mkIf pkgs.stdenv.isDarwin false;
+  programs.man.generateCaches = true;
   programs.home-manager.enable = true;
 
   home.stateVersion = "26.05";

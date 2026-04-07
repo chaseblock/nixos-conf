@@ -1,15 +1,10 @@
 {
-  description = "Theo's Nix Flake for NixOS (Framework 13), nix-darwin (M4 Mac Mini), and home-manager";
+  description = "Chase's Nix Flake for NixOS (Framework 13) and home-manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    nix-darwin = {
-      url = "github:nix-darwin/nix-darwin/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -22,26 +17,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, nix-darwin, home-manager, nixvim, ... }:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, nixvim, ... }:
   {
-    darwinConfigurations.beauvoir = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin";
-      modules = [
-        ./hosts/beauvoir/configuration.nix
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "hm-bak";
-          home-manager.users.theopn = {
-            imports =[
-              nixvim.homeModules.nixvim
-              ./home-manager/home.nix
-            ];
-          };
-        }
-      ];
-    };
-
     nixosConfigurations.wittgenstein = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

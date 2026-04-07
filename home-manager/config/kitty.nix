@@ -6,11 +6,6 @@
 
     enable = true;
 
-    # https://sw.kovidgoyal.net/kitty/faq/#how-do-i-specify-command-line-options-for-kitty-on-macos
-    darwinLaunchOptions = [
-      "--single-instance"
-    ];
-
     themeFile = "Nordfox";
 
     # font = {

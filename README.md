@@ -1,4 +1,6 @@
-# Theo's Nix Flake
+# Chase's Nix Flake
+
+Based on Theo's Nix Flake (and others)
 
 | ![niri-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/niri-sc.png) |
 | :--:                                                                                                  |
@@ -18,17 +20,15 @@ Rather than a 1:1 port, I've used the Nix migration as an excuse to cut out unus
 
 ## `flake.nix` Overview
 
-`flake.nix` takes 5 inputs:
+`flake.nix` takes 4 inputs:
 
 - `nixpkgs-unstable`
 - `nixos-hardware`
-- `nix-darwin`
 - `home-manager`
 - `nixvim`
 
-and produces 2 outputs
+and produces 1 outputs
 
-- `beauvoir`: a `nix-darwin` module for my M4 Mac Mini.
 - `wittgenstein`: a NixOS module for my Framework 13.
 
 ## Update Workflow
@@ -65,30 +65,6 @@ Since I have no display manager, you will be dropped into a TTY upon boot.
 - `hosts/wittgenstein/idkwhattoname.nix`: other system-level services and programs that require little to no configurations.
 - `hosts/wittgenstein/hardware-configuration.nix`: (almost) auto-generated hardware configuration for Framework 13.
     Manually patched for LUKS compatibility and hibernation.
-
-
-## `beauvoir`
-
-### Prerequisites
-
-```sh
-# Install Determinate Nix
-curl -fsSL https://install.determinate.systems/nix | sh -s -- install
-
-cd && git clone git@github.com:theopn/nix-conf.git
-cd ~/nix-conf
-nix run nix-darwin -- switch --flake .#beauvoir
-```
-
-### Post-installation
-
-- Since I don't use a GUI wrapper, bookmark `http://127.0.0.1:8384/` (Syncthing web UI).
-
-### Structure
-
-- `hosts/beauvoir/configuration.nix`: the primary `nix-darwin` configuration with macOS settings and global variables.
-- `hosts/beauvoir/homebrew.nix`: Manages Homebrew Casks for GUI applications that don't benefit from declarative configuration or version locking (e.g., Slack, KiCad)
-- `hosts/beauvoir/aerospace.nix`: a Nix translation of my Aerospace config
 
 
 ## Home-manager
