@@ -5,6 +5,15 @@
       ./idkwhattoname.nix
     ];
 
+  virtualisation.vmVariant = { # For VM testing
+    virtualisation.qemu = {
+      options = [
+        "-vga none -device virtio-vga-gl -display gtk,gl=on"
+      ];
+      package = pkgs.qemu;
+    };
+    virtualisation.libvirtd.enable = true;
+  };
 
   # Boot settings
   boot.loader.systemd-boot.enable = true;
@@ -63,6 +72,9 @@
   # register swaylock to /etc/pam.d/
   security.pam.services.swaylock = {};
 
+  # Use gdm for login
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
   # Me
   programs.zsh.enable = true;
