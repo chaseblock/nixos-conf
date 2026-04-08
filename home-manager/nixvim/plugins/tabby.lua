@@ -11,7 +11,7 @@ require("tabby").setup({
   line = function(line)
     return {
       {
-        { " Theo ", hl = theme.head },
+        { " C ", hl = theme.head },
         line.sep("", theme.head, theme.fill),
       },
       line.tabs().foreach(function(tab)

@@ -1,4 +1,4 @@
-// Theo's Niri config
+// Chase's Niri config
 //
 //               ███             ███
 //             ▒▒▒             ▒▒▒
@@ -103,7 +103,7 @@ layout {
 
 // Misc
 // Handled by Nix: dunst, waybar, nm-applet, copyq, fcitx5, and swayidle,
-spawn-sh-at-startup "swaybg --mode fill --image ~/.local/share/theo-niri-assets/wallpaper.png"
+spawn-sh-at-startup "swaybg --mode fill --image ~/.local/share/cniri-assets/wallpaper.png"
 
 prefer-no-csd
 
@@ -188,10 +188,10 @@ binds {
     // Opening programs
     Mod+Return          { spawn "kitty"; }
     Mod+Space           { spawn "rofi" "-show" "drun"; }
-    Mod+Shift+P         { spawn "theo-rofi-powermenu"; }
+    Mod+Shift+P         { spawn "crofi-powermenu"; }
     Mod+Shift+V         { spawn "copyq" "show"; }
-    Print               { spawn "theo-rofi-screenshot"; }
-    Ctrl+Print          { spawn "theo-rofi-screenrecord"; }
+    Print               { spawn "crofi-screenshot"; }
+    Ctrl+Print          { spawn "crofi-screenrecord"; }
     Shift+Print hotkey-overlay-title="Open Niri native screenshot" { screenshot; }
 
     // Function keys
@@ -212,6 +212,7 @@ binds {
     Mod+Shift+Q repeat=false { close-window; }
 
     // Theo's keymap principle
+    // Chase isn't sure that he likes this -- might need to change (TODO)
     // HJKL: navigation within a monitor
     // Arrows: navigation across monitors
     Mod+H     { focus-column-left; }

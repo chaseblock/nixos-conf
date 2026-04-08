@@ -31,7 +31,7 @@ frame-switch:
 
 frame-test:
 	@if [ "$$(uname)" != "Linux" ]; then \
-		echo "$(BOLD)$(RED)===== come on theo =====$(RESET)"; \
+		echo "$(BOLD)$(RED)===== not on linux =====$(RESET)"; \
 		exit 1; \
 	fi
 	@echo "$(BOLD)$(BLUE)=====> Testing frame <=====$(RESET)"
@@ -39,8 +39,14 @@ frame-test:
 
 frame-boot:
 	@if [ "$$(uname)" != "Linux" ]; then \
-		echo "$(BOLD)$(RED)===== okay no way i would make this mistake =====$(RESET)"; \
+		echo "$(BOLD)$(RED)===== what are you even doing =====$(RESET)"; \
 		exit 1; \
 	fi
 	@echo "$(BOLD)$(BLUE)=====> Staging (next boot) frame <=====$(RESET)"
 	sudo nixos-rebuild boot --flake .#frame
+
+frame-vm:
+	nix --extra-experimental-features "flakes nix-command" build .#nixosConfigurations.frame.config.system.build.vm
+	echo "=====> Built the vm... BE SURE TO CHANGE THE QEMU EXECUTABLE <====="
+	echo "You may need to run it with GDK_BACKEND=x11"
+

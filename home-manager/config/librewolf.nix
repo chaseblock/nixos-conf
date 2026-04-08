@@ -28,7 +28,7 @@
       "privacy.resistFingerprinting.letterboxing" = false;
 
       "browser.startup.page" = 1;
-      "browser.startup.homepage" = "https://theopark.me/startpage";
+      "browser.startup.homepage" = "https://chaseblock.com";
       "browser.newtabpage.enabled" = false;
     };
 

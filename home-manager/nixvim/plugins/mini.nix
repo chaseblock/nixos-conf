@@ -16,21 +16,6 @@
           set_vim_settings = true;
         };
 
-        starter = {
-          # figlet -f small theovim
-          header = ''
-                     \/   \/
-                     |\__/,|     _
-                   _.|o o  |_   ) )
-                  -(((---(((--------
-                      [ Oliver ]
-             _   _                _
-            | |_| |_  ___ _____ _(_)_ __
-            |  _| ' \/ -_) _ \ V / | '  \
-             \__|_||_\___\___/\_/|_|_|_|_|
-            '';
-        };
-
         clue = {
           triggers = [
             # leader

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  theo-rofi-powermenu = pkgs.writeShellApplication {
-    name = "theo-rofi-powermenu";
+  crofi-powermenu = pkgs.writeShellApplication {
+    name = "crofi-powermenu";
     runtimeInputs = with pkgs; [ rofi ];
     text = ''
       shutdown='   shutdown'
@@ -66,8 +66,8 @@ let
     '';
   };
 
-  theo-rofi-screenshot = pkgs.writeShellApplication {
-    name = "theo-rofi-screenshot";
+  crofi-screenshot = pkgs.writeShellApplication {
+    name = "crofi-screenshot";
     runtimeInputs = with pkgs; [ rofi grim sway-contrib.grimshot ];
     text = ''
       area_cp=' area (clipboard)'
@@ -93,8 +93,8 @@ let
     '';
   };
 
-  theo-rofi-screenrecord = pkgs.writeShellApplication {
-    name = "theo-rofi-screenrecord";
+  crofi-screenrecord = pkgs.writeShellApplication {
+    name = "crofi-screenrecord";
     runtimeInputs = with pkgs; [ rofi wf-recorder killall ];
     text = ''
       #!/usr/bin/env bash
@@ -127,7 +127,7 @@ in
 {
 
   home.packages = with pkgs; [
-    theo-rofi-powermenu theo-rofi-screenshot theo-rofi-screenrecord
+    crofi-powermenu crofi-screenshot crofi-screenrecord
     brightnessctl pavucontrol playerctl
     grim slurp sway-contrib.grimshot wf-recorder wl-clipboard-rs
     nautilus networkmanagerapplet pantheon.pantheon-agent-polkit

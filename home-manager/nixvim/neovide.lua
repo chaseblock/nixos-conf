@@ -1,10 +1,4 @@
---  _   _                     _     _
--- | | | |                   (_)   | |
--- | |_| |__   ___  _____   ___  __| | ___
--- | __| '_ \ / _ \/ _ \ \ / / |/ _` |/ _ \
--- | |_| | | |  __/ (_) \ V /| | (_| |  __/
---  \__|_| |_|\___|\___/ \_/ |_|\__,_|\___|
--- Theo's Neovide variables and settings
+-- Chase's Neovide variables and settings (based on Theo's)
 
 -- Colorschemes' "transparency" is essentially turning off background highlight and using terminal's background
 -- Since Neovide's default background is plain black, do not invoke transparency via colorschemes, set it using
@@ -30,10 +24,6 @@ local opacity = 0.85
 vim.g.neovide_opacity = opacity
 vim.g.neovide_normal_opacity = opacity
 
--- Because I use opt/meta as a modifer for Aerospace,
--- I use left opt key for Aerospace and the right one for terminal input
-vim.g.neovide_input_macos_option_key_is_meta = "only_right"
-
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
 -- Keymaps
@@ -52,16 +42,6 @@ vim.g.neovide_scale_factor = 1.0
 local change_scale_factor = function(delta)
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
 end
--- macOS (opt)
-vim.keymap.set("n", "<D-=>", function()
-  change_scale_factor(1.25)
-end)
-vim.keymap.set("n", "<D--", function()
-  change_scale_factor(1 / 1.25)
-end)
-vim.keymap.set("n", "<D-0>", function()
-  vim.g.neovide_scale_factor = 1.0
-end)
 -- Linux (alt)
 vim.keymap.set("n", "<M-=>", function()
   change_scale_factor(1.25)

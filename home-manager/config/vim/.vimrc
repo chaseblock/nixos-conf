@@ -12,7 +12,7 @@
 "
 "===============================================================================
 "
-" Theo's .vimrc based on:
+" Chase's .vimrc based on theo's vimrc based on
 " =====================================================================
 " =========================== KICKSTART.VIM ===========================
 " =====================================================================
@@ -119,7 +119,7 @@ inoremap {<CR> {<CR>}<ESC>ko<TAB>
 nnoremap <leader>a gg<S-v>G
 xnoremap <leader>y "+y
 nnoremap <leader>p :reg<CR>
-      \:echo '[Theovim] e.g., `:normal "+p` to paste from the register +'<CR>
+      \:echo '[Cvim] e.g., `:normal "+p` to paste from the register +'<CR>
       \:normal "
 xnoremap <leader>p "_dP
 
@@ -142,7 +142,7 @@ nnoremap <leader>b :ls<CR>:b<SPACE>
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap <leader>k :ls<CR>
-      \: echo '[Theovim] Choose a buf to delete
+      \: echo '[Cvim] Choose a buf to delete
       \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
       \:bdelete<SPACE>
 

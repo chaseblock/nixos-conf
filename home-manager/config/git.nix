@@ -9,8 +9,8 @@
 
     settings = {
       user = {
-        name  = "Theo Park";
-        email = "theo.park.n@gmail.com";
+        name  = "Chase Block";
+        email = "chase@chaseblock.com";
       };
       core ={
         editor = "nvim";

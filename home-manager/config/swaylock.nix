@@ -1,16 +1,16 @@
 { config, lib, pkgs, ... }:
 
 let
-  theo-set-wallpaper = pkgs.writeShellApplication {
-    name = "theo-set-wallpaper";
+  cset-wallpaper = pkgs.writeShellApplication {
+    name = "cset-wallpaper";
     runtimeInputs = with pkgs; [ imagemagick swaybg dunst ];
     text = ''
       if [ -z "$1" ]; then
-        echo "Usage: theo-set-wallpaper <image path>"
+        echo "Usage: cset-wallpaper <image path>"
         exit 1
       fi
 
-      ASSETS_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/theo-niri-assets"
+      ASSETS_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/cniri-assets"
       mkdir -p "$ASSETS_DIR"
       WALLPAPER="$ASSETS_DIR/wallpaper.png"
       LOCKSCREEN="$ASSETS_DIR/lockscreen.png"
@@ -39,7 +39,7 @@ let
   };
 in
 {
-  home.packages = [ theo-set-wallpaper pkgs.swaybg ];
+  home.packages = [ cset-wallpaper pkgs.swaybg ];
 
   programs.swaylock = {
     enable = true;
@@ -52,8 +52,8 @@ in
       scaling = "fill";
       color = "39404F";
 
-      # automatically generated when changing wallpaper with theo-set-wallpaper
-      image = "${config.home.homeDirectory}/.local/share/theo-niri-assets/lockscreen.png";
+      # automatically generated when changing wallpaper with cset-wallpaper
+      image = "${config.home.homeDirectory}/.local/share/cniri-assets/lockscreen.png";
     };
   };
 }

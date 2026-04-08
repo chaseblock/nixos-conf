@@ -7,7 +7,7 @@
     XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures";
     XDG_PICTURES_DIR = "${config.home.homeDirectory}/Pictures";
 
-    THEOSHELL_TRASH_DIR = "${config.xdg.dataHome}/theoshell/trash";
+    CSHELL_TRASH_DIR = "${config.xdg.dataHome}/cshell/trash";
   };
 
   imports = [

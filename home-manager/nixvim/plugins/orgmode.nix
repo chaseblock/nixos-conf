@@ -39,7 +39,7 @@
 
         org_agenda_custom_commands = {
           c = {
-            description = "Theo's [C]ustom Personal agenda + IDEA (captured tasks)";
+            description = "Chase's [C]ustom Personal agenda + IDEA (captured tasks)";
             types = [
               {
                 type = "tags";

@@ -145,11 +145,11 @@ in
 
       trash = ''
         !{{
-          export THEOSHELL_TRASH_DIR="$HOME/.local/share/theoshell/trash"
-          if [ ! -d ''${THEOSHELL_TRASH_DIR} ]; then
-            mkdir -p ''${THEOSHELL_TRASH_DIR}
+          export CSHELL_TRASH_DIR="$HOME/.local/share/cshell/trash"
+          if [ ! -d ''${CSHELL_TRASH_DIR} ]; then
+            mkdir -p ''${CSHELL_TRASH_DIR}
           fi
-          IFS="$(printf '\n\t')"; mv $fx ''${THEOSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
+          IFS="$(printf '\n\t')"; mv $fx ''${CSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
         }}
       '';
 

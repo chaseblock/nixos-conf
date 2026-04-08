@@ -61,8 +61,6 @@
       shell = "${pkgs.fish}/bin/fish --login --interactive";
       term = "xterm-kitty";
 
-      macos_option_as_alt = "yes";
-
       kitty_mod = "ctrl+shift";
       clear_all_shortcuts = "yes";
     };
@@ -176,13 +174,9 @@
       "ctrl+shift+p>shift+f" = "kitten hints --type path";
 
       # Miscellaneous
-      "cmd+`" = "macos_cycle_through_os_windows";
-      "cmd+shift+`" = "macos_cycle_through_os_windows_backwards";
       "ctrl+a>:" = "kitty_shell window";
       "ctrl+shift+f5" = "load_config_file";
       "ctrl+cmd+," = "load_config_file";
-      "cmd+h" = "hide_macos_app";
-      "cmd+m" = "minimize_macos_window";
     };
   };
 }

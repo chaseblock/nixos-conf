@@ -74,7 +74,7 @@
       # is not necessary
       onAttach = ''
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, bufnr) then
-          local hl_group = vim.api.nvim_create_augroup("TheovimLspHl", { clear = false })
+          local hl_group = vim.api.nvim_create_augroup("cvimLspHl", { clear = false })
 
           vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
             buffer = bufnr,
@@ -89,10 +89,10 @@
           })
 
           vim.api.nvim_create_autocmd("LspDetach", {
-            group = vim.api.nvim_create_augroup("TheovimLspHlDetach", { clear = true }),
+            group = vim.api.nvim_create_augroup("cvimLspHlDetach", { clear = true }),
             callback = function(event)
               vim.lsp.buf.clear_references()
-              vim.api.nvim_clear_autocmds({ group = "TheovimLspHl", buffer = event.buf })
+              vim.api.nvim_clear_autocmds({ group = "cvimLspHl", buffer = event.buf })
             end
           })
         end

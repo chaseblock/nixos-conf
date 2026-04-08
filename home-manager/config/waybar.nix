@@ -2,8 +2,8 @@
 
 let
   # scripts in https://github.com/theopn/haunted-tiles/tree/niri
-  theo-rofi-niri-workspace-rename = pkgs.writeShellApplication {
-    name = "theo-rofi-niri-workspace-rename";
+  crofi-niri-workspace-rename = pkgs.writeShellApplication {
+    name = "crofi-niri-workspace-rename";
     runtimeInputs = with pkgs; [ rofi ];
     text = ''
       rename='󰑕 rename'
@@ -26,8 +26,8 @@ let
     '';
   };
 
-  theo-rofi-dnd = pkgs.writeShellApplication {
-    name = "theo-rofi-dnd";
+  crofi-dnd = pkgs.writeShellApplication {
+    name = "crofi-dnd";
     runtimeInputs = with pkgs; [ rofi dunst ];
     text = ''
       on_action=' Pause Notification'
@@ -56,7 +56,7 @@ let
     '';
   };
 
-  theo-rofi-dunst-manager = pkgs.writeShellScriptBin "theo-rofi-dunst-manager" ''
+  crofi-dunst-manager = pkgs.writeShellScriptBin "crofi-dunst-manager" ''
     function replace_special_char() {
       # replace & < > since Rofi throws Pango error with them
       echo "$1" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g'
@@ -151,7 +151,7 @@ in
 
     settings = {
       mainBar = {
-        id = "theo-waybar-niri";
+        id = "cwaybar-niri";
         layer = "top";
         position = "top";
         height = 34;
@@ -197,7 +197,7 @@ in
           format = "󰑕 ";
           tooltip = true;
           tooltip-format = "Rename Current Workspace";
-          on-click = "${lib.getExe theo-rofi-niri-workspace-rename}";
+          on-click = "${lib.getExe crofi-niri-workspace-rename}";
         };
 
         "niri/window" = {
@@ -212,8 +212,8 @@ in
           format = "󰵛";
           tooltip = true;
           tooltip-format = "L: DND Manager / R: History Manager";
-          on-click = "${lib.getExe theo-rofi-dnd}";
-          on-click-right = "${lib.getExe theo-rofi-dunst-manager}";
+          on-click = "${lib.getExe crofi-dnd}";
+          on-click-right = "${lib.getExe crofi-dunst-manager}";
         };
 
         clock = {

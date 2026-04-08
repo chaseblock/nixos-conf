@@ -54,7 +54,7 @@ Since I have no display manager, you will be dropped into a TTY upon boot.
 2. Use `niri-session` to launch Niri alongside necessary `systemd` services (swayidle, Waybar, etc., managed via the `niri.session` target).
 3. Set the wallpaper and generated a cached lockscreen image using
     ```sh
-    theo-set-wallpaper /path/to/any/image/that/is/accepted/in/imagemagick
+    cset-wallpaper /path/to/any/image/that/is/accepted/in/imagemagick
     ```
 
 ### Structure
