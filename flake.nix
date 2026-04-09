@@ -47,7 +47,7 @@
         nixos-hardware.nixosModules.dell-g3-3779
         
         ./hosts/frame/configuration.nix
-        ./hosts/g7/hardware-configuration.nix
+        #./hosts/g7/hardware-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
