@@ -53,6 +53,14 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # Enable niri
+  # Actual config is deployed with home-manager
+  programs.niri = {
+    enable = true;
+    useNautilus = true;
+  };
+  programs.dconf.enable = true;
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

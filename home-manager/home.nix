@@ -10,7 +10,7 @@
   #  CSHELL_TRASH_DIR = "${config.xdg.dataHome}/cshell/trash";
   #};
 
-  #imports = [
+  imports = [
   #  # Tools
   #  ./config/bat.nix
   #  ./config/btop.nix
@@ -27,21 +27,23 @@
 
   #  # Terminal & Shell
   #  ./config/fastfetch.nix
-  #  ./config/fish.nix
-  #  ./config/kitty.nix
+    ./config/fish.nix
+    ./config/kitty.nix
   #  ./config/starship.nix
-  #  ./config/zsh.nix
+    ./config/zsh.nix
 
   #  # someone couldn't handle true privacy
   #  #./config/librewolf.nix
 
   #  # nixvim
   #  ./nixvim/default.nix
-  #];
+  ];
 
   home.packages = with pkgs; [
     # tools
     wget
+
+    kitty
 
     # media
     ffmpeg
