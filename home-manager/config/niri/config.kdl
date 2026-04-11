@@ -105,10 +105,10 @@ hotkey-overlay {
 screenshot-path "~/Pictures/niri-screenshot-%Y-%m-%d-%H-%M-%S.png"
 
 // Named Workspaces
-workspace " "        // index 1, productivity tools
-workspace " "        // index 2, dev tools
-workspace " "        // index 3, Firefox
-workspace " "        // index 4, Thunderbird & social apps
+// workspace " "        // index 1, productivity tools
+// workspace " "        // index 2, dev tools
+// workspace " "        // index 3, Firefox
+// workspace " "        // index 4, Thunderbird & social apps
 
 
 // Window rules
