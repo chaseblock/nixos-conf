@@ -22,12 +22,11 @@
   #  ./config/neovide.nix
   #  ./config/ripgrep.nix
   #  ./config/syncthing.nix
-  #  ./config/vim.nix
+    ./config/vim.nix
   #  ./config/zoxide.nix
 
   #  # Terminal & Shell
   #  ./config/fastfetch.nix
-    ./config/fish.nix
     ./config/kitty.nix
   #  ./config/starship.nix
     ./config/zsh.nix

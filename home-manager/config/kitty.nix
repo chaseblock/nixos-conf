@@ -58,7 +58,7 @@
       background_opacity = "0.90";
       dynamic_background_opacity = "yes";
 
-      shell = "${pkgs.fish}/bin/fish --login --interactive";
+      shell = "${pkgs.zsh}/bin/zsh";
       term = "xterm-kitty";
 
       kitty_mod = "ctrl+shift";

@@ -1,31 +1,4 @@
-"===============================================================================
-"
-"                                 \/       \/
-"                                 /\_______/\
-"                                /   o   o   \
-"                               (  ==  ^  ==  )
-"                                )           (
-"                               (             )
-"                               ( (  )   (  ) )
-"                              (__(__)___(__)__)
-"                                 O l i v e r
-"
-"===============================================================================
-"
-" Chase's .vimrc based on theo's vimrc based on
-" =====================================================================
-" =========================== KICKSTART.VIM ===========================
-" =====================================================================
-" ========                                    .-----.          ========
-" ========         .----------------------.   | === |          ========
-" ========         |.-""""""""""""""""""-.|   |-----|          ========
-" ========         || GITHUB.COM/THEOPN/ ||   | === |          ========
-" ========         ||   KICKSTART.VIM    ||   |-----|          ========
-" ========         ||                    ||   | === |          ========
-" ========                                       ---|          ========
-" ========                                        ::|          ========
-" =====================================================================
-"
+" Chase's .vimrc based on theo's vimrc
 
 " {{{ Options
 let mapleader=' '
@@ -76,7 +49,8 @@ set number relativenumber
 set laststatus=2 showtabline=2 signcolumn=yes showcmd
 set list listchars=tab:»\ ,trail:·,nbsp:␣,leadmultispace:\|\  " lms req. > 0.9
 set fillchars=stlnc:-
-set cursorline cursorcolumn colorcolumn=80
+"set cursorline cursorcolumn colorcolumn=80
+set cursorline
 
 " Search
 set incsearch hlsearch
@@ -218,52 +192,52 @@ colorscheme sorbet
 " }}}
 
 
-" {{{ Statusline
-let g:currentmode={
-  \ 'n' : 'N', 'no' : 'N OPERATOR PENDING',
-  \ 'v' : 'V', 'V' : 'V LINE', "\<C-V>" : 'V BLOCK',
-  \ 's' : 'SELECT', 'S' : 'S LINE', "\<C-S>" : 'S BLOCK',
-  \ 'i' : 'I', 'R' : 'R', 'Rv' : 'V REPLACE',
-  \ 'c' : 'CMD', 'cv' : 'VIM EX', 'ce' : 'EX',
-  \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
-  \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
-set laststatus=2                                      " Always show statusline
-set statusline=                                       " Reset w/ nothing
-set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
-set statusline+=\ \|                                  " Space + Bar
-set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
-set statusline+=\ %f                                  " Current buffer name
-set statusline+=\ %m                                  " [+] for modified
-set statusline+=%r                                    " [RO] for read only
-set statusline+=\|                                    " Bar
-set statusline+=%=                                    " Spacer
-set statusline+=%<                                    " Truncation point
-set statusline+=Messing\ w\ vimrc\ again?             " Yes I am
-set statusline+=\ %{'>^•-•^<'}                        " Why in {}? Why not
-set statusline+=%=                                    " Spacer
-set statusline+=\ \|                                  " Space + Bar
-set statusline+=\ %{(&expandtab==1?'SPC':'TAB')}      " Tab or space
-set statusline+=\ \|                                  " Space + Bar
-set statusline+=\ FT:\ %Y                             " Filetype
-set statusline+=\ \|                                  " Space + Bar
-set statusline+=\ %{toupper(&ff)}                     " File format
-set statusline+=:                                     " Colon
-set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
-set statusline+=\ \|                                  " Space + Bar
-set statusline+=\ @                                   " At
-set statusline+=\ %l                                  " Current line num
-set statusline+=:                                     " Colon
-set statusline+=%c                                    " Current column num
-set statusline+=\ %P                                  " Percent file displayed
-set statusline+=\ \|%{''}                             " Space, bar, empty char
-" }}}
+"" {{{ Statusline
+"let g:currentmode={
+"  \ 'n' : 'N', 'no' : 'N OPERATOR PENDING',
+"  \ 'v' : 'V', 'V' : 'V LINE', "\<C-V>" : 'V BLOCK',
+"  \ 's' : 'SELECT', 'S' : 'S LINE', "\<C-S>" : 'S BLOCK',
+"  \ 'i' : 'I', 'R' : 'R', 'Rv' : 'V REPLACE',
+"  \ 'c' : 'CMD', 'cv' : 'VIM EX', 'ce' : 'EX',
+"  \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
+"  \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
+"set laststatus=2                                      " Always show statusline
+"set statusline=                                       " Reset w/ nothing
+"set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
+"set statusline+=\ \|                                  " Space + Bar
+"set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
+"set statusline+=\ %f                                  " Current buffer name
+"set statusline+=\ %m                                  " [+] for modified
+"set statusline+=%r                                    " [RO] for read only
+"set statusline+=\|                                    " Bar
+"set statusline+=%=                                    " Spacer
+"set statusline+=%<                                    " Truncation point
+"set statusline+=Messing\ w\ vimrc\ again?             " Yes I am
+"set statusline+=\ %{'>^•-•^<'}                        " Why in {}? Why not
+"set statusline+=%=                                    " Spacer
+"set statusline+=\ \|                                  " Space + Bar
+"set statusline+=\ %{(&expandtab==1?'SPC':'TAB')}      " Tab or space
+"set statusline+=\ \|                                  " Space + Bar
+"set statusline+=\ FT:\ %Y                             " Filetype
+"set statusline+=\ \|                                  " Space + Bar
+"set statusline+=\ %{toupper(&ff)}                     " File format
+"set statusline+=:                                     " Colon
+"set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
+"set statusline+=\ \|                                  " Space + Bar
+"set statusline+=\ @                                   " At
+"set statusline+=\ %l                                  " Current line num
+"set statusline+=:                                     " Colon
+"set statusline+=%c                                    " Current column num
+"set statusline+=\ %P                                  " Percent file displayed
+"set statusline+=\ \|%{''}                             " Space, bar, empty char
+"" }}}
 
 
 " {{{ "Bufferline": https://theopark.me/blog/2023-03-17-vimscript-bufferline/
 set showtabline=2
 
 fun! SpawnBufferLine()
-  let s = ' ₍^. .^₎⟆ '
+  let s = ' '
 
   " Gets the list of buffers. Use bufexists() to include hidden buffers
   let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
