@@ -19,26 +19,27 @@
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, nixvim, ... }:
   {
-    #nixosConfigurations.frame = nixpkgs.lib.nixosSystem {
-    #  system = "x86_64-linux";
-    #  modules = [
-    #    nixos-hardware.nixosModules.framework-11th-gen-intel
-    #    ./configuration/configuration.nix
-    #    ./hosts/frame/hardware-configuration.nix
-    #    home-manager.nixosModules.home-manager {
-    #      home-manager.useGlobalPkgs = true;
-    #      home-manager.useUserPackages = true;
-    #      home-manager.backupFileExtension = "hm-bak";
-    #      home-manager.users.chase = {
-    #        imports =[
-    #          nixvim.homeModules.nixvim
-    #          ./home-manager/home.nix
-    #          ./home-manager/linux.nix
-    #        ];
-    #      };
-    #    }
-    #  ];
-    #};
+    nixosConfigurations.frame = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        nixos-hardware.nixosModules.framework-11th-gen-intel
+        ./configuration/configuration.nix
+        ./hosts/frame-hardware-configuration.nix
+        ./hosts/frame-host-configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.backupFileExtension = "hm-bak";
+          home-manager.users.chase = {
+            imports =[
+              #nixvim.homeModules.nixvim
+              ./home-manager/home.nix
+              ./home-manager/linux.nix
+            ];
+          };
+        }
+      ];
+    };
 
     nixosConfigurations.g7 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
