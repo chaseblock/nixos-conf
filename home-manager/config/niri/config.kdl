@@ -167,7 +167,7 @@ binds {
 
     // Opening programs
     Mod+Return          { spawn "kitty"; }
-    Mod+Ctrl+Space      { spawn "rofi" "-show" "drun"; }
+    Mod+Ctrl+Return     { spawn "rofi" "-show" "drun"; }
     Mod+Shift+P         { spawn "crofi-powermenu"; }
     Mod+Shift+V         { spawn "copyq" "show"; }
 
