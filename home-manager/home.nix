@@ -17,22 +17,18 @@
   #  ./config/eza.nix
   #  ./config/fd.nix
   #  ./config/fzf.nix
-  #  ./config/git.nix
+    ./config/git.nix
   #  ./config/lf.nix
-  #  ./config/neovide.nix
   #  ./config/ripgrep.nix
   #  ./config/syncthing.nix
     ./config/vim.nix
   #  ./config/zoxide.nix
 
   #  # Terminal & Shell
-  #  ./config/fastfetch.nix
+    ./config/fastfetch.nix
     ./config/kitty.nix
-  #  ./config/starship.nix
+    ./config/starship.nix
     ./config/zsh.nix
-
-  #  # someone couldn't handle true privacy
-  #  #./config/librewolf.nix
 
   #  # nixvim
   #  ./nixvim/default.nix
