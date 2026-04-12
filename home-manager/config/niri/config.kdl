@@ -86,7 +86,7 @@ layout {
 }
 
 // Misc
-// Handled by Nix: dunst, waybar, nm-applet, copyq, fcitx5, and swayidle,
+// Handled by Nix: dunst, waybar, nm-applet, copyq, and swayidle,
 spawn-sh-at-startup "swaybg --mode fill --image ~/.wallpaper.png"
 
 prefer-no-csd
@@ -151,8 +151,8 @@ window-rule {
 window-rule {
     // note that home-manager installed packages do not follow the name
     match app-id="^copyq$"
-    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
-    match app-id="blueman-manager"
+    // match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    // match app-id="blueman-manager"
     open-floating true
     opacity 0.8
     default-column-width { fixed 700; }
