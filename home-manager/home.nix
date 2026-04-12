@@ -47,6 +47,9 @@
     # media
     ffmpeg
     imagemagick
+
+    # python
+    python3
   ];
 
   programs.man.generateCaches = true;

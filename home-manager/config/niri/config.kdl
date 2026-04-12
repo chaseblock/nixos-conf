@@ -87,13 +87,11 @@ layout {
 
 // Misc
 // Handled by Nix: dunst, waybar, nm-applet, copyq, fcitx5, and swayidle,
-spawn-sh-at-startup "swaybg --mode fill --image ~/.local/share/cniri-assets/wallpaper.png"
+spawn-sh-at-startup "swaybg --mode fill --image ~/.wallpaper.png"
 
 prefer-no-csd
 
 cursor {
-    xcursor-theme "Adwaita"
-    xcursor-size 24
     hide-when-typing
 }
 

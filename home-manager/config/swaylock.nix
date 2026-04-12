@@ -13,7 +13,8 @@ let
       ASSETS_DIR="''${XDG_DATA_HOME:-$HOME/.local/share}/cniri-assets"
       mkdir -p "$ASSETS_DIR"
       WALLPAPER="$ASSETS_DIR/wallpaper.png"
-      LOCKSCREEN="$ASSETS_DIR/lockscreen.png"
+      #LOCKSCREEN="$ASSETS_DIR/lockscreen.png"
+      LOCKSCREEN="$HOME/.wallpaper.png"
 
       # Back up existing wallpaper
       if [ -f "$WALLPAPER" ]; then
@@ -53,7 +54,8 @@ in
       color = "39404F";
 
       # automatically generated when changing wallpaper with cset-wallpaper
-      image = "${config.home.homeDirectory}/.local/share/cniri-assets/lockscreen.png";
+      # image = "${config.home.homeDirectory}/.local/share/cniri-assets/lockscreen.png";
+      image = "${config.home.homeDirectory}/.wallpaper.png";
     };
   };
 }
