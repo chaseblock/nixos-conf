@@ -13,11 +13,11 @@
   programs.thunderbird.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # paying the price for doing the minimal install
+    # various necessary packages
     curl wget gcc gdb git killall
     gnumake zip unzip file jq
 
-    # uhh open source GUI tools
+    # misc open source GUI tools
     gimp kicad libreoffice zotero
 
     # Propritery

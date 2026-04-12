@@ -3,18 +3,16 @@
 {
   #xdg.enable = true;
 
-  #home.sessionVariables = {
-  #  XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures";
-  #  XDG_PICTURES_DIR = "${config.home.homeDirectory}/Pictures";
-  #
-  #  CSHELL_TRASH_DIR = "${config.xdg.dataHome}/cshell/trash";
-  #};
+  home.sessionVariables = {
+    XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures";
+    XDG_PICTURES_DIR = "${config.home.homeDirectory}/Pictures";
+  };
 
   imports = [
   #  # Tools
-  #  ./config/bat.nix
-  #  ./config/btop.nix
-  #  ./config/eza.nix
+    ./config/bat.nix
+    ./config/btop.nix
+    ./config/eza.nix
   #  ./config/fd.nix
   #  ./config/fzf.nix
     ./config/git.nix
@@ -27,11 +25,7 @@
   #  # Terminal & Shell
     ./config/fastfetch.nix
     ./config/kitty.nix
-    ./config/starship.nix
     ./config/zsh.nix
-
-  #  # nixvim
-  #  ./nixvim/default.nix
   ];
 
   home.packages = with pkgs; [

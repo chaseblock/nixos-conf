@@ -4,9 +4,9 @@
   programs.eza = {
     enable = true;
 
-    # integration replaces `ls`, I just liek making an alias
-    enableZshIntegration = false;
-    enableFishIntegration = false;
+    # integration replaces `ls`
+    enableZshIntegration = true;
+    enableFishIntegration = true;
 
     colors = "auto";
     icons = "auto";  # only output if stdout = terminal

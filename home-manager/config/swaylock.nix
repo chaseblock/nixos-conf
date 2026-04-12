@@ -49,7 +49,7 @@ in
       # allows fingerprint sensor -> RET to unlock
       ignore-empty-password = false;
       show-failed-attempts = true;
-      show-keyboard-layout = true;
+      show-keyboard-layout = false;
       scaling = "fill";
       color = "39404F";
 
