@@ -6,7 +6,8 @@
 
     enable = true;
 
-    themeFile = "Nordfox";
+    # Using wal instead of a theme. See further below.
+    #themeFile = "Nordfox";
 
     # font = {
     #   name = "ComicCodeLigatures Nerd Font";
@@ -78,6 +79,8 @@
         \ -c "nnoremap q :qa!<CR>"
         \ -c "normal +G"
         \ -
+
+      include ../../.cache/wal/colors-kitty.conf
     '';
 
     # 4. Keyboard Shortcuts

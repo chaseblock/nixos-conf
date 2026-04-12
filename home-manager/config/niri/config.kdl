@@ -31,11 +31,6 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-// Gestures
-gestures {
-    hot-corners { off; }
-}
-
 overview {
     backdrop-color "#2e3440"  // nord0
     workspace-shadow { off; }

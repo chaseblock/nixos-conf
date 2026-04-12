@@ -41,15 +41,17 @@
   home.packages = with pkgs; [
     # tools
     wget
-
     kitty
 
     # media
-    ffmpeg
-    imagemagick
+    ffmpeg imagemagick
+    pywal
 
     # python
     python3
+
+    # coding
+    vscode code-cursor
   ];
 
   programs.man.generateCaches = true;
