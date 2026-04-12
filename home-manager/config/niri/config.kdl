@@ -184,7 +184,7 @@ binds {
     // Window manager
     Mod+O repeat=false { toggle-overview; }
 
-    Mod+Shift+Q repeat=false { close-window; }
+    Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left;  }
     Mod+Down  { focus-window-down;  }

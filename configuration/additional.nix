@@ -16,6 +16,7 @@
     # various necessary packages
     curl wget gcc gdb git killall
     gnumake zip unzip file jq
+    gnome-disk-utility
 
     # misc open source GUI tools
     gimp kicad libreoffice zotero

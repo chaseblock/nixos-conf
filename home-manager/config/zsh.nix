@@ -21,7 +21,7 @@
         "git"
         "z"
       ];
-      theme = "robbyrussell";
+      theme = "gentoo";
     };
 
     shellAliases = {
