@@ -21,6 +21,7 @@
   #  ./config/syncthing.nix
     ./config/vim.nix
   #  ./config/zoxide.nix
+    ./config/vscode.nix
 
   #  # Terminal & Shell
     ./config/fastfetch.nix
@@ -41,7 +42,7 @@
     python3
 
     # coding
-    vscode code-cursor
+    code-cursor
   ];
 
   programs.man.generateCaches = true;
