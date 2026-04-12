@@ -23,6 +23,9 @@
 
     # Propritery
     chromium discord slack spotify zoom-us
+
+    # vpn
+    openconnect networkmanager-openconnect
   ];
 
 

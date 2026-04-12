@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
@@ -8,5 +8,9 @@
     vimAlias = true;
 
     extraConfig = builtins.readFile ./vim/.vimrc;
+
+    plugins = with pkgs.vimPlugins; [
+      vim-sleuth
+    ];
   };
 }
