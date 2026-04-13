@@ -22,6 +22,7 @@
     ./config/vim.nix
   #  ./config/zoxide.nix
     ./config/vscode.nix
+    ./config/direnv.nix
 
   #  # Terminal & Shell
     ./config/fastfetch.nix
