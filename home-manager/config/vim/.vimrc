@@ -60,8 +60,16 @@ set shortmess-=S  " enable search count in the ruler (off by default)
 " Split
 set splitright splitbelow
 
-" Spell
-set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
+" Spell (from https://old.reddit.com/r/vim/comments/5hk1cf/enabling_certain_settings_in_vimrc_for_particular/)
+if &readonly
+  " Do not enable spell checking -- might be a diff or something else
+else
+  setlocal spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
+  au BufRead *.* set nospell " File has some sort of name not matched by the next line
+  au BufRead *.txt,*.md,COMMIT_EDITMSG
+    \ setlocal spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
+endif
+
 
 " Fold
 set foldmethod=marker foldlevel=0
@@ -83,6 +91,7 @@ nnoremap <C-w>- <C-w>-:call feedkeys("\<lt>C-w>")<CR>
 inoremap <silent> jk <ESC>
 nnoremap <Esc> :nohlsearch<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
+nnoremap ; :set hlsearch!<CR>
 
 " Auto pairs
 inoremap ( ()<LEFT>
