@@ -20,10 +20,13 @@
     gnome-disk-utility
 
     # misc open source GUI tools
-    gimp kicad libreoffice zotero
+    gimp kicad libreoffice zotero pithos
 
     # Propritery
-    chromium discord slack spotify zoom-us
+    chromium spotify zoom-us
+
+    # Chat/messaging applications
+    discord slack mattermost-desktop
 
     # vpn
     openconnect networkmanager-openconnect
