@@ -28,6 +28,11 @@
     openconnect networkmanager-openconnect
   ];
 
+  # Enable unstable
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;
