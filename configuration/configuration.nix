@@ -73,8 +73,21 @@
     variant = "";
   };
 
+  # Printing-related services
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  services.printing = {
+    enable = true;
+    browsing = true;
+    defaultShared = true;
+  };
+  # Enable auto-discovery of printers
+  services.avahi = {
+    enable = true;
+    publish.enable = true;
+    publish.userServices = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

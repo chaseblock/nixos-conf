@@ -6,6 +6,7 @@
   fonts.packages = with pkgs; [
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
+    nerd-fonts.jetbrains-mono
     cantarell-fonts
     noto-fonts-cjk-sans  # for Korean input
   ];
@@ -32,7 +33,6 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;
