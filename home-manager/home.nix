@@ -45,6 +45,15 @@
     code-cursor
   ];
 
+  # Allow unfree when using nix-shell
+  # Need to do this by copying a file to the right spot
+  home.file = {
+    ".config/nixpkgs" = {
+      source = dots/nixpkgs;
+      recursive = true;
+    };
+  };
+
   programs.man.generateCaches = true;
   programs.home-manager.enable = true;
 
