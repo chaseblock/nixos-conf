@@ -26,6 +26,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.plugins = [ pkgs.networkmanager-openconnect ];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
