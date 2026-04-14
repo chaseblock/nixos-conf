@@ -117,8 +117,9 @@ debug {
     honor-xdg-activation-with-invalid-serial
 }
 
-// better than setting colume width since I can use Mod+F
+// Open some windows full width
 window-rule {
+    match app-id=r#"firefox$"#
     open-maximized true
 }
 
