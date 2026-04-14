@@ -1,5 +1,11 @@
 // Chase's Niri config
 
+// Laptop lid
+switch-events {
+    lid-close { spawn "systemctl" "sleep"; }
+    // lid-open { spawn "notify-send" "The laptop lid is open!"; }
+}
+
 // Input
 input {
     keyboard {

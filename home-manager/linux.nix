@@ -11,7 +11,7 @@
     #./config/zathura.nix
 
     ## Niri
-    #./config/dunst.nix
+    ./config/dunst.nix
     #./config/gammastep.nix
     ./config/niri.nix
     ./config/rofi.nix

@@ -10,6 +10,8 @@
       size = "32x32";
     };
 
+    # TODO: need to get the colors to derive from wal
+
     settings = {
       global = {
         follow = "mouse";
@@ -18,9 +20,9 @@
         separator_color = "frame";
         highlight = "#88c0d0";    # nord8
 
-        font = "ProggyClean Nerd Font 16";
+        font = "Noto 12";
         corner_radius = 10;
-        origin = "top-center";
+        origin = "top-right";
         offset = "(0, 10)";
 
         enable_recursive_icon_lookup = true;

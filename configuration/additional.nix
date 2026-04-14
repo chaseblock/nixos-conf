@@ -7,6 +7,7 @@
     nerd-fonts.proggy-clean-tt
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
+    nerd-fonts.noto
     cantarell-fonts
     noto-fonts-cjk-sans  # for Korean input
   ];
@@ -36,6 +37,16 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+
+  # Sleep settings
+  systemd.sleep.settings.Sleep = {
+    AllowSuspend = "yes";
+    AllowHibernation = "yes";
+    AllowHybridSleep = "yes";
+    AllowSuspendThenHibernate = "yes";
+    HibernateDelaySec = "1h";
+  };
+
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;
