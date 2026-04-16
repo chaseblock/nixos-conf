@@ -2,7 +2,7 @@
 
 // Laptop lid
 switch-events {
-    lid-close { spawn "systemctl" "sleep"; }
+    lid-close { spawn "systemctl" "suspend-then-hibernate"; }
     // lid-open { spawn "notify-send" "The laptop lid is open!"; }
 }
 

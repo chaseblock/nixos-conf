@@ -27,7 +27,7 @@
     chromium spotify zoom-us
 
     # Chat/messaging applications
-    discord slack mattermost-desktop fedistar
+    discord slack mattermost-desktop fedistar element-desktop
 
     # vpn
     openconnect networkmanager-openconnect
