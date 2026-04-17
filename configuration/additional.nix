@@ -50,8 +50,8 @@
   services.logind.settings.Login = {
     KillUserProcesses = false;
     HandleLidSwitch="suspend-then-hibernate";
-    HandleLidSwitchExternalPower="suspend";
-    HandleLidSwitchDocked="suspend";
+    HandleLidSwitchExternalPower="suspend-then-hibernate";
+    HandleLidSwitchDocked="suspend-then-hibernate";
   };
 
 
