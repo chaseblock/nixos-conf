@@ -12,6 +12,10 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
+  boot.extraModprobeConfig = ''
+    # Maybe get suspend-then-hibernate working?
+    options rtc_cmos use_acpi_alarm=1
+  '';
 
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/c62c5d73-9c35-47d0-84b1-a0deeb7afcd3";
