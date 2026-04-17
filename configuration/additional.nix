@@ -47,6 +47,13 @@
     HibernateDelaySec = "1h";
   };
 
+  services.logind.settings.Login = {
+    KillUserProcesses = false;
+    HandleLidSwitch="suspend-then-hibernate";
+    HandleLidSwitchExternalPower="suspend";
+    HandleLidSwitchDocked="suspend";
+  };
+
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;
