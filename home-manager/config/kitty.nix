@@ -7,20 +7,11 @@
     enable = true;
 
     # Using wal instead of a theme. See further below.
-    #themeFile = "Nordfox";
 
-    # font = {
-    #   name = "ComicCodeLigatures Nerd Font";
-    #   size = 12;
-    # };
     font = {
       name = "FantasqueSansM Nerd Font";
-      size = 16;
+      size = 14;
     };
-    # font = {
-    #   name = "ProggyClean Nerd Font";
-    #   size = 20;
-    # };
     settings = {
       bold_font = "auto";
       italic_font = "auto";
