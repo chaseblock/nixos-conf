@@ -13,6 +13,9 @@ set completeopt=menuone,noselect
 set encoding=utf-8
 set nojoinspaces  " prevent automatic space insertion when using J
 
+" Clipboard
+set clipboard+=unnamedplus
+
 " Behavior
 set autoread  " reflect changes made outside of Vim
 set autochdir  " change CWD to the parent dir of the buf

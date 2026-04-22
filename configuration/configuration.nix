@@ -59,6 +59,9 @@
   services.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  # Set default session
+  services.displayManager.defaultSession = "niri";
+
   # Enable niri
   # Actual config is deployed with home-manager
   programs.niri = {
