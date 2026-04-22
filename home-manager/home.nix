@@ -13,13 +13,14 @@
     ./config/bat.nix
     ./config/btop.nix
     ./config/eza.nix
-  #  ./config/fd.nix
+   ./config/fd.nix
   #  ./config/fzf.nix
     ./config/git.nix
   #  ./config/lf.nix
-  #  ./config/ripgrep.nix
+   ./config/ripgrep.nix
   #  ./config/syncthing.nix
     ./config/vim.nix
+    ./config/emacs.nix
   #  ./config/zoxide.nix
     ./config/vscode.nix
     ./config/direnv.nix
