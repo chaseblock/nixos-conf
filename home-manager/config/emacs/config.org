@@ -200,7 +200,8 @@
 *** Fonts
 #+begin_src emacs-lisp
 (setq jl/font-size (if jl/is-wsl 200 120))
-(setq jl/mono-font "FiraCodeNerdFont")
+(setq jl/mono-font "FantasqueSansM Nerd Font")
+(set-frame-font "FantasqueSansM Nerd Font" nil t)
 (defun jl/set-local-font (font-size)
   "Function to be added in a hook, to set the font size for specific modes"
   (face-remap-add-relative 'default `(:height ,font-size))
@@ -387,6 +388,9 @@
         (if (eq evil-state 'insert)
           (send-string-to-terminal "\e[5 q")
           (send-string-to-terminal "\e[2 q"))))))
+
+;; Get redo functionality
+(evil-set-undo-system 'undo-redo)
 #+end_src
 **** Evil Collection
 #+begin_src emacs-lisp

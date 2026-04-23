@@ -8,6 +8,7 @@
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
     nerd-fonts.noto
+    nerd-fonts.fira-code
     cantarell-fonts
     noto-fonts-cjk-sans  # for Korean input
   ];

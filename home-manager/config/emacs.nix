@@ -4,8 +4,6 @@
 { lib, config, inputs, pkgs, username, ... }:
 let cfg = config.homeMods.emacs; in 
 {
-
-  services.emacs.enable = true;
   programs.emacs.enable = true;
 
   home.packages = with pkgs; [
@@ -42,3 +40,4 @@ let cfg = config.homeMods.emacs; in
     "emacs/config.org".source = ./emacs/config.org;
   };
 }
+
