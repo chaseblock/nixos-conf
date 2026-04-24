@@ -42,6 +42,9 @@
 
     initContent = ''
       cat $HOME/.cache/wal/sequences
+
+      # Display a fortune when starting zsh
+      fortune
     '';
   };
 }

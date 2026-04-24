@@ -83,6 +83,7 @@
       - [[#yasnippet-capf][Yasnippet Capf]]
     - [[#sudo-edit][Sudo Edit]]
   - [[#programming-modes][Programming Modes]]
+    - [[#text-editing-mode][Text Editing Mode]]
     - [[#python-mode][Python Mode]]
     - [[#javascript-mode][Javascript Mode]]
     - [[#typescript-mode][TypeScript Mode]]
@@ -378,6 +379,7 @@
           evil-vsplit-window-right t
           evil-split-window-below t
           evil-shift-width 4)
+    (setq evil-undo-system 'undo-tree)
     (evil-mode)
   :config
     ;; These hooks may not work if TERM isnt xterm/xterm256
@@ -388,9 +390,6 @@
         (if (eq evil-state 'insert)
           (send-string-to-terminal "\e[5 q")
           (send-string-to-terminal "\e[2 q"))))))
-
-;; Get redo functionality
-(evil-set-undo-system 'undo-redo)
 #+end_src
 **** Evil Collection
 #+begin_src emacs-lisp
@@ -1286,16 +1285,7 @@ it can be passed in POS."
 (defun jl/random-quote ()
   "Generate a random quote for dashboard"
   (interactive)
-  (let ((ops '(
-    "Hello World!"
-    "Whopper Whopper Whopper Whopper Junior Double Triple Whopper"
-    "sudo systemctl stop justinlime"
-    "sudo systemctl start justinlime"
-    "sudo systemctl restart justinlime"
-    "White Monster"
-    "Stink Boys Inc. ©"
-    "/home/justinlime/.config"
-    "No emacs???"))) (nth (random (length ops)) ops)))
+  (shell-command-to-string "fortune"))
 
 (use-package dashboard
   :hook (dashboard-mode . (lambda () (jl/set-local-font (+ jl/font-size 10))))
@@ -1418,6 +1408,11 @@ it can be passed in POS."
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook (lambda ()
   (jl/set-local-font (- jl/font-size 10))))
+#+end_src
+*** Text Editing Mode
+#+begin_src emacs-lisp
+;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
+(add-hook 'text-mode-hook (lambda () (set-fill-column 120)))
 #+end_src
 *** Python Mode
 #+begin_src emacs-lisp

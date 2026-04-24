@@ -45,6 +45,9 @@
 
     # coding
     code-cursor
+
+    # misc
+    fortune
   ];
 
   # Allow unfree when using nix-shell
