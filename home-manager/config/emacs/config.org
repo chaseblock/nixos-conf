@@ -1,6 +1,6 @@
-#+TITLE: Justinlime's Emacs
-#+AUTHOR: justinlime
-#+DESCRIPTION: Justinlime's Emacs
+#+TITLE: Chase's Emacs
+#+AUTHOR: chaseblock
+#+DESCRIPTION: Chase's Emacs, forked from Justinlime's Emacs
 #+PROPERTY: header-args :tangle yes
 #+STARTUP: showeverything, inlineimages
 #+OPTIONS: f:nil
@@ -131,8 +131,8 @@
 
 ;; Check if running on WSL
 (if (string-match-p "Microsoft" (getenv "PATH"))
-  (setq jl/is-wsl t)
-  (setq jl/is-wsl nil))
+  (setq cb/is-wsl t)
+  (setq cb/is-wsl nil))
 #+end_src 
 *** Package Manger
 #+begin_src emacs-lisp 
@@ -200,10 +200,10 @@
 #+end_src
 *** Fonts
 #+begin_src emacs-lisp
-(setq jl/font-size (if jl/is-wsl 200 120))
-(setq jl/mono-font "FantasqueSansM Nerd Font")
+(setq cb/font-size (if cb/is-wsl 200 120))
+(setq cb/mono-font "FantasqueSansM Nerd Font")
 (set-frame-font "FantasqueSansM Nerd Font" nil t)
-(defun jl/set-local-font (font-size)
+(defun cb/set-local-font (font-size)
   "Function to be added in a hook, to set the font size for specific modes"
   (face-remap-add-relative 'default `(:height ,font-size))
   (face-remap-add-relative 'variable-pitch `(:height ,font-size))
@@ -213,64 +213,64 @@
   (face-remap-add-relative 'bold-italic `(:height ,font-size)))
 (let ((variable "Roboto"))
   (set-face-attribute 'default nil
-    :font jl/mono-font
-    :height jl/font-size
+    :font cb/mono-font
+    :height cb/font-size
     :weight 'medium)
   (set-face-attribute 'variable-pitch nil
     :font variable
-    :height jl/font-size
+    :height cb/font-size
     :weight 'medium)
   (set-face-attribute 'fixed-pitch nil
-    :font jl/mono-font
-    :height jl/font-size 
+    :font cb/mono-font
+    :height cb/font-size 
     :weight 'medium)
   (set-face-attribute 'italic nil 
-    :font jl/mono-font
+    :font cb/mono-font
     :slant 'italic
-    :height jl/font-size) 
+    :height cb/font-size) 
   (set-face-attribute 'bold nil 
-    :font jl/mono-font
+    :font cb/mono-font
     :weight 'ultra-bold
-    :height jl/font-size) 
+    :height cb/font-size) 
   (set-face-attribute 'bold-italic nil 
-    :font jl/mono-font
+    :font cb/mono-font
     :weight 'ultra-bold
     :slant 'italic
-    :height jl/font-size))
+    :height cb/font-size))
 (setq-default line-spacing 0.10)
 (set-language-environment "UTF-8")
 #+end_src
 *** Colorscheme
 #+begin_src emacs-lisp
-(setq jl/bg-0 "#11111B"
-      jl/bg-1 "#181825"
-      jl/bg-2 "#1e1e2e"
-      jl/acc-0 "#CBA6F7"
-      jl/acc-1 "#89B4FA"
-      jl/acc-2 "#cdd6f4")
+(setq cb/bg-0 "#11111B"
+      cb/bg-1 "#181825"
+      cb/bg-2 "#1e1e2e"
+      cb/acc-0 "#CBA6F7"
+      cb/acc-1 "#89B4FA"
+      cb/acc-2 "#cdd6f4")
 ;; I mostly use themes just for the text highlighting, 
 ;; pretty much everything else here
 (add-hook 'minibuffer-setup-hook (lambda ()
   (face-remap-add-relative 'default
-                `(:background ,jl/bg-0))
+                `(:background ,cb/bg-0))
   (face-remap-add-relative 'fringe
-                `(:background ,jl/bg-0 :foreground ,jl/bg-0))))
+                `(:background ,cb/bg-0 :foreground ,cb/bg-0))))
 
 (add-hook 'post-command-hook (lambda ()
-  (set-cursor-color (if (derived-mode-p 'dired-mode) jl/acc-1 jl/acc-0))))
+  (set-cursor-color (if (derived-mode-p 'dired-mode) cb/acc-1 cb/acc-0))))
 
-(set-face-attribute 'line-number-current-line nil :foreground jl/acc-0)
-(set-face-attribute 'org-block nil :background jl/bg-0) ; src blocks
-(set-face-attribute 'org-block-begin-line nil :background jl/bg-0) ; #+begin_src
-(set-face-attribute 'org-block-end-line nil :background jl/bg-0) ; #+end_src
-(set-face-attribute 'mode-line nil :background jl/bg-0) ; mode line background
-(set-face-attribute 'mode-line-inactive nil :background jl/bg-0) ; mode line background on inactive buffers
-(set-face-attribute 'default nil :background jl/bg-1) ; emacs background
-(set-face-attribute 'fringe nil :background jl/bg-1) ; fringes/borders on the sides
-(set-face-attribute 'org-hide nil :foreground jl/bg-1) ; asterisks preceding org headings
-(set-face-attribute 'line-number nil :background jl/bg-1) ; line number background
-(set-face-attribute 'line-number-current-line nil :background jl/bg-1) ; current line number
-(set-face-attribute 'vertical-border nil :background jl/bg-0 :foreground jl/bg-0)
+(set-face-attribute 'line-number-current-line nil :foreground cb/acc-0)
+(set-face-attribute 'org-block nil :background cb/bg-0) ; src blocks
+(set-face-attribute 'org-block-begin-line nil :background cb/bg-0) ; #+begin_src
+(set-face-attribute 'org-block-end-line nil :background cb/bg-0) ; #+end_src
+(set-face-attribute 'mode-line nil :background cb/bg-0) ; mode line background
+(set-face-attribute 'mode-line-inactive nil :background cb/bg-0) ; mode line background on inactive buffers
+(set-face-attribute 'default nil :background cb/bg-1) ; emacs background
+(set-face-attribute 'fringe nil :background cb/bg-1) ; fringes/borders on the sides
+(set-face-attribute 'org-hide nil :foreground cb/bg-1) ; asterisks preceding org headings
+(set-face-attribute 'line-number nil :background cb/bg-1) ; line number background
+(set-face-attribute 'line-number-current-line nil :background cb/bg-1) ; current line number
+(set-face-attribute 'vertical-border nil :background cb/bg-0 :foreground cb/bg-0)
 #+end_src
 *** Misc
 #+begin_src emacs-lisp
@@ -435,8 +435,8 @@
               "<tab>" (lambda () (interactive) (eat--send-input nil "\t")))
   :hook (eat-mode . (lambda ()
     (display-line-numbers-mode -1)
-    (face-remap-set-base 'default :background jl/bg-0)
-    (face-remap-set-base 'fringe :background jl/bg-0)))
+    (face-remap-set-base 'default :background cb/bg-0)
+    (face-remap-set-base 'fringe :background cb/bg-0)))
   :config
     (setq eat-term-name "xterm-256color"))
 #+end_src
@@ -456,28 +456,28 @@
 #+end_src
 ** Tramp
 #+begin_src emacs-lisp
-(defun jl/ssh (host formatter)
+(defun cb/ssh (host formatter)
   (persp-switch host)
   (let ((format-host (format formatter host host)))
     (find-file format-host))
     (toggle-term-find "eat" "eat")
     (mapc (lambda (char) (execute-kbd-macro (char-to-string char))) (format "ssh %s" host))
     (execute-kbd-macro (kbd "RET")))
-(defun jl/ssh-root (host)
+(defun cb/ssh-root (host)
   "SSH with sudo privledges using a host from .ssh/config"
   (interactive "sEnter host: ")
-  (jl/ssh host "/ssh:%s|sudo:%s:/"))
-(defun jl/ssh-user (host)
+  (cb/ssh host "/ssh:%s|sudo:%s:/"))
+(defun cb/ssh-user (host)
   "SSH using a host from .ssh/config"
   (interactive "sEnter host: ")
-  (jl/ssh host "/ssh:%s:~"))
-(defun jl/samba (host)
+  (cb/ssh host "/ssh:%s:~"))
+(defun cb/samba (host)
   (interactive "sEnter user@ip: ")
   (find-file (format "/smb:%s:" host)))
 (leader
-  "s u" '(jl/ssh-user :wk "SSH as user, using the ssh config file")
-  "s r" '(jl/ssh-root :wk "SSH as user with root privledges, using the ssh config file")
-  "s m" '(jl/samba :wk "Access an SMB share"))
+  "s u" '(cb/ssh-user :wk "SSH as user, using the ssh config file")
+  "s r" '(cb/ssh-root :wk "SSH as user with root privledges, using the ssh config file")
+  "s m" '(cb/samba :wk "Access an SMB share"))
 
 ;; Prevent tramp from trying to save to auth-info
 ;; It stores passwords in plain text (WTF...)
@@ -516,14 +516,14 @@
 #+end_src
 ** Dired
 #+begin_src emacs-lisp
-(defun jl/dired-open ()
+(defun cb/dired-open ()
   "Open a file, or play marked files with MPV depending on media extension"
   (interactive)
   (let ((file (dired-get-file-for-visit)))
     (if (member (file-name-extension file) '("mp4" "mkv" "mov" "flac" "webm" "mp3" "ogg" "opus" "aac"))
       (apply #'start-process "" nil "mpv" (dired-get-marked-files))
       (dired-find-file))))
-(defun jl/clear-marks-advice (&rest r)
+(defun cb/clear-marks-advice (&rest r)
   "Helper used as advice, for clearing marks and reverting the buffer"
   (dired-unmark-all-marks)
   (revert-buffer))
@@ -536,25 +536,25 @@
 (add-hook 'dired-mode-hook (lambda () 
   (hl-line-mode 1)
   (face-remap-add-relative 'hl-line
-                `(:foreground ,jl/bg-0 :background ,jl/acc-1 :extend t))
+                `(:foreground ,cb/bg-0 :background ,cb/acc-1 :extend t))
   (setq-local cursor-type nil
               evil-force-cursor t
               auto-revert-verbose nil)
-  (jl/set-local-font (+ jl/font-size 10))
+  (cb/set-local-font (+ cb/font-size 10))
   (dired-omit-mode)
   (auto-revert-mode)
   (dired-hide-details-mode)
   (display-line-numbers-mode -1)))
 (put 'dired-find-alternate-file 'disabled nil) ;Allow "dired-find-alternate-file to work without a prompt"
 ;; Clear all marked files upon action
-(advice-add #'dired-do-delete :after #'jl/clear-marks-advice)
-(advice-add #'dired-do-rename :after #'jl/clear-marks-advice)
-(advice-add #'dired-do-flagged-delete :after #'jl/clear-marks-advice)
+(advice-add #'dired-do-delete :after #'cb/clear-marks-advice)
+(advice-add #'dired-do-rename :after #'cb/clear-marks-advice)
+(advice-add #'dired-do-flagged-delete :after #'cb/clear-marks-advice)
 (general-define-key
   :states 'normal
   :keymaps 'dired-mode-map
     "s" #'dired-hide-details-mode
-    "l" #'jl/dired-open
+    "l" #'cb/dired-open
     "d" nil
     "h" (lambda () (interactive) (find-file ".."))
     "A" #'dired-create-directory
@@ -578,7 +578,7 @@
 (use-package diredfl 
   :hook (dired-mode . diredfl-mode)
   :config
-    (set-face-attribute 'diredfl-dir-heading nil :height (+ jl/font-size 20) :foreground jl/acc-0))
+    (set-face-attribute 'diredfl-dir-heading nil :height (+ cb/font-size 20) :foreground cb/acc-0))
 #+end_src
 *** Dired Filter
 #+begin_src emacs-lisp
@@ -625,8 +625,8 @@
 (use-package dired-sidetree
   :vc (dired-sidetree :url "https://github.com/justinlime/dired-sidetree.el")
   :config
-    ;; (face-remap-set-base 'default :background jl/bg-0)
-    ;; (face-remap-set-base 'fringe :background jl/bg-0)
+    ;; (face-remap-set-base 'default :background cb/bg-0)
+    ;; (face-remap-set-base 'fringe :background cb/bg-0)
     (setq dired-sidetree-size 30
           dired-sidetree-side 'left)
   :general 
@@ -788,10 +788,10 @@
     :states 'insert
     :keymaps 'term-raw-map
       "TAB" (lambda () (interactive) (term-send-raw-string "\t")))
-  (face-remap-set-base 'default :background jl/bg-0)
-  (face-remap-set-base 'fringe :background jl/bg-0)
+  (face-remap-set-base 'default :background cb/bg-0)
+  (face-remap-set-base 'fringe :background cb/bg-0)
   (defface term-background
-  `((t (:inherit default :background ,jl/bg-0)))
+  `((t (:inherit default :background ,cb/bg-0)))
   "Some bullshit to fix term-mode text-background"
   :group 'basic-faces)
     (setf (elt ansi-term-color-vector 0) 'term-background)
@@ -817,19 +817,19 @@
   "RET" #'org-open-at-point
   "<tab>" #'org-cycle
   "TAB" #'org-cycle
-  "P" #'jl/org-grim-slurp)
+  "P" #'cb/org-grim-slurp)
 (leader
   "o" '(:ignore t :wk "Org")
   "o i" '(org-id-get-create :wk "Insert an ID"))
 
 (add-hook 'org-mode-hook (lambda ()
-  (jl/set-local-font (+ jl/font-size 10))
+  (cb/set-local-font (+ cb/font-size 10))
   (org-indent-mode)
   (display-line-numbers-mode -1)
   (setq-local electric-indent-mode nil)))
 
 ;; Inline images
-(defun jl/org-resize-inline ()
+(defun cb/org-resize-inline ()
   (when (derived-mode-p 'org-mode)
     (save-excursion
       (save-restriction
@@ -840,10 +840,10 @@
           (setq-local scroll-conservatively 0)
           (org-display-inline-images t t))))))
 
-(add-hook 'org-mode-hook #'jl/org-resize-inline)
-(add-hook 'after-save-hook #'jl/org-resize-inline)
+(add-hook 'org-mode-hook #'cb/org-resize-inline)
+(add-hook 'after-save-hook #'cb/org-resize-inline)
 ;; Modified from org-rog to work with grim and slurp
-(defun jl/org-grim-slurp ()
+(defun cb/org-grim-slurp ()
   "Screenshots an image to an org-file."
   (interactive)
   (if buffer-file-name
@@ -908,7 +908,7 @@
 #+end_src
 *** Org Last Modified
 #+begin_src emacs-lisp 
-(defun jl/org-find-time-file-property (property &optional anywhere)
+(defun cb/org-find-time-file-property (property &optional anywhere)
   "Return the position of the time file PROPERTY if it exists.
 
 When ANYWHERE is non-nil, search beyond the preamble."
@@ -922,12 +922,12 @@ When ANYWHERE is non-nil, search beyond the preamble."
                                t)
         (point)))))
 
-(defun jl/org-has-time-file-property-p (property &optional anywhere)
+(defun cb/org-has-time-file-property-p (property &optional anywhere)
   "Return the position of time file PROPERTY if it is defined.
 
 As a special case, return -1 if the time file PROPERTY exists but
 is not defined."
-  (when-let ((pos (jl/org-find-time-file-property property anywhere)))
+  (when-let ((pos (cb/org-find-time-file-property property anywhere)))
     (save-excursion
       (goto-char pos)
       (if (and (looking-at-p " ")
@@ -936,7 +936,7 @@ is not defined."
           pos
         -1))))
 
-(defun jl/org-set-time-file-property (property &optional anywhere pos)
+(defun cb/org-set-time-file-property (property &optional anywhere pos)
   "Set the time file PROPERTY in the preamble.
 
 When ANYWHERE is non-nil, search beyond the preamble.
@@ -944,7 +944,7 @@ When ANYWHERE is non-nil, search beyond the preamble.
 If the position of the file PROPERTY has already been computed,
 it can be passed in POS."
   (when-let ((pos (or pos
-                      (jl/org-find-time-file-property property))))
+                      (cb/org-find-time-file-property property))))
     (save-excursion
       (goto-char pos)
       (if (looking-at-p " ")
@@ -954,20 +954,20 @@ it can be passed in POS."
       (let* ((now (format-time-string "[%Y-%m-%d %a %H:%M]")))
         (insert now)))))
 
-(defun jl/org-set-last-modified ()
+(defun cb/org-set-last-modified ()
   "Update the LAST_MODIFIED file property in the preamble."
   (when (derived-mode-p 'org-mode)
-    (jl/org-set-time-file-property "modified")))
-(add-hook 'before-save-hook #'jl/org-set-last-modified)
+    (cb/org-set-time-file-property "modified")))
+(add-hook 'before-save-hook #'cb/org-set-last-modified)
 #+end_src
 
 *** Org Roam
 #+begin_src emacs-lisp
 (let ((dir "~/sync/notes/roam"))
   (if (file-directory-p dir)
-      (setq jl/org-roam-dir dir)
-      (setq jl/org-roam-dir (expand-file-name "org/roam" user-emacs-directory))
-      (make-directory jl/org-roam-dir t)))
+      (setq cb/org-roam-dir dir)
+      (setq cb/org-roam-dir (expand-file-name "org/roam" user-emacs-directory))
+      (make-directory cb/org-roam-dir t)))
 (use-package org-roam
   :general
     (leader
@@ -984,23 +984,23 @@ it can be passed in POS."
             (file-name-directory
              (file-relative-name (org-roam-node-file node) org-roam-directory))))
         (error "")))
-    (setq jl/roam-templ "#+created: %U\n#+modified:\n#+export_select_tags: noexport\n#+options: f:nil toc:nil\n#+title: ${title}\n#+filetags:"
+    (setq cb/roam-templ "#+created: %U\n#+modified:\n#+export_select_tags: noexport\n#+options: f:nil toc:nil\n#+title: ${title}\n#+filetags:"
           org-roam-node-display-template (concat 
                                            (propertize "${type:10}" 'face 'org-level-2) 
                                            "${title:100}" 
                                            (propertize "${tags:*}" 'face 'org-level-1))
-          org-roam-directory (file-truename jl/org-roam-dir)
+          org-roam-directory (file-truename cb/org-roam-dir)
           org-roam-capture-templates  
             `(("w" "work" plain "%?" :target
-                (file+head "work/%<%Y%m%d%H%M%S>-${slug}.org" ,jl/roam-templ)
+                (file+head "work/%<%Y%m%d%H%M%S>-${slug}.org" ,cb/roam-templ)
                   :immediate-finish t
                   :unnarrowed t)
               ("g" "general" plain "%?" :target
-                (file+head "general/%<%Y%m%d%H%M%S>-${slug}.org"  ,jl/roam-templ)
+                (file+head "general/%<%Y%m%d%H%M%S>-${slug}.org"  ,cb/roam-templ)
                   :immediate-finish t
                   :unnarrowed t)
               ("s" "scratch" plain "%?" :target
-                (file+head "scratch/%<%Y%m%d%H%M%S>-${slug}.org" ,jl/roam-templ)
+                (file+head "scratch/%<%Y%m%d%H%M%S>-${slug}.org" ,cb/roam-templ)
                   :immediate-finish t
                   :unnarrowed t)))
     (org-roam-db-autosync-mode 1)
@@ -1022,7 +1022,7 @@ it can be passed in POS."
 (use-package olivetti
   :hook ((org-mode) . olivetti-mode)
   :config
-    (set-face-attribute 'olivetti-fringe nil :background jl/bg-1) ; fringes/borders on the sides
+    (set-face-attribute 'olivetti-fringe nil :background cb/bg-1) ; fringes/borders on the sides
     (setq-default olivetti-body-width 0.85)
     (remove-hook 'olivetti-mode-on-hook 'visual-line-mode))
 #+end_src
@@ -1076,7 +1076,7 @@ it can be passed in POS."
 #+end_src
 *** Consult
 #+begin_src emacs-lisp
-(defun jl/find-in-dir (&optional directory)
+(defun cb/find-in-dir (&optional directory)
   "Find a file in a specific directory
    
   Uses Affe if working with local files, and Consult for remote files"
@@ -1085,7 +1085,7 @@ it can be passed in POS."
     (if (string-prefix-p "/ssh:" default-directory)
       (consult-find dir)
       (affe-find dir))))
-(defun jl/find-in-current ()
+(defun cb/find-in-current ()
   "Find a file in the project's directory
 
   Sets the root of the search to the folders' .git parent path if present
@@ -1101,7 +1101,7 @@ it can be passed in POS."
         (affe-find dir)
         (affe-find)))))
 
-(defun jl/grep-in-dir (&optional directory)
+(defun cb/grep-in-dir (&optional directory)
   "Find a word in a specified project/folder
 
   Uses Ripgrep if working with local files, and Grep for remote files"
@@ -1111,7 +1111,7 @@ it can be passed in POS."
       (consult-grep dir)
       (consult-ripgrep dir))))
 
-(defun jl/grep-in-current ()
+(defun cb/grep-in-current ()
   "Find a word in the current project/folder
 
   Sets the root of the search to the folders' .git parent path if present
@@ -1128,12 +1128,12 @@ it can be passed in POS."
         (consult-ripgrep)))))
 ;; TODO: this is a retarded way to do this, find 
 ;; a way to make your own buffer source instead
-(defun jl/switch-to-buffer ()
+(defun cb/switch-to-buffer ()
   "Use consult with perspective buffers, and also filter out dired buffers"
   (interactive)
-  (defvar jl/filter-orig-func (plist-get persp-consult-source :items))
+  (defvar cb/filter-orig-func (plist-get persp-consult-source :items))
   (plist-put persp-consult-source :items (lambda () 
-    (let ((candidates (funcall jl/filter-orig-func)))
+    (let ((candidates (funcall cb/filter-orig-func)))
       (delq nil ; remove nils from the resulting list
         (mapcar (lambda (buf)
                     (with-current-buffer buf
@@ -1142,12 +1142,12 @@ it can be passed in POS."
    (setq consult-buffer-sources '(persp-consult-source))
    (consult-buffer))
 
-(defun jl/switch-to-dired ()
+(defun cb/switch-to-dired ()
   "Use consult with perspective buffers, and only show"
   (interactive)
-  (defvar jl/filter-orig-func (plist-get persp-consult-source :items))
+  (defvar cb/filter-orig-func (plist-get persp-consult-source :items))
   (plist-put persp-consult-source :items (lambda () 
-    (let ((candidates (funcall jl/filter-orig-func)))
+    (let ((candidates (funcall cb/filter-orig-func)))
       (delq nil ; for some reason the returned list includes nil instead of just excluding the dired buffers
         (mapcar (lambda (buf)
                     (with-current-buffer buf
@@ -1159,15 +1159,15 @@ it can be passed in POS."
   :demand t ; persp-consult-source needs to be loaded
   :general
     (leader
-      "b f" '(jl/switch-to-buffer :wk "Find a buffer, or create a new one")
-      "b d" '(jl/switch-to-dired :wk "Find a dired buffer, or create a new one")
+      "b f" '(cb/switch-to-buffer :wk "Find a buffer, or create a new one")
+      "b d" '(cb/switch-to-dired :wk "Find a dired buffer, or create a new one")
       "f b" '(consult-bookmark :wk "Find a bookmark")
-      "f r" '(jl/find-in-current :wk "Find file in current dir/project")
-      "f R" '(jl/find-in-dir :wk "Find file in specified dir/project")
-      "f h" '((lambda () (interactive) (jl/find-in-dir "~")) :wk "Find file in $HOME")
-      "f H" '((lambda () (interactive) (jl/find-in-dir "/")) :wk "Find file in /")
-      "f w" '(jl/grep-in-current :wk "Find word in current dir/project")
-      "f W" '(jl/grep-in-dir :wk "Find word in specified dir/project"))
+      "f r" '(cb/find-in-current :wk "Find file in current dir/project")
+      "f R" '(cb/find-in-dir :wk "Find file in specified dir/project")
+      "f h" '((lambda () (interactive) (cb/find-in-dir "~")) :wk "Find file in $HOME")
+      "f H" '((lambda () (interactive) (cb/find-in-dir "/")) :wk "Find file in /")
+      "f w" '(cb/grep-in-current :wk "Find word in current dir/project")
+      "f W" '(cb/grep-in-dir :wk "Find word in specified dir/project"))
   :config
     ;; Exclude dired buffers from the buffer list and use consult with perspective
     (setq consult-find-args "find . -not ( -path '*/.git*' -prune ) -not ( -path '*.git*' -prune )"))
@@ -1206,10 +1206,10 @@ it can be passed in POS."
     (evil-make-overriding-map corfu-map)
 
     ;; Rice it up 
-    (set-face-attribute 'corfu-default nil :background jl/bg-0)
-    (set-face-attribute 'corfu-current nil :box jl/acc-0)
-    (set-face-attribute 'corfu-border nil :background jl/acc-1)
-    (set-face-attribute 'corfu-bar nil :background jl/acc-0)
+    (set-face-attribute 'corfu-default nil :background cb/bg-0)
+    (set-face-attribute 'corfu-current nil :box cb/acc-0)
+    (set-face-attribute 'corfu-border nil :background cb/acc-1)
+    (set-face-attribute 'corfu-bar nil :background cb/acc-0)
 
     ;; Quit completion after entering normal mode
     (add-hook 'evil-insert-state-exit-hook #'corfu-quit)
@@ -1282,13 +1282,13 @@ it can be passed in POS."
 ** Misc
 *** Dashboard
 #+begin_src emacs-lisp
-(defun jl/random-quote ()
+(defun cb/random-quote ()
   "Generate a random quote for dashboard"
   (interactive)
   (shell-command-to-string "fortune"))
 
 (use-package dashboard
-  :hook (dashboard-mode . (lambda () (jl/set-local-font (+ jl/font-size 10))))
+  :hook (dashboard-mode . (lambda () (cb/set-local-font (+ cb/font-size 10))))
   :config
     (setq default-directory "~/"
           dashboard-icon-type 'nerd-icons
@@ -1297,8 +1297,8 @@ it can be passed in POS."
           dashboard-center-content t
           dashboard-display-icons-p t
           initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")) 
-          dashboard-banner-logo-title (jl/random-quote)
-          dashboard-footer-messages `(,(jl/random-quote)))
+          dashboard-banner-logo-title (cb/random-quote)
+          dashboard-footer-messages `(,(cb/random-quote)))
     (dashboard-setup-startup-hook))
 
 #+end_src
@@ -1366,7 +1366,7 @@ it can be passed in POS."
 (use-package sideline
   :hook (prog-mode . sideline-mode)
   :config
-    (set-face-attribute 'sideline-default nil :foreground jl/acc-0)
+    (set-face-attribute 'sideline-default nil :foreground cb/acc-0)
     (setq sideline-backends-left-skip-current-line t   ; don't display on current line (left)
           sideline-backends-right-skip-current-line t  ; don't display on current line (right)
           sideline-order-left 'down                    ; or 'up
@@ -1407,7 +1407,7 @@ it can be passed in POS."
 ** Programming Modes
 #+begin_src emacs-lisp
 (add-hook 'prog-mode-hook (lambda ()
-  (jl/set-local-font (- jl/font-size 10))))
+  (cb/set-local-font (- cb/font-size 10))))
 #+end_src
 *** Text Editing Mode
 #+begin_src emacs-lisp
@@ -1503,7 +1503,7 @@ it can be passed in POS."
 #+begin_src emacs-lisp
 (use-package doom-modeline
   :config
-    (set-face-attribute 'doom-modeline nil :background jl/bg-0) ; doom mode line background
+    (set-face-attribute 'doom-modeline nil :background cb/bg-0) ; doom mode line background
     (doom-modeline-mode 1)
     (display-battery-mode 1)
     (display-time-mode))
@@ -1512,7 +1512,7 @@ it can be passed in POS."
 #+begin_src emacs-lisp
 (use-package nerd-icons
   :config
-    (setq nerd-icons-font-family jl/mono-font))
+    (setq nerd-icons-font-family cb/mono-font))
 #+end_src
 **** Nerd Icons Dired
 #+begin_src emacs-lisp
@@ -1577,7 +1577,7 @@ it can be passed in POS."
 (use-package pulsar
   :vc (pulsar :url "https://github.com/protesilaos/pulsar")
   :config 
-    (set-face-attribute 'pulsar-generic nil :background jl/acc-0)
+    (set-face-attribute 'pulsar-generic nil :background cb/acc-0)
     (pulsar-global-mode 1)
     (setq pulsar-pulse-functions
           '(evil-scroll-up
