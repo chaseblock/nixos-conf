@@ -40,10 +40,9 @@
     ffmpeg imagemagick
     pywal
 
-    # python
+    # coding tools
     python3
-
-    # coding
+    sbt
     code-cursor
 
     # misc

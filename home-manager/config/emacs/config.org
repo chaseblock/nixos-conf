@@ -89,6 +89,7 @@
     - [[#typescript-mode][TypeScript Mode]]
     - [[#web-mode][Web Mode]]
     - [[#go-mode][Go Mode]]
+    - [[#scalasbt][Scala/SBT]]
     - [[#nix-mode][Nix Mode]]
     - [[#lua-mode][Lua Mode]]
     - [[#elixir-mode][Elixir Mode]]
@@ -1455,6 +1456,21 @@ it can be passed in POS."
   (setq tab-width 4
         go-ts-mode-indent-offset 4
         indent-tabs-mode nil)))
+#+end_src
+*** Scala/SBT
+#+begin_src emacs-lisp
+(use-package scala-mode
+  :interpreter
+    ("scala" . scala-mode))
+
+(use-package sbt-mode
+  :commands sbt-start sbt-command
+  :config
+  ;; WORKAROUND: allows using SPACE when in the minibuffer
+  (substitute-key-definition
+   'minibuffer-complete-word
+   'self-insert-command
+   minibuffer-local-completion-map))
 #+end_src
 *** Nix Mode
 #+begin_src emacs-lisp
