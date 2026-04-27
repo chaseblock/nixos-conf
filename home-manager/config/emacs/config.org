@@ -1413,7 +1413,7 @@ it can be passed in POS."
 *** Text Editing Mode
 #+begin_src emacs-lisp
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook (lambda () (set-fill-column 120)))
+(add-hook 'text-mode-hook (lambda () (set-fill-column 80)))
 #+end_src
 *** Python Mode
 #+begin_src emacs-lisp
