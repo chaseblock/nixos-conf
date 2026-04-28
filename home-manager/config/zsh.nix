@@ -38,6 +38,10 @@
       v = "nvim";
 
       keychain_load = "eval $(keychain --eval id_ed25519 id_rsa)";
+
+      ctower-startvnc = "ssh -t ctower -L 9901:localhost:7899 \"systemctl start vncserver@:1999.service && echo Press enter to quit && read\"";
+      ctower-stopvnc = "ssh -t ctower systemctl stop vncserver@:1999.service";
+      ctower-viewvnc = "vncviewer localhost:9901";
     };
 
     initContent = ''

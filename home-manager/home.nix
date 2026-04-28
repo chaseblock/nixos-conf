@@ -35,6 +35,7 @@
     # tools
     wget
     kitty
+    tigervnc
 
     # media
     ffmpeg imagemagick

@@ -78,6 +78,10 @@
     keybindings = {
       "ctrl+a>ctrl+a" = "send_text all \\x01";
 
+      # Disable ligatures because sometimes they're annoying
+      "alt+1" = "disable_ligatures_in active always"; # No ligatures
+      "alt+2" = "disable_ligatures_in active cursor"; # Default
+
       # Clipboard
       "ctrl+shift+c" = "copy_to_clipboard";
       "cmd+c" = "copy_or_noop";
