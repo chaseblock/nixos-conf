@@ -1499,7 +1499,12 @@ it can be passed in POS."
 #+end_src
 *** Markdown Mode
 #+begin_src emacs-lisp
-(use-package markdown-mode :mode "\\.md\\'")
+(use-package markdown-mode
+  :mode "\\.md\\'"
+  :init
+    (setq markdown-command "multimarkdown"
+          ;; markdown-hide-markup t
+          markdown-header-scaling t))
 #+end_src
 ** Style
 *** Themes

@@ -45,6 +45,7 @@
     python3
     sbt
     code-cursor
+    multimarkdown
 
     # misc
     fortune
