@@ -24,6 +24,7 @@
   #  ./config/zoxide.nix
     ./config/vscode.nix
     ./config/direnv.nix
+    ./config/backrest.nix
 
   #  # Terminal & Shell
     ./config/fastfetch.nix
