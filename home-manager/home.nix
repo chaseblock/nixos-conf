@@ -37,6 +37,7 @@
     wget
     kitty
     tigervnc
+    simple-scan hplip
 
     # media
     ffmpeg imagemagick

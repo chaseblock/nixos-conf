@@ -70,6 +70,10 @@
   };
   programs.dconf.enable = true;
 
+  # Default editor
+  environment.variables.EDITOR = "emacs";
+
+
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

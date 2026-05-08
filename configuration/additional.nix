@@ -23,6 +23,7 @@
 
     # misc open source GUI tools
     gimp kicad libreoffice zotero pithos openscad
+    emacs
 
     # Propritery
     chromium spotify zoom-us
