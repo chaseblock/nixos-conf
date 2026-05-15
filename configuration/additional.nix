@@ -13,49 +13,17 @@
     noto-fonts-cjk-sans  # for Korean input
   ];
 
-  programs.thunderbird.enable = true;
-
   environment.systemPackages = with pkgs; [
     # various necessary packages
     curl wget gcc gdb git killall
     gnumake zip unzip file jq
     gnome-disk-utility lsof
-
-    # misc open source GUI tools
-    gimp kicad libreoffice zotero pithos openscad
-    emacs
-
-    # Propritery
-    chromium spotify zoom-us
-
-    # Chat/messaging applications
-    discord slack mattermost-desktop fedistar element-desktop
-
-    # vpn
-    openconnect networkmanager-openconnect
   ];
 
   # Enable unstable
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-
-  # Sleep settings
-  systemd.sleep.settings.Sleep = {
-    AllowSuspend = "yes";
-    AllowHibernation = "yes";
-    AllowHybridSleep = "yes";
-    AllowSuspendThenHibernate = "yes";
-    HibernateDelaySec = "1h";
-  };
-
-  services.logind.settings.Login = {
-    KillUserProcesses = false;
-    HandleLidSwitch="suspend-then-hibernate";
-    HandleLidSwitchExternalPower="suspend-then-hibernate";
-    HandleLidSwitchDocked="suspend-then-hibernate";
-  };
-
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;

@@ -6,8 +6,9 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./additional.nix
+      ./additional_laptop.nix
     ];
 
   # Bootloader.
@@ -73,7 +74,6 @@
   # Default editor
   environment.variables.EDITOR = "emacs";
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
@@ -123,10 +123,6 @@
     description = "chase";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
   };
 
   # Install firefox.
