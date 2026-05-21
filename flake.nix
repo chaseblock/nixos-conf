@@ -71,6 +71,7 @@
     };
 
     # An Intel NUC, used as a homelab frontend
+    # (not actually currently in use)
     nixosConfigurations.nym = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [

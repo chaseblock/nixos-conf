@@ -8,7 +8,6 @@
   imports =
     [
       ./additional.nix
-      ./additional_laptop.nix
     ];
 
   # Bootloader.
