@@ -18,6 +18,7 @@
     curl wget gcc gdb git killall
     gnumake zip unzip file jq
     gnome-disk-utility lsof
+    rustdesk
   ];
 
   # Enable unstable
