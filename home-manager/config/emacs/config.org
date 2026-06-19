@@ -84,6 +84,7 @@
     - [[#sudo-edit][Sudo Edit]]
   - [[#programming-modes][Programming Modes]]
     - [[#text-editing-mode][Text Editing Mode]]
+    - [[#beancount-mode][Beancount Mode]]
     - [[#python-mode][Python Mode]]
     - [[#javascript-mode][Javascript Mode]]
     - [[#typescript-mode][TypeScript Mode]]
@@ -1414,6 +1415,11 @@ it can be passed in POS."
 #+begin_src emacs-lisp
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook (lambda () (set-fill-column 80)))
+#+end_src
+*** Beancount Mode
+#+begin_src emacs-lisp
+(require 'beancount)
+(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
 #+end_src
 *** Python Mode
 #+begin_src emacs-lisp

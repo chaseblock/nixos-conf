@@ -120,7 +120,7 @@
   users.users.chase = {
     isNormalUser = true;
     description = "chase";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
     shell = pkgs.zsh;
   };
 

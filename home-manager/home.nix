@@ -49,6 +49,11 @@
     code-cursor
     multimarkdown
 
+    # beancount
+    beancount
+    beanquery
+    beanprice
+
     # misc
     fortune
   ];

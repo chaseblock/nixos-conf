@@ -33,6 +33,8 @@ let cfg = config.homeMods.emacs; in
     # Fonts
     roboto
     nerd-fonts.fira-code
+
+    emacsPackages.beancount
   ];
   xdg.configFile = {
     "emacs/early-init.el".source = ./emacs/early-init.el;

@@ -19,6 +19,8 @@
     gnumake zip unzip file jq
     gnome-disk-utility lsof
     rustdesk
+
+    android-tools
   ];
 
   # Enable unstable
