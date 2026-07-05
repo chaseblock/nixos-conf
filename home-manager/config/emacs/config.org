@@ -84,6 +84,7 @@
     - [[#sudo-edit][Sudo Edit]]
   - [[#programming-modes][Programming Modes]]
     - [[#text-editing-mode][Text Editing Mode]]
+    - [[#tex][TeX]]
     - [[#beancount-mode][Beancount Mode]]
     - [[#python-mode][Python Mode]]
     - [[#javascript-mode][Javascript Mode]]
@@ -1415,6 +1416,13 @@ it can be passed in POS."
 #+begin_src emacs-lisp
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook (lambda () (set-fill-column 80)))
+#+end_src
+*** TeX
+#+begin_src emacs-lisp
+(use-package auctex)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
 #+end_src
 *** Beancount Mode
 #+begin_src emacs-lisp

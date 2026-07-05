@@ -48,6 +48,7 @@
     sbt
     code-cursor
     multimarkdown
+    texliveSmall
 
     # beancount
     beancount
