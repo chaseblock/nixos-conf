@@ -57,6 +57,7 @@
 
     # misc
     fortune
+    signal-desktop
   ];
 
   # Allow unfree when using nix-shell
