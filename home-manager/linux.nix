@@ -1,18 +1,10 @@
 # Linux only config
-{ pkgs, lib, config, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    #./config/copyq.nix
-    #./config/imv.nix
-    #./config/keychain.nix
-    #./config/mpv.nix
-    #./config/udiskie.nix
-    #./config/zathura.nix
-
     ## Niri
     ./config/dunst.nix
-    #./config/gammastep.nix
     ./config/niri.nix
     ./config/rofi.nix
     ./config/swayidle.nix
@@ -58,7 +50,7 @@
 
   qt = {
     enable = true;
-    platformTheme.name = "gtk";
+    platformTheme.name = "gtk3";
     style.name = "adwaita-dark";
   };
 }

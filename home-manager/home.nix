@@ -58,6 +58,7 @@
     # misc
     fortune
     signal-desktop
+    anki
   ];
 
   # Allow unfree when using nix-shell
