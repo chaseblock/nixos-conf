@@ -30,6 +30,7 @@
 
   # https://wiki.nixos.org/wiki/Tailscale
   services.tailscale.enable = true;
+  services.tailscale.useRoutingFeatures = "client";
   networking.nftables.enable = true;
   networking.firewall = {
     enable = true;
