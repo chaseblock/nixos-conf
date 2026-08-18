@@ -18,8 +18,8 @@
       cursor-theme = "Adwaita";
       cursor-size = 24;
 
-      font-name = "Cantarell 12";
-      document-font-name = "Cantarell 12";
+      font-name = "Noto Sans 12";
+      document-font-name = "Noto Sans 12";
 
       font-antialiasing = "rgba";
       font-hinting = "slight";
@@ -42,8 +42,8 @@
       size = 24;
     };
     font = {
-      name = "Cantarell";
-      package = pkgs.cantarell-fonts;
+      name = "Noto Sans";
+      package = pkgs.noto-fonts;
       size = 12;
     };
   };

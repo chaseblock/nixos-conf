@@ -38,6 +38,7 @@
     kitty
     tigervnc
     simple-scan hplip
+    transmission_4-gtk
 
     # media
     ffmpeg imagemagick
