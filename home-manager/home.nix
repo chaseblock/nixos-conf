@@ -39,6 +39,7 @@
     tigervnc
     simple-scan hplip
     transmission_4-gtk
+    claude-code
 
     # media
     ffmpeg imagemagick
