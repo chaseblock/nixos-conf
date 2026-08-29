@@ -4,6 +4,7 @@ h=0 # help
 u=0 # update
 t=0 # test
 s=0 # switch
+gc=0 # garbage collection
 
 while [ $# -gt 0 ]; do
   case $1 in
@@ -21,6 +22,10 @@ while [ $# -gt 0 ]; do
       ;;
     -s|--switch)
       s=1
+      shift
+      ;;
+    -gc|--garbage)
+      gc=1
       shift
       ;;
     -*)
@@ -70,3 +75,10 @@ then
   sudo nixos-rebuild switch --flake .
   exit 0
 fi
+
+if [ $gc -eq 1 ];
+then
+  sudo nix-collect-garbage --delete-older-than 7d
+  sudo nixos-rebuild switch --flake .
+fi
+
