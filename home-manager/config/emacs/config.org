@@ -79,9 +79,8 @@
       - [[#yasnippet-capf][Yasnippet Capf]]
     - [[#sudo-edit][Sudo Edit]]
   - [[#programming-modes][Programming Modes]]
+    - [[#typst][Typst]]
     - [[#text-editing-mode][Text Editing Mode]]
-    - [[#tex][TeX]]
-    - [[#beancount-mode][Beancount Mode]]
     - [[#python-mode][Python Mode]]
     - [[#javascript-mode][Javascript Mode]]
     - [[#typescript-mode][TypeScript Mode]]
@@ -395,7 +394,7 @@
 (use-package evil-collection
   :after evil
   :config
-    (setq evil-collection-mode-list '(magit doc-view ement term minibuffer help dashboard dired ibuffer tetris eat))
+    (setq evil-collection-mode-list '(magit doc-view ement term minibuffer help dashboard dired ibuffer tetris gptel eat))
     (evil-collection-init))
 #+end_src
 *** Keychord
@@ -1354,22 +1353,42 @@ it can be passed in POS."
 (add-hook 'prog-mode-hook (lambda ()
   (cb/set-local-font (- cb/font-size 10))))
 #+end_src
+*** Typst
+#+begin_src emacs-lisp
+(defun my/typst-fill-paragraph (&optional justify)
+  "Fill the current Typst list item without merging adjacent items."
+  (let* ((node (treesit-node-at (point)))
+         (item (catch 'found
+                 (while node
+                   (when (string= (treesit-node-type node) "item")
+                     (throw 'found node))
+                   (setq node (treesit-node-parent node))))))
+    (if item
+        (save-restriction
+          ;; Restrict filling to this list item's contents.
+          (narrow-to-region
+           (treesit-node-start item)
+           (treesit-node-end item))
+          ;; Skip the list marker (`-`, `+`, etc.).
+          (goto-char (point-min))
+          (when (looking-at "[ \t]*[-+*][ \t]+")
+            (goto-char (match-end 0)))
+          (let ((fill-paragraph-function nil))
+            (fill-paragraph justify)))
+      ;; Not in a list: ordinary M-q behavior.
+      (let ((fill-paragraph-function nil))
+        (fill-paragraph justify)))))
+
+(add-hook 'typst-ts-mode-hook
+          (lambda ()
+            (setq-local fill-paragraph-function
+                        #'my/typst-fill-paragraph)))
+
+#+end_src
 *** Text Editing Mode
 #+begin_src emacs-lisp
 ;; (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook (lambda () (set-fill-column 80)))
-#+end_src
-*** TeX
-#+begin_src emacs-lisp
-(use-package auctex)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq-default TeX-master nil)
-#+end_src
-*** Beancount Mode
-#+begin_src emacs-lisp
-(require 'beancount)
-(add-to-list 'auto-mode-alist '("\\.beancount\\'" . beancount-mode))
 #+end_src
 *** Python Mode
 #+begin_src emacs-lisp
