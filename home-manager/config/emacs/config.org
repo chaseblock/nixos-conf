@@ -1355,6 +1355,9 @@ it can be passed in POS."
 #+end_src
 *** Typst
 #+begin_src emacs-lisp
+(use-package typst-ts-mode
+  :ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode" :branch "main"))
+
 (defun my/typst-fill-paragraph (&optional justify)
   "Fill the current Typst list item without merging adjacent items."
   (let* ((node (treesit-node-at (point)))
