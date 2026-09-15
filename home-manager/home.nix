@@ -51,6 +51,7 @@
     code-cursor
     multimarkdown
     texliveSmall
+    typst tinymist
 
     # beancount
     beancount
