@@ -54,6 +54,7 @@
             imports = [
               ./home-manager/home.nix
               ./home-manager/linux.nix
+              ./home-manager/ctower_extras.nix
             ];
           };
         }
