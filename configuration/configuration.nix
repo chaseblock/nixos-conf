@@ -8,6 +8,7 @@
   imports =
     [
       ./additional.nix
+      ./overlays.nix
     ];
 
   # Bootloader.
