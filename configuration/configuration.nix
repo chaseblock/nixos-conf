@@ -120,6 +120,7 @@
   users.users.chase = {
     isNormalUser = true;
     description = "chase";
+    initialPassword = "password1234";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.zsh;
   };

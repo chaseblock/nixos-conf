@@ -17,6 +17,14 @@
     options rtc_cmos use_acpi_alarm=1
   '';
 
+  # NVIDIA open drivers
+  hardware.graphics.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.nvidia.open = true;
+
+  # Required for wayland on nvidia graphics
+  hardware.nvidia.modesetting.enable = true;
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/12ec02d1-e496-48b3-9ea7-14d2d7a39de5";
@@ -30,7 +38,7 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystem."/mnt/work" =
+  fileSystems."/mnt/work" =
     {
       device = "/dev/disk/by-uuid/b1fc5e16-9883-4701-9fe3-113f6b011fb2";
       fsType = "ext4";

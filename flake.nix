@@ -49,7 +49,7 @@
         ./configuration/configuration.nix
         ./configuration/additional_ctower.nix
         ./hosts/ctower-hardware-configuration.nix
-        ./hosts/frame-host-configuration.nix
+        ./hosts/ctower-host-configuration.nix
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
