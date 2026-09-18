@@ -5,4 +5,7 @@
   imports = [ ./additional_userfacing.nix ];
 
   hardware.bluetooth.powerOnBoot = true;
+
+  # Steam
+  programs.steam.enable = true;
 }
