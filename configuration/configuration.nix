@@ -48,7 +48,6 @@
 
   # Hardware services
   hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = false;
   services.blueman.enable = true;
 
   # Enable the X11 windowing system.

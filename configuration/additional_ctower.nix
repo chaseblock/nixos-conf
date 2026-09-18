@@ -3,4 +3,6 @@
 
 {
   imports = [ ./additional_userfacing.nix ];
+
+  hardware.bluetooth.powerOnBoot = true;
 }

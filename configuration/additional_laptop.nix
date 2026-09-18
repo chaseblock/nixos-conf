@@ -3,6 +3,8 @@
 
 {
   imports = [ ./additional_userfacing.nix ];
+
+  hardware.bluetooth.powerOnBoot = false;
   
   # Sleep settings
   systemd.sleep.settings.Sleep = {
