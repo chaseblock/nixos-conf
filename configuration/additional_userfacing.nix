@@ -15,5 +15,10 @@
 
     # vpn
     openconnect networkmanager-openconnect
+
+    # Keyring management GUI (change the login keyring password, inspect secrets).
+    seahorse
   ];
+
+  security.pam.services.passwd.enableGnomeKeyring = true;
 }
