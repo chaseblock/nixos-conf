@@ -1,9 +1,11 @@
 { pkgs, ... }:
 
 let
+  clock-screen = pkgs.callPackage ./clock-screen.nix { };
+
   crofi-powermenu = pkgs.writeShellApplication {
     name = "crofi-powermenu";
-    runtimeInputs = with pkgs; [ rofi ];
+    runtimeInputs = [ clock-screen pkgs.rofi ];
     text = ''
       shutdown='   shutdown'
       reboot=' 󰜉  reboot'
@@ -16,7 +18,7 @@ let
       shutdown_cmd='systemctl poweroff'
       suspend_cmd='systemctl suspend'
       reboot_cmd='systemctl reboot'
-      lock_cmd='swaylock -f'
+      lock_cmd='clock-screen'
       exit_wm_cmd='niri msg action quit'
 
       function run_rofi_selection() {
@@ -127,6 +129,7 @@ in
 {
 
   home.packages = with pkgs; [
+    clock-screen
     crofi-powermenu crofi-screenshot crofi-screenrecord
     brightnessctl pavucontrol playerctl
     grim slurp sway-contrib.grimshot wf-recorder wl-clipboard-rs

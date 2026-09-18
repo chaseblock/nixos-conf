@@ -311,8 +311,9 @@ binds {
     // which ensures niri always processes them, even when an inhibitor is active.
     Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle Keyboard Shortcut Inhibitor" { toggle-keyboard-shortcuts-inhibit; }
 
-    // If Swaylock ever dies (Niri spawns "red screen"), use this keymap to respwan swaylock
-    Mod+L allow-when-locked=true hotkey-overlay-title="Respwan Swaylock in case it ever dies" { spawn "swaylock"; }
+    // if swaylock ever dies (Niri spawns "red screen"),
+    // clock-screen finds no swaylock running and locks.
+    Mod+L allow-when-locked=true hotkey-overlay-title="Lock the screen and blank the monitors" { spawn "clock-screen"; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
