@@ -121,7 +121,7 @@
     isNormalUser = true;
     description = "chase";
     initialPassword = "password1234";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     shell = pkgs.zsh;
   };
 

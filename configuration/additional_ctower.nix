@@ -8,4 +8,9 @@
 
   # Steam
   programs.steam.enable = true;
+
+  # Docker
+  virtualisation.docker = {
+    enable = true;
+  };
 }
