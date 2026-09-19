@@ -21,7 +21,7 @@
   ];
 
   # Run Electron/Chromium apps natively on Wayland.
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  #environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   security.pam.services.passwd.enableGnomeKeyring = true;
 }
