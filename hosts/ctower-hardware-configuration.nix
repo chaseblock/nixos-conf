@@ -25,6 +25,10 @@
   # Required for wayland on nvidia graphics
   hardware.nvidia.modesetting.enable = true;
 
+  # Without this the driver drops VRAM contents across suspend, so the GPU comes
+  # back with stale state and modesets fail ("Flip event timeout on head N").
+  hardware.nvidia.powerManagement.enable = true;
+
   fileSystems."/" =
     {
       device = "/dev/disk/by-uuid/12ec02d1-e496-48b3-9ea7-14d2d7a39de5";

@@ -37,17 +37,17 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-// Desktop monitors
+// Desktop monitors.
 output "Dell Inc. DELL S2721DGF D2NL6H3" {
     mode "2560x1440@59.951"
-    scale 0.9
+    scale 1
     transform "normal"
     position x=2844 y=0
 }
 
 output "Dell Inc. DELL S2725DS 2YM4C94" {
     mode "2560x1440@59.951"
-    scale 0.9
+    scale 1
     transform "normal"
     position x=0 y=0
 }

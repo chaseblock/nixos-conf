@@ -1,7 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, osConfig, ... }:
 
 let
   clock-screen = pkgs.callPackage ./clock-screen.nix { };
+
+  # ctower is a desktop and should never put itself to sleep. The laptops keep
+  # auto-suspending. Manual suspend (power menu, lid) still works everywhere.
+  autoSuspend = osConfig.networking.hostName != "ctower";
 in
 {
   services.swayidle = {
@@ -29,10 +33,10 @@ in
         command = "${clock-screen}/bin/clock-screen";
         resumeCommand = "${pkgs.niri}/bin/niri msg action power-on-monitors";
       }
-      {
-        timeout = 540;
-        command = "${pkgs.systemd}/bin/systemctl suspend";
-      }
-    ];
+    ]
+    ++ lib.optional autoSuspend {
+      timeout = 540;
+      command = "${pkgs.systemd}/bin/systemctl suspend";
+    };
   };
 }
