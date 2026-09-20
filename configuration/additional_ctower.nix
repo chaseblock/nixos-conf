@@ -13,4 +13,13 @@
   virtualisation.docker = {
     enable = true;
   };
+
+  # Tmux
+  programs.tmux = {
+    enable = true;
+    clock24 = true;
+    extraConfig = ''
+      set mouse
+    '';
+  };
 }
