@@ -11,6 +11,11 @@
       ./overlays.nix
     ];
 
+  nix.settings = {
+    cores = 4;
+    max-jobs = 4;
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;

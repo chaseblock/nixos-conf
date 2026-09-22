@@ -9,24 +9,20 @@
   };
 
   imports = [
-  #  # Tools
+    # Tools
     ./config/bat.nix
     ./config/btop.nix
     ./config/eza.nix
-   ./config/fd.nix
-  #  ./config/fzf.nix
+    ./config/fd.nix
     ./config/git.nix
-  #  ./config/lf.nix
-   ./config/ripgrep.nix
-  #  ./config/syncthing.nix
+    ./config/ripgrep.nix
     ./config/vim.nix
     ./config/emacs.nix
-  #  ./config/zoxide.nix
     ./config/vscode.nix
     ./config/direnv.nix
     ./config/backrest.nix
 
-  #  # Terminal & Shell
+    # Terminal & Shell
     ./config/fastfetch.nix
     ./config/kitty.nix
     ./config/zsh.nix
@@ -62,6 +58,7 @@
     fortune
     signal-desktop
     anki
+    bambu-studio
   ];
 
   # Allow unfree when using nix-shell
