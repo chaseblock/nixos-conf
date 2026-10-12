@@ -10,4 +10,9 @@
     font-name = lib.mkForce "Noto Sans 11";
     document-font-name = lib.mkForce "Noto Sans 11";
   };
+
+  home.packages = with pkgs; [
+    # games
+    lutris
+  ];
 }

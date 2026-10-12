@@ -21,6 +21,7 @@
     ./config/vscode.nix
     ./config/direnv.nix
     ./config/backrest.nix
+    ./config/bambu.nix
 
     # Terminal & Shell
     ./config/fastfetch.nix
@@ -58,7 +59,6 @@
     fortune
     signal-desktop
     anki
-    bambu-studio
   ];
 
   # Allow unfree when using nix-shell
